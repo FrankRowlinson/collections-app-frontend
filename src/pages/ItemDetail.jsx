@@ -7,7 +7,7 @@ import {
   Button,
   ToggleButton,
 } from 'react-bootstrap'
-import { IoMdHeartEmpty, IoMdHeart, IoIosChatboxes } from 'react-icons/io'
+import { IoMdHeartEmpty, IoIosChatboxes } from 'react-icons/io'
 
 import ItemTitle from '../components/ItemTitle'
 import Details from '../components/Details'
