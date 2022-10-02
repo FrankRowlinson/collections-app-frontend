@@ -1,0 +1,7 @@
+.item-img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  max-height: 800px;
+  top: 90px;
+}
