@@ -1,11 +1,14 @@
 import { Container, Form, Navbar, Nav, Button } from 'react-bootstrap'
 import { MdSearch } from 'react-icons/md'
+import ThemeToggler from './ThemeToggler'
 
 function NavBar() {
+
   return (
-    <Navbar bg="light" expand="md" fixed="top">
+    <Navbar bg="primary" expand="md" fixed="top" className="shadow">
       <Container fluid>
         <Navbar.Brand href="#">Logo</Navbar.Brand>
+        <ThemeToggler/>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
           <Nav className="my-2 my-md-0 w-100 justify-content-end">

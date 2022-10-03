@@ -3,7 +3,7 @@ import Comment from './Comment'
 
 function CommentSection(props) {
   const { comments } = props
-  return <ListGroup>
+  return <ListGroup className="shadow">
     {comments.map((comment, key) => {
       return (
       <ListGroup.Item key={key}>

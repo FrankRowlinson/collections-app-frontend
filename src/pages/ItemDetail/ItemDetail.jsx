@@ -9,10 +9,10 @@ import {
 } from 'react-bootstrap'
 import { IoMdHeartEmpty, IoIosChatboxes } from 'react-icons/io'
 
-import ItemTitle from '../components/ItemTitle'
-import Details from '../components/Details'
-import ItemImage from '../components/ItemImage'
-import CommentSection from '../components/CommentSection'
+import ItemTitle from '../../components/ItemTitle'
+import Details from '../../components/Details'
+import ItemImage from '../../components/ItemImage'
+import CommentSection from '../../components/CommentSection'
 
 import './ItemDetail.css'
 
