@@ -1,17 +1,22 @@
-import { ListGroup } from 'react-bootstrap';
-import Comment from './Comment'
+import React from 'react'
+import { Stack,   Paper, Typography } from '@mui/material'
+import moment from 'moment'
 
 function CommentSection(props) {
   const { comments } = props
-  return <ListGroup className="shadow">
-    {comments.map((comment, key) => {
-      return (
-      <ListGroup.Item key={key}>
-        <Comment comment={comment}/>
-      </ListGroup.Item>
-      )
-    })}
-  </ListGroup>
+  return (
+    <Stack spacing={1}>
+      {comments.map((el, key) => {
+        return (
+          <Paper>
+            <Typography variant="overline">{moment(el.createdAt).format('LLL')}</Typography>
+            <Typography variant="h6">{el.author}</Typography>
+            <Typography variant="body2">{el.text}</Typography>
+          </Paper>
+        )
+      })}
+    </Stack>
+  )
 }
 
 export default CommentSection

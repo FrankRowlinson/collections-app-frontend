@@ -1,34 +1,84 @@
-import moment from 'moment'
-import {
-  Container,
-  Row,
-  Col,
-  ButtonGroup,
-  Button,
-  ToggleButton,
-} from 'react-bootstrap'
-import { IoMdHeartEmpty, IoIosChatboxes } from 'react-icons/io'
+import React from 'react'
 
-import ItemTitle from '../../components/ItemTitle'
+import { Container, Grid, Paper } from '@mui/material'
+import Image from 'mui-image'
+
 import Details from '../../components/Details'
-import ItemImage from '../../components/ItemImage'
 import CommentSection from '../../components/CommentSection'
-
-import './ItemDetail.css'
 
 const details = [
   {
-    field: 'Description',
+    label: 'Description',
     content:
       'Prncus eniedpis. Integer pharetra eros nec dui rhoncus eleifend. Aenean a est quis nisi facilisis mattis vel sit amet felis.',
   },
   {
-    field: 'Year',
+    label: 'Year',
     content: 1999,
   },
   {
-    field: 'Country',
+    label: 'Country',
     content: 'Scotland',
+  },
+  {
+    label: 'Details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
+  },
+  {
+    label: 'Even More details',
+    content:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, possimus. Eligendi dicta sapiente possimus, iure incidunt mollitia esse distinctio nam corrupti. Veritatis quam corrupti consectetur, saepe sequi voluptatibus culpa expedita!',
   },
 ]
 
@@ -42,44 +92,27 @@ const comments = [
   { author: 'Helen', text: 'Good stuff', createdAt: Date.now() },
 ]
 
-const date = Date.now()
-const title =
-  'Ballantines 12yo scotch whiskey with strong smoke aroma and flavour'
-const author = 'Billy'
-const collection = 'Whiskeys of the world'
-
 function ItemDetail() {
   return (
-    <Container fluid="md">
-      <Row className="mt-4 justify-content-center">
-        <Col md={5} lg={4}>
-          <ItemImage src="https://picsum.photos/400/700" />
-        </Col>
-        <Col md={7} lg={6} className="mt-2">
-          <ItemTitle title={title} />
-          <p className="text-muted">{moment(date).format('LLL')}</p>
-          <p className="h5">{author}</p>
-          <p className="h5">{collection}</p>
+    <Container sx={{mt: "20px"}}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={5}>
+          <Paper sx={{position: 'sticky', top: 20}}>
+            <Image
+              src="https://picsum.photos/400/600"
+              duration={1000}
+              easing="cubic-bezier(0.7, 0, 0.6, 1)"
+              showLoading={false}
+              errorIcon={true}
+              bgColor="inherit"
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={7}>
           <Details details={details} />
-          <ButtonGroup className="mt-3">
-            <ToggleButton
-              type="checkbox"
-              variant="light"
-              style={{ fontSize: 26 }}
-            >
-              <IoMdHeartEmpty />
-            </ToggleButton>
-            <Button variant="light" href="#comments" style={{ fontSize: 26 }}>
-              <IoIosChatboxes />
-            </Button>
-          </ButtonGroup>
-        </Col>
-      </Row>
-      <Row className="justify-content-center pt-3" id="comments">
-        <Col lg={10} md={12}>
-          <CommentSection comments={comments} />
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
+      <CommentSection comments={comments}/>
     </Container>
   )
 }

@@ -1,14 +1,20 @@
-import { ListGroup } from 'react-bootstrap'
+import React from 'react'
+import { Paper, Typography, Stack } from '@mui/material'
 
 function Details(props) {
   const { details } = props
 
   return (
-    <ListGroup>
-      {details.map((el, key) => (
-        <ListGroup.Item key={key}>{el.field}: {el.content}</ListGroup.Item>
-      ))}
-    </ListGroup>
+    <Stack spacing={2}>
+      {details.map((el, key) => {
+        return (
+          <Paper elevation={2 } key={el.label}>
+            <Typography variant="h6">{el.label}</Typography>
+            <Typography variant="body1">{el.content}</Typography>
+          </Paper>
+        )
+      })}
+    </Stack>
   )
 }
 
