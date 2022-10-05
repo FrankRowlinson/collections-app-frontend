@@ -15,6 +15,7 @@ import {
 } from '@mui/material'
 import routes from '../constants/routes'
 import { MdSegment } from 'react-icons/md'
+import { NavLink } from 'react-router-dom'
 
 const navItems = [
   {
@@ -37,6 +38,15 @@ function NavBar(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const activeStyle = {
+    backgroundColor: 'black',
+    textDecoration: 'none',
+  }
+
+  const nonActiveStyle = {
+    textDecoration: 'none',
+  }
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
@@ -51,7 +61,15 @@ function NavBar(props) {
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText>{item.label}</ListItemText>
+              <NavLink
+                style={({ isActive }) =>
+                  isActive ? activeStyle : nonActiveStyle
+                }
+                to={item.route}
+                end
+              >
+                <ListItemText>{item.label}</ListItemText>
+              </NavLink>
             </ListItemButton>
           </ListItem>
         ))}
@@ -84,7 +102,18 @@ function NavBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item.label} sx={{ color: '#fff' }}>
+              <Button
+                component={NavLink}
+                key={item.label}
+                style={({ isActive }) =>
+                  isActive ? activeStyle : nonActiveStyle
+                }
+                variant="outlined"
+                size='lg'
+                sx={{ color: '#fff' }}
+                to={item.route}
+                end
+              >
                 {item.label}
               </Button>
             ))}
