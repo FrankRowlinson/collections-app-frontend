@@ -3,6 +3,7 @@ import ItemDetail from './pages/ItemDetail/ItemDetail'
 import { Routes, Route } from 'react-router-dom'
 import AuthPage from './pages/AuthPage/AuthPage'
 import Home from './pages/Home/Home'
+import AddCollection from './pages/AddCollection/AddCollection';
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/item" element={<ItemDetail />} />
+        <Route path="/items" element={<ItemDetail />} />
         <Route path="/auth/*" element={<AuthPage />} />
+        <Route path="/create-collection" element={<AddCollection/>}/>
       </Routes>
     </>
   )

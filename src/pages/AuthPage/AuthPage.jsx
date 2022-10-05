@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Container, Box } from '@mui/material'
 import LoginForm from '../../components/LoginForm'
 import SignupForm from '../../components/SignupForm'

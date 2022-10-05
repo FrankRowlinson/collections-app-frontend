@@ -30,6 +30,10 @@ const navItems = [
     label: 'Sign Up',
     route: routes.SIGNUP,
   },
+  {
+    label: 'Create Collection',
+    route: routes.CREATE_COLLECTION
+  }
 ]
 
 const drawerWidth = '300px'

@@ -10,10 +10,7 @@ import {
   CardContent,
   Stack,
   Alert,
-  InputProps,
-  InputAdornment,
 } from '@mui/material'
-import { MdInfo } from 'react-icons/md'
 
 const schema = yup.object({
   username: yup.string().required('Enter a valid username').min(4).max(25),
@@ -29,7 +26,8 @@ function LoginForm() {
   const onSubmit = (data) => console.log(data)
 
   return (
-    <Card raised sx={{ mt: '20px', p: 4, borderRadius: '20px' }}>
+    <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '20px' }}>
+      <CardHeader title="Sign In"/>
       <CardContent sx={{}}>
         <form
           onSubmit={handleSubmit(onSubmit)}
