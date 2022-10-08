@@ -90,7 +90,7 @@ function AddCollection() {
   const onSubmit = (data) => console.log(data)
 
   return (
-    <Container maxWidth="md" sx={{ mt: '30px' }}>
+    <Container maxWidth="md">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
@@ -225,6 +225,7 @@ function AddCollection() {
                 <Grid item xs={12} md={8}>
                   <TextField
                     fullWidth
+                    autoComplete='off'
                     label="Field name"
                     id={`field-name-${key}`}
                     {...register(`custom-field-${key}-name`)}

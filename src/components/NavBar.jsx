@@ -1,55 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import {
   AppBar,
   Box,
   Divider,
   Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Toolbar,
   Typography,
-  Button,
 } from '@mui/material'
-import routes from '../constants/routes'
 import { MdSegment } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
-
-const navItems = [
-  {
-    label: 'Home',
-    route: routes.HOME,
-  },
-  {
-    label: 'Login',
-    route: routes.LOGIN,
-  },
-  {
-    label: 'Sign Up',
-    route: routes.SIGNUP,
-  },
-  {
-    label: 'Create Collection',
-    route: routes.CREATE_COLLECTION
-  }
-]
+import { getNavItems } from '../services/navigation'
+import { UserContext } from '../context/UserContext'
+import NavBarItems from '../components/NavBarItems'
+import routes from '../constants/routes'
 
 const drawerWidth = '300px'
 
 function NavBar(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { user } = useContext(UserContext)
+  const [navItems, setNavItems] = useState(getNavItems(user.role))
 
-  const activeStyle = {
-    backgroundColor: 'black',
-    textDecoration: 'none',
-  }
-
-  const nonActiveStyle = {
-    textDecoration: 'none',
-  }
+  useEffect(() => {
+    setNavItems(getNavItems(user.role))
+  }, [user])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -58,26 +34,10 @@ function NavBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        COLLECTIONS
       </Typography>
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <NavLink
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                to={item.route}
-                end
-              >
-                <ListItemText>{item.label}</ListItemText>
-              </NavLink>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <NavBarItems navItems={navItems} variant="drawer" />
     </Box>
   )
 
@@ -97,31 +57,19 @@ function NavBar(props) {
           >
             <MdSegment />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            MUI
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button
-                component={NavLink}
-                key={item.label}
-                style={({ isActive }) =>
-                  isActive ? activeStyle : nonActiveStyle
-                }
-                variant="outlined"
-                size='lg'
-                sx={{ color: '#fff' }}
-                to={item.route}
-                end
-              >
-                {item.label}
-              </Button>
-            ))}
-          </Box>
+            <Typography
+              variant="h6"
+              component={NavLink}
+              to={routes.HOME}
+              color="inherit"
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', sm: 'block', textDecoration: 'none' },
+              }}
+            >
+              COLLECTIONS
+            </Typography>
+          <NavBarItems navItems={navItems} variant="topNavItems" />
         </Toolbar>
       </AppBar>
       <Box component="nav">
@@ -131,7 +79,7 @@ function NavBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },

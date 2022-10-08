@@ -5,16 +5,19 @@ import {
   CardHeader,
   Stack,
   TextField,
-  Button,
   Alert,
   InputAdornment,
-  Popover,
-  Typography,
 } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { MdInfo } from 'react-icons/md'
+import { Link, Navigate } from 'react-router-dom'
+
+import { authenticateUser } from '../services/authentication'
+import routes from '../constants/routes'
+import AuthButton from './AuthButton'
+import AuthError from './AuthError'
+import FormPopover from './FormPopover'
 
 const schema = yup.object({
   username: yup.string().required('Enter a valid username').min(4).max(25),
@@ -26,35 +29,34 @@ const schema = yup.object({
 })
 
 function SignupForm() {
+  const [inProgress, setInProgress] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+  const [showStatus, setShowStatus] = useState(false)
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({ resolver: yupResolver(schema) })
-  const onSubmit = (data) => console.log(data)
 
-  const [anchorLoginInfo, setAnchorLoginInfo] = useState(null)
-  const [anchorPasswordInfo, setAnchorPasswordInfo] = useState(null)
-  const handleLoginPopoverOpen = (event) => {
-    setAnchorLoginInfo(event.currentTarget)
+  const onSubmit = async (data) => {
+    setInProgress(true)
+    const response = await authenticateUser(data, 'signup')
+    response.status === 'ok' ? setRedirect(true) : setShowStatus(true)
+    setInProgress(false)
   }
-  const handlePasswordPopoverOpen = (event) => {
-    setAnchorPasswordInfo(event.currentTarget)(event.currentTarget)
-  }
-  const handleLoginPopoverClose = () => {
-    setAnchorLoginInfo(null)
-  }
-  const handlePasswordPopoverClose = () => {
-    setAnchorPasswordInfo(null)
-  }
-  const loginShow = Boolean(anchorLoginInfo)
-  const passwordShow = Boolean(anchorPasswordInfo)
 
   return (
     <>
-      <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '20px' }}>
-        <CardHeader title="Sign Up" />
+      {redirect && <Navigate to={routes.LOGIN} />}
+      <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
+        <CardHeader
+          title="Sign Up"
+          subheader={<Link to={routes.LOGIN}>Already have an account?</Link>}
+          subheaderTypographyProps={{ component: 'span' }}
+        />
         <CardContent sx={{}}>
+          {showStatus && <AuthError form="signUp" />}
           <form
             onSubmit={handleSubmit(onSubmit)}
             style={{ display: 'flex', flexDirection: 'column' }}
@@ -73,10 +75,7 @@ function SignupForm() {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="start">
-                      <MdInfo
-                        onMouseEnter={handleLoginPopoverOpen}
-                        onMouseLeave={handleLoginPopoverClose}
-                      />
+                      <FormPopover field="signup-username" />
                     </InputAdornment>
                   ),
                 }}
@@ -95,10 +94,7 @@ function SignupForm() {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="start">
-                      <MdInfo
-                        onMouseEnter={handlePasswordPopoverOpen}
-                        onMouseLeave={handlePasswordPopoverClose}
-                      />
+                      <FormPopover field="signup-password" />
                     </InputAdornment>
                   ),
                 }}
@@ -128,53 +124,11 @@ function SignupForm() {
                 variant="standard"
                 {...register('email')}
               />
-              <Button variant="contained" type="submit">
-                Sign Up
-              </Button>
+              <AuthButton inProgress={inProgress} text="Sign Up" />
             </Stack>
           </form>
         </CardContent>
       </Card>
-      <Popover
-        id="mouse-over-popover-login"
-        sx={{
-          pointerEvents: 'none',
-        }}
-        open={loginShow}
-        anchorEl={anchorLoginInfo}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handleLoginPopoverClose}
-        disableRestoreFocus
-      >
-        <Typography sx={{ p: 1 }}>Custom requirements for login!</Typography>
-      </Popover>
-      <Popover
-        id="mouse-over-popover-password"
-        sx={{
-          pointerEvents: 'none',
-        }}
-        open={passwordShow}
-        anchorEl={anchorPasswordInfo}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handlePasswordPopoverClose}
-        disableRestoreFocus
-      >
-        <Typography sx={{ p: 1 }}>Custom requirements for password!</Typography>
-      </Popover>
     </>
   )
 }

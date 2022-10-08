@@ -7,6 +7,9 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
