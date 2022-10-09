@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import {
   Container,
   Grid,
@@ -17,57 +17,44 @@ import {
   ButtonGroup,
 } from '@mui/material'
 
-import ReactMarkdown from 'react-markdown'
-
-const collectionTypes = [
-  {
-    label: 'Whiskey',
-    value: 'WHISKEY',
-  },
-  {
-    label: 'Cigars',
-    value: 'CIGARS',
-  },
-  {
-    label: 'Stamps',
-    value: 'STAMPS',
-  },
-]
-
-const fieldTypes = [
-  {
-    label: 'Line',
-    value: 'STRING',
-  },
-  {
-    label: 'Number',
-    value: 'NUMBER',
-  },
-  {
-    label: 'Text',
-    value: 'TEXT',
-  },
-  {
-    label: 'Date',
-    value: 'DATE',
-  },
-  {
-    label: 'Yes / No',
-    value: 'BOOLEAN',
-  },
-]
-
-function MarkdownPreview({ control }) {
-  const preview = useWatch({
-    control,
-    name: 'description',
-  })
-
-  return <ReactMarkdown>{preview}</ReactMarkdown>
-}
+import MarkdownPreview from '../../components/MarkdownPreview'
+import getCollectionFormProps from '../../services/getCollectionProps'
 
 function AddCollection() {
-  const [previewOpen, setPreviewOpen] = React.useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [collectionTypes, setCollectionTypes] = useState([])
+  const [fieldNumber, setFieldNumber] = useState(2)
+  const [fieldTypes, setFieldTypes] = useState({})
+  const [previewOpen, setPreviewOpen] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getCollectionFormProps()
+      setCollectionTypes(response.collectionTypes)
+      setFieldTypes(response.fieldTypes)
+      setIsLoading(false)
+    }
+    fetchData()
+  }, [])
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    // formState: { errors }, // TODO: implement error display
+    unregister
+  } = useForm()
+
+  const handleFieldAddition = () => {
+    setFieldNumber(fieldNumber + 1)
+  }
+
+  const handleFieldDeletion = () => {
+    if (fieldNumber > 0) {
+      unregister([`custom-field-${fieldNumber}-name`, `custom-field-${fieldNumber}-type`])
+      setFieldNumber(fieldNumber - 1)
+    }
+  }
 
   const handleClickPreviewOpen = () => {
     setPreviewOpen(true)
@@ -76,16 +63,6 @@ function AddCollection() {
   const handlePreviewClose = () => {
     setPreviewOpen(false)
   }
-
-  const [fieldNumber, setFieldNumber] = useState(2)
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-
-  console.log(errors)
 
   const onSubmit = (data) => console.log(data)
 
@@ -117,13 +94,15 @@ function AddCollection() {
                 {...register('collectionType')}
                 labelId="collection-type"
                 label="Collection Type"
+                defaultValue=""
                 id="collection-type-select"
-                defaultValue={collectionTypes[0].value}
+                placeholder="Select..."
+                disabled={isLoading}
               >
-                {collectionTypes.map((el, key) => {
+                {collectionTypes.map((el) => {
                   return (
-                    <MenuItem key={el.value} value={el.value}>
-                      {el.label}
+                    <MenuItem key={el.name} value={el.name}>
+                      {el.name}
                     </MenuItem>
                   )
                 })}
@@ -162,27 +141,15 @@ function AddCollection() {
           <Grid item container xs={12}>
             <Grid item xs={12}>
               <Typography variant="h6" component="span">
-                Custom fields for collection
+                Custom fields for your collection
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <ButtonGroup>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setFieldNumber(fieldNumber + 1)
-                  }}
-                >
+                <Button variant="outlined" onClick={handleFieldAddition}>
                   +
                 </Button>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setFieldNumber(
-                      fieldNumber > 0 ? fieldNumber - 1 : fieldNumber
-                    )
-                  }}
-                >
+                <Button variant="outlined" onClick={handleFieldDeletion}>
                   -
                 </Button>
               </ButtonGroup>
@@ -198,37 +165,40 @@ function AddCollection() {
               </Typography>
             </Grid>
           )}
-          {[...Array(fieldNumber)].map((el, key) => {
+          {[...Array(fieldNumber)].map((_, index) => index + 1).map((number, key) => {
             return (
-              <Grid key={`${el}-${key}`} item container spacing={1} xs={12}>
+              <Grid key={`${number}-${key}`} item container spacing={1} xs={12}>
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
-                    <InputLabel id={`select-field-${key}-label`}>
+                    <InputLabel id={`select-field-${number}-label`}>
                       Field type
                     </InputLabel>
                     <Select
-                      labelId={`select-field-${key}-label`}
+                      labelId={`select-field-${number}-label`}
                       label="Field Type"
-                      defaultValue={fieldTypes[0].value || ''}
-                      {...register(`custom-field-${key}-type`)}
+                      defaultValue=""
+                      helperText={''}
+                      {...register(`custom-field-${number}-type`, {required: true})}
                     >
-                      {fieldTypes.map((el, key) => {
-                        return (
-                          <MenuItem value={el.value} key={`${el}-${key}`}>
-                            {el.label}
-                          </MenuItem>
-                        )
-                      })}
+                      {isLoading
+                        ? ''
+                        : fieldTypes.map((el, key) => {
+                            return (
+                              <MenuItem value={el.value} key={`${el}-${key}`}>
+                                {el.label}
+                              </MenuItem>
+                            )
+                          })}
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={8}>
                   <TextField
                     fullWidth
-                    autoComplete='off'
+                    autoComplete="off"
                     label="Field name"
-                    id={`field-name-${key}`}
-                    {...register(`custom-field-${key}-name`)}
+                    id={`field-name-${number}`}
+                    {...register(`custom-field-${number}-name`, {required: true})}
                   />
                 </Grid>
               </Grid>

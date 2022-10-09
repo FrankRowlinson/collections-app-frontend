@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Button, ListItemButton, ListItemText } from '@mui/material'
 
-function LogoutButton({ type }) {
+function LogoutButton({ variant }) {
   const text = 'Logout'
   const { handleLogout } = useContext(UserContext)
   const topNavVariant = (
-    <Button color="inherit" onClick={handleLogout}>
+    <Button color="primary" variant="contained" sx={{color: 'primary.contrastText'}} onClick={handleLogout}>
       {text}
     </Button>
   )
@@ -16,11 +16,14 @@ function LogoutButton({ type }) {
       <ListItemText>{text}</ListItemText>
     </ListItemButton>
   )
+
+  const variants = {
+    drawer: drawerVariant,
+    topNav: topNavVariant
+  }
   return (
     <>
-      {type === 'drawerVariant'
-        ? drawerVariant
-        : type === 'topNavVariant' && topNavVariant}
+      {variants[variant]}
     </>
   )
 }

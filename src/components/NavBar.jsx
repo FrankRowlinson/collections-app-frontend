@@ -69,7 +69,7 @@ function NavBar(props) {
             >
               COLLECTIONS
             </Typography>
-          <NavBarItems navItems={navItems} variant="topNavItems" />
+          <NavBarItems navItems={navItems} variant="topNavItems"/>
         </Toolbar>
       </AppBar>
       <Box component="nav">
