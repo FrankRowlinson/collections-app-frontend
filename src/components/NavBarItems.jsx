@@ -4,14 +4,20 @@ import {
   List,
   Button,
   ListItem,
+  IconButton,
   ListItemText,
   ListItemButton,
 } from '@mui/material'
+import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
 import LogoutButton from '../components/LogoutButton'
 import { UserContext } from '../context/UserContext'
+import { useTheme } from '@mui/material/styles'
+import { ColorModeContext } from '../context/ColorModeContext'
 
 function NavBarItems({ variant, navItems }) {
+  const theme = useTheme()
+  const colorMode = useContext(ColorModeContext)
   const { user } = useContext(UserContext)
 
   const topNavItems = (
@@ -28,11 +34,11 @@ function NavBarItems({ variant, navItems }) {
               {({ isActive }) => (
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="inherit"
                   disableElevation={isActive}
                   sx={{
-                    color: isActive ? 'primary.light' : 'primary.contrastText',
-                    mr: 2,
+                    color: isActive ? 'text.secondary' : 'text.primary',
+                    borderRadius: 0,
                   }}
                 >
                   {item.label}
@@ -41,6 +47,9 @@ function NavBarItems({ variant, navItems }) {
             </NavLink>
           )
       )}
+      <IconButton onClick={colorMode.toggleColorMode}>
+      {theme.palette.mode === 'dark' ? <MdDarkMode/> : <MdOutlineDarkMode/>}
+      </IconButton>
       {user.role === 'GUEST' ? '' : <LogoutButton variant="topNav" />}
     </Box>
   )

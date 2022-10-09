@@ -6,7 +6,7 @@ function LogoutButton({ variant }) {
   const text = 'Logout'
   const { handleLogout } = useContext(UserContext)
   const topNavVariant = (
-    <Button color="primary" variant="contained" sx={{color: 'primary.contrastText'}} onClick={handleLogout}>
+    <Button color="inherit" variant="outlined" sx={{ml: 2}} onClick={handleLogout}>
       {text}
     </Button>
   )

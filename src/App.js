@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Container } from '@mui/material'
+import { Container, CssBaseline } from '@mui/material'
+
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import { UserContext } from './context/UserContext'
-import { LoaderContext } from './context/LoaderContext'
 import { getUser, logout } from './services/authentication'
 
 import NavBar from './components/NavBar'
@@ -14,10 +15,27 @@ import ItemDetail from './pages/ItemDetail/ItemDetail'
 import Loader from './pages/Loader/Loader'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import routes from './constants/routes'
+import { ColorModeContext } from './context/ColorModeContext'
+import { getDesignTokens } from './themes/getDesignTokens'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
   const [isLoading, setIsLoading] = useState(true)
+  const [mode, setMode] = useState(localStorage.getItem('theme') || 'light')
+
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => {
+          const currentMode = prevMode === 'light' ? 'dark' : 'light'
+          localStorage.setItem('theme', currentMode)
+          return currentMode
+        })
+      },
+    }),
+    []
+  )
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,49 +56,52 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, handleLogout }}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <LoaderContext.Provider value={isLoading}>
-            <NavBar />
-            <Container
-              sx={{
-                mt: { xs: '20px', sm: '30px' },
-                mb: { xs: '20px', sm: '60px' },
-              }}
-            >
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/items" element={<ItemDetail />} />
-                <Route
-                  path="/auth/*"
-                  element={
-                    user.role === 'GUEST' ? (
-                      <AuthPage />
-                    ) : (
-                      <Navigate to={routes.HOME} />
-                    )
-                  }
-                />
-                <Route
-                  path="/create-collection"
-                  element={
-                    user.role !== 'GUEST' ? (
-                      <AddCollection />
-                    ) : (
-                      <Navigate to={routes.SIGNUP} />
-                    )
-                  }
-                />
-                <Route path="/*" element={<NotFoundPage/>}/>
-              </Routes>
-            </Container>
-          </LoaderContext.Provider>
-        </>
-      )}
-    </UserContext.Provider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <UserContext.Provider value={{ user, setUser, handleLogout }}>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <NavBar />
+              <Container
+                sx={{
+                  mt: { xs: '20px', sm: '30px' },
+                  mb: { xs: '20px', sm: '60px' },
+                }}
+              >
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/items" element={<ItemDetail />} />
+                  <Route
+                    path="/auth/*"
+                    element={
+                      user.role === 'GUEST' ? (
+                        <AuthPage />
+                      ) : (
+                        <Navigate to={routes.HOME} />
+                      )
+                    }
+                  />
+                  <Route
+                    path="/create-collection"
+                    element={
+                      user.role !== 'GUEST' ? (
+                        <AddCollection />
+                      ) : (
+                        <Navigate to={routes.SIGNUP} />
+                      )
+                    }
+                  />
+                  <Route path="/*" element={<NotFoundPage />} />
+                </Routes>
+              </Container>
+            </>
+          )}
+        </UserContext.Provider>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   )
 }
 
