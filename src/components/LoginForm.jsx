@@ -52,7 +52,7 @@ function LoginForm() {
         subheader={<Link to={routes.SIGNUP}>Don't have an account?</Link>}
       />
       <CardContent sx={{}}>
-        {showStatus ? <AuthError form='signUp'/> : ''}
+        {showStatus ? <AuthError form='signIn'/> : ''}
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{ display: 'flex', flexDirection: 'column' }}

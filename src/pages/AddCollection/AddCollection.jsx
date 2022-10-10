@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import {
   Container,
   Grid,
@@ -14,16 +14,17 @@ import {
   DialogActions,
   DialogContent,
   Divider,
-  ButtonGroup,
 } from '@mui/material'
+
+import { TiDeleteOutline } from 'react-icons/ti'
 
 import MarkdownPreview from '../../components/MarkdownPreview'
 import getCollectionFormProps from '../../services/getCollectionProps'
+import { MdAdd } from 'react-icons/md'
 
 function AddCollection() {
   const [isLoading, setIsLoading] = useState(true)
   const [collectionTypes, setCollectionTypes] = useState([])
-  const [fieldNumber, setFieldNumber] = useState(2)
   const [fieldTypes, setFieldTypes] = useState({})
   const [previewOpen, setPreviewOpen] = useState(false)
 
@@ -42,19 +43,16 @@ function AddCollection() {
     control,
     handleSubmit,
     // formState: { errors }, // TODO: implement error display
-    unregister
-  } = useForm()
+  } = useForm({
+    defaultValues: { customField: { type: '', name: '' } },
+    shouldUnregister: true,
+  })
 
-  const handleFieldAddition = () => {
-    setFieldNumber(fieldNumber + 1)
-  }
-
-  const handleFieldDeletion = () => {
-    if (fieldNumber > 0) {
-      unregister([`custom-field-${fieldNumber}-name`, `custom-field-${fieldNumber}-type`])
-      setFieldNumber(fieldNumber - 1)
-    }
-  }
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'customField',
+    shouldUnregister: true,
+  })
 
   const handleClickPreviewOpen = () => {
     setPreviewOpen(true)
@@ -74,6 +72,11 @@ function AddCollection() {
             <Typography variant="h5">Create new collection</Typography>
             <Divider />
           </Grid>
+          <Grid item xs={12}>
+              <Typography variant="h6" component="span">
+                General information
+              </Typography>
+            </Grid>
           <Grid item xs={12}>
             <TextField
               {...register('collectionName', {
@@ -138,47 +141,41 @@ function AddCollection() {
               Show preview
             </Button>
           </Grid>
-          <Grid item container xs={12}>
+          <Grid item container xs={12} spacing={1}>
             <Grid item xs={12}>
               <Typography variant="h6" component="span">
                 Custom fields for your collection
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <ButtonGroup>
-                <Button variant="outlined" onClick={handleFieldAddition}>
-                  +
-                </Button>
-                <Button variant="outlined" onClick={handleFieldDeletion}>
-                  -
-                </Button>
-              </ButtonGroup>
+            <Grid item xs={12} sx={{mb: 1}}>
+              <Button
+              variant="contained"
+              endIcon={<MdAdd/>}
+                onClick={() => {
+                  append({
+                    name: '',
+                    type: '',
+                  })
+                }}
+              >
+                New field
+              </Button>
             </Grid>
-          </Grid>
-          {fieldNumber ? (
-            ''
-          ) : (
-            <Grid item xs={12}>
-              <Typography variant="caption">
-                Use controls above to add or remove additional fields for your
-                collection
-              </Typography>
-            </Grid>
-          )}
-          {[...Array(fieldNumber)].map((_, index) => index + 1).map((number, key) => {
-            return (
-              <Grid key={`${number}-${key}`} item container spacing={1} xs={12}>
+
+            {fields.map((field, index) => (
+              <Grid item container key={field.id} spacing={1} xs={12}>
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
-                    <InputLabel id={`select-field-${number}-label`}>
-                      Field type
+                    <InputLabel id={`customField.${index}.label`}>
+                      Field Type
                     </InputLabel>
                     <Select
-                      labelId={`select-field-${number}-label`}
+                      labelId={`customField.${index}.label`}
                       label="Field Type"
                       defaultValue=""
-                      helperText={''}
-                      {...register(`custom-field-${number}-type`, {required: true})}
+                      {...register(`customField.${index}.type`, {
+                        required: true,
+                      })}
                     >
                       {isLoading
                         ? ''
@@ -197,13 +194,31 @@ function AddCollection() {
                     fullWidth
                     autoComplete="off"
                     label="Field name"
-                    id={`field-name-${number}`}
-                    {...register(`custom-field-${number}-name`, {required: true})}
+                    {...register(`customField.${index}.name`, {
+                      required: true,
+                    })}
                   />
                 </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <Button
+                  color="warning"
+                  variant="outlined"
+                  sx={{mb: 1}}
+                    endIcon={<TiDeleteOutline />}
+                    onClick={() => {
+                      remove(index)
+                    }}
+                  >
+                    Delete field
+                  </Button>
+                </Grid>
               </Grid>
-            )
-          })}
+            ))}
+          </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained">
               Create new collection!

@@ -52,7 +52,7 @@ function App() {
     if (response.status === 'ok') {
       setUser({ role: 'GUEST' })
       setIsLoading(false)
-    }
+    } 
   }
 
   return (
