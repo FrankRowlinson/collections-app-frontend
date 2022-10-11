@@ -10,7 +10,7 @@ function MarkdownPreview({ control }) {
   })
 
   return (
-    <Paper variant="outlined" elevation={2} sx={{ minHeight: '100px', minWidth: '300pxI' }}>
+    <Paper elevation={2} sx={{ minHeight: '100px', minWidth: '300pxI', p: 2 }}>
       <ReactMarkdown>{preview}</ReactMarkdown>
     </Paper>
   )

@@ -63,12 +63,12 @@ function NavBar(props) {
               to={routes.HOME}
               color="inherit"
               sx={{
-                flexGrow: 1,
                 display: { xs: 'none', sm: 'block', textDecoration: 'none' },
               }}
             >
               COLLECTIONS
             </Typography>
+            <Box flexGrow={1}></Box>
           <NavBarItems navItems={navItems} variant="topNavItems"/>
         </Toolbar>
       </AppBar>

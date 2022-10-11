@@ -22,6 +22,11 @@ export function getNavItems (role) {
       route: routes.CREATE_COLLECTION,
       show: role !== 'GUEST'
     },
+    {
+      label: 'Browse own collections',
+      route: routes.COLLECTIONS,
+      show: role !== 'GUEST'
+    }
   ]
   return navItems
 }

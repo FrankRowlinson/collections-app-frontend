@@ -11,7 +11,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, redirect } from 'react-router-dom'
 
 import { authenticateUser } from '../services/authentication'
 import routes from '../constants/routes'
@@ -30,7 +30,6 @@ const schema = yup.object({
 
 function SignupForm() {
   const [inProgress, setInProgress] = useState(false)
-  const [redirect, setRedirect] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
 
   const {
@@ -42,13 +41,12 @@ function SignupForm() {
   const onSubmit = async (data) => {
     setInProgress(true)
     const response = await authenticateUser(data, 'signup')
-    response.status === 'ok' ? setRedirect(true) : setShowStatus(true)
+    response.status === 'ok' ? redirect(routes.LOGIN) : setShowStatus(true)
     setInProgress(false)
   }
 
   return (
     <>
-      {redirect && <Navigate to={routes.LOGIN} />}
       <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
         <CardHeader
           title="Sign Up"

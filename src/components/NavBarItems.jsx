@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import {
   Box,
   List,
+  Switch,
   Button,
   ListItem,
   IconButton,
@@ -33,12 +34,15 @@ function NavBarItems({ variant, navItems }) {
             >
               {({ isActive }) => (
                 <Button
-                  variant="contained"
+                  variant={theme.palette.mode === 'dark' ? 'text' : 'contained'}
                   color="inherit"
                   disableElevation={isActive}
                   sx={{
-                    color: isActive ? 'text.secondary' : 'text.primary',
+                    color: isActive ? 'text.primary' : 'text.secondary',
+                    textUnderlineOffset: '5px',
+                    textDecoration: isActive ? 'underline' : 'none',
                     borderRadius: 0,
+                    backgroundColor: 'background.default',
                   }}
                 >
                   {item.label}
@@ -47,8 +51,8 @@ function NavBarItems({ variant, navItems }) {
             </NavLink>
           )
       )}
-      <IconButton onClick={colorMode.toggleColorMode}>
-      {theme.palette.mode === 'dark' ? <MdDarkMode/> : <MdOutlineDarkMode/>}
+      <IconButton sx={{ ml: 2 }} onClick={colorMode.toggleColorMode}>
+        {theme.palette.mode === 'dark' ? <MdDarkMode /> : <MdOutlineDarkMode />}
       </IconButton>
       {user.role === 'GUEST' ? '' : <LogoutButton variant="topNav" />}
     </Box>
@@ -81,6 +85,18 @@ function NavBarItems({ variant, navItems }) {
       <ListItem key="logout" disablePadding>
         {user.role === 'GUEST' ? '' : <LogoutButton variant="drawer" />}
       </ListItem>
+      <ListItem
+        disablePadding
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <MdOutlineDarkMode />
+        <Switch
+          color="default"
+          onChange={colorMode.toggleColorMode}
+          checked={theme.palette.mode === 'dark'}
+        />
+        <MdDarkMode />
+      </ListItem>
     </List>
   )
 
@@ -88,6 +104,7 @@ function NavBarItems({ variant, navItems }) {
     drawer: drawerItems,
     topNavItems: topNavItems,
   }
+
   return <>{variants[variant]}</>
 }
 

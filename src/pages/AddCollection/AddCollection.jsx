@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import {
   Container,
   Grid,
@@ -14,13 +14,15 @@ import {
   DialogActions,
   DialogContent,
   Divider,
+  Icon,
 } from '@mui/material'
-
+import { MdAdd, MdCheckCircle, MdSave } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
 
+import { sendCollection } from '../../services/sendCollection'
 import MarkdownPreview from '../../components/MarkdownPreview'
-import getCollectionFormProps from '../../services/getCollectionProps'
-import { MdAdd } from 'react-icons/md'
+import { getCollectionFormProps } from '../../services/getCollectionProps'
+import { redirect } from 'react-router-dom'
 
 function AddCollection() {
   const [isLoading, setIsLoading] = useState(true)
@@ -42,10 +44,16 @@ function AddCollection() {
     register,
     control,
     handleSubmit,
+    resetField,
     // formState: { errors }, // TODO: implement error display
   } = useForm({
     defaultValues: { customField: { type: '', name: '' } },
     shouldUnregister: true,
+  })
+
+  const coverImage = useWatch({
+    control,
+    name: 'collection-image',
   })
 
   const { fields, append, remove } = useFieldArray({
@@ -62,7 +70,10 @@ function AddCollection() {
     setPreviewOpen(false)
   }
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    const response = await sendCollection(data)
+    redirect(`/collections/byid/${response.data.collection_id}`)
+  }
 
   return (
     <Container maxWidth="md">
@@ -73,10 +84,10 @@ function AddCollection() {
             <Divider />
           </Grid>
           <Grid item xs={12}>
-              <Typography variant="h6" component="span">
-                General information
-              </Typography>
-            </Grid>
+            <Typography variant="h6" component="span">
+              General information
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <TextField
               {...register('collectionName', {
@@ -138,8 +149,46 @@ function AddCollection() {
               }}
               onClick={handleClickPreviewOpen}
             >
-              Show preview
+              Markdown preview
             </Button>
+          </Grid>
+          <Grid
+            item
+            container
+            xs={12}
+            spacing={2}
+            sx={{ dislpay: 'flex', alignItems: 'center' }}
+          >
+            <Grid item>
+              <Button
+                variant="outlined"
+                startIcon={<MdSave />}
+                component={InputLabel}
+              >
+                <input type="file" hidden {...register('collection-image')} />
+                Cover Image
+              </Button>
+            </Grid>
+            <Grid item flexGrow={1}>
+              {coverImage ? (
+                <Icon color="success" component={MdCheckCircle} />
+              ) : (
+                'no file selected'
+              )}
+            </Grid>
+            {coverImage ? (
+              <Grid item xs={12}>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => resetField('collection-image')}
+                >
+                  Reset image
+                </Button>
+              </Grid>
+            ) : (
+              ''
+            )}
           </Grid>
           <Grid item container xs={12} spacing={1}>
             <Grid item xs={12}>
@@ -147,10 +196,10 @@ function AddCollection() {
                 Custom fields for your collection
               </Typography>
             </Grid>
-            <Grid item xs={12} sx={{mb: 1}}>
+            <Grid item xs={12} sx={{ mb: 1 }}>
               <Button
-              variant="contained"
-              endIcon={<MdAdd/>}
+                variant="contained"
+                endIcon={<MdAdd />}
                 onClick={() => {
                   append({
                     name: '',
@@ -205,9 +254,9 @@ function AddCollection() {
                   sx={{ display: 'flex', alignItems: 'center' }}
                 >
                   <Button
-                  color="warning"
-                  variant="outlined"
-                  sx={{mb: 1}}
+                    color="error"
+                    variant="outlined"
+                    sx={{ mb: 1 }}
                     endIcon={<TiDeleteOutline />}
                     onClick={() => {
                       remove(index)

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { customFieldTypes } from '../constants/customFieldTypes'
 
-async function getCollectionFormProps() {
+export async function getCollectionFormProps() {
   const response = await axios.get(
     `${process.env.REACT_APP_HOST}collections/props`
   )
@@ -12,4 +12,9 @@ async function getCollectionFormProps() {
   return response.data
 }
 
-export default getCollectionFormProps
+export async function getCollectionFields(id) {
+  const response = await axios.get(
+    `${process.env.REACT_APP_HOST}collections/fields/${id}`
+  )
+  return response.data
+}

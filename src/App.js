@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Container, CssBaseline } from '@mui/material'
-
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
 import { UserContext } from './context/UserContext'
 import { getUser, logout } from './services/authentication'
-
+import routes from './constants/routes'
 import NavBar from './components/NavBar'
 import Home from './pages/Home/Home'
 import AuthPage from './pages/AuthPage/AuthPage'
@@ -14,9 +12,11 @@ import AddCollection from './pages/AddCollection/AddCollection'
 import ItemDetail from './pages/ItemDetail/ItemDetail'
 import Loader from './pages/Loader/Loader'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
-import routes from './constants/routes'
 import { ColorModeContext } from './context/ColorModeContext'
 import { getDesignTokens } from './themes/getDesignTokens'
+import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
+import CollectionsList from './pages/CollectionsList/CollectionsList'
+import AddItem from './pages/AddItem/AddItem'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -52,7 +52,7 @@ function App() {
     if (response.status === 'ok') {
       setUser({ role: 'GUEST' })
       setIsLoading(false)
-    } 
+    }
   }
 
   return (
@@ -73,9 +73,25 @@ function App() {
               >
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route
+                    path={routes.COLLECTIONS}
+                    element={<CollectionsList />}
+                  />
+                  <Route
+                    path={`${routes.COLLECTIONS}/:userId`}
+                    element={<CollectionsList />}
+                  />
+                  <Route
+                    path={`${routes.COLLECTIONS}/byid/:id`}
+                    element={<CollectionDetail />}
+                  />
                   <Route path="/items" element={<ItemDetail />} />
                   <Route
-                    path="/auth/*"
+                    path={`${routes.ADD_ITEM}/:id`}
+                    element={<AddItem />}
+                  />
+                  <Route
+                    path={`${routes.AUTH}/*`}
                     element={
                       user.role === 'GUEST' ? (
                         <AuthPage />
@@ -85,7 +101,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/create-collection"
+                    path={routes.CREATE_COLLECTION}
                     element={
                       user.role !== 'GUEST' ? (
                         <AddCollection />
