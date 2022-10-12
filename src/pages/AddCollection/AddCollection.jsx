@@ -102,7 +102,7 @@ function AddCollection() {
             />
           </Grid>
           <Grid item xs={12}>
-            <FormControl sx={{ minWidth: '300px' }}>
+            <FormControl sx={{maxWidth: '300px'}} fullWidth>
               <InputLabel id="collection-type">Collection type</InputLabel>
               <Select
                 {...register('collectionType')}

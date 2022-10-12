@@ -6,15 +6,8 @@ export async function getCollectionFormProps() {
     `${process.env.REACT_APP_HOST}collections/props`
   )
   response.data.fieldTypes = response.data.fieldTypes.map((el) => ({
-    label: customFieldTypes[el],
+    label: customFieldTypes[el].label,
     value: el,
   }))
-  return response.data
-}
-
-export async function getCollectionFields(id) {
-  const response = await axios.get(
-    `${process.env.REACT_APP_HOST}collections/fields/${id}`
-  )
   return response.data
 }

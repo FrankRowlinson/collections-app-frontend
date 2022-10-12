@@ -1,13 +1,13 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Container, Box } from '@mui/material'
+import { Box } from '@mui/material'
 import LoginForm from '../../components/LoginForm'
 import SignupForm from '../../components/SignupForm'
 import NotFoundPage from '../NotFoundPage/NotFoundPage'
 
 function AuthPage() {
   return (
-    <Container
+    <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -27,7 +27,7 @@ function AuthPage() {
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Box>
-    </Container>
+    </Box>
   )
 }
 

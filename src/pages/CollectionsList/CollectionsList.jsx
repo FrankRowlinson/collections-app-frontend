@@ -14,7 +14,6 @@ function CollectionsList() {
       const authorId = userId ? userId : user.id
       const data = await getCollectionsByUser(authorId)
       setCollections(data.collections)
-      console.log(data.collections)
     }
     fetchData()
   }, [userId, user.id])
@@ -22,7 +21,7 @@ function CollectionsList() {
     <div>
       {collections
         ? collections.map((el) => {
-            return <div>{el.id}
+            return <div key={el.id}>{el.id}
             <img src={el.img} alt=''/></div>
           })
         : ''}
