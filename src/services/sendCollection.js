@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export async function sendCollection(data) {
   const formData = new FormData()
   data['collection-image'] && formData.append('img', data['collection-image'][0])

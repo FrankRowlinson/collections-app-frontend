@@ -1,10 +1,25 @@
-import { FormControlLabel, Checkbox, Alert } from '@mui/material'
+import { FormControlLabel, Checkbox } from '@mui/material'
 import { useController } from 'react-hook-form'
 
 function CustomCheckbox({ name, control }) {
-  const { field } = useController({ name, control, defaultValue: '' })
+  const {
+    field: { value, onChange, ...field },
+  } = useController({
+    name,
+    control,
+    defaultValue: { value: false, type: 'BOOLEAN' },
+  })
 
-  return <FormControlLabel control={<Checkbox {...field} />} label={name} />
+  return (
+    <FormControlLabel
+      checked={value.value}
+      onChange={(e) => {
+        onChange({ value: e.target.checked, type: 'BOOLEAN' })
+      }}
+      control={<Checkbox {...field} />}
+      label={name}
+    />
+  )
 }
 
 export default CustomCheckbox

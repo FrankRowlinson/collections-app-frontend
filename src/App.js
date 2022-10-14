@@ -16,7 +16,6 @@ import { ColorModeContext } from './context/ColorModeContext'
 import { getDesignTokens } from './themes/getDesignTokens'
 import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
-import AddItem from './pages/AddItem/AddItem'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -86,10 +85,6 @@ function App() {
                     element={<CollectionDetail />}
                   />
                   <Route path="/items" element={<ItemDetail />} />
-                  <Route
-                    path={`${routes.ADD_ITEM}/:id`}
-                    element={<AddItem />}
-                  />
                   <Route
                     path={`${routes.AUTH}/*`}
                     element={
