@@ -5,6 +5,7 @@ import { Container, Button, Typography, Divider, Grid } from '@mui/material'
 import AddItemForm from '../../components/AddItemForm'
 import ItemTable from '../../components/ItemTable'
 import Loader from '../Loader/Loader'
+import './CollectionDetail.css'
 
 function CollectionDetail() {
   const { id } = useParams()
@@ -34,7 +35,7 @@ function CollectionDetail() {
             <ItemTable items={collection.items} />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" color="primary" onClick={() => setFormOpen(true)}>Add item</Button>
+            <Button variant="contained" color="primary" href="#add-item-btn" id="add-item-btn" onClick={() => setFormOpen(true)}>Add item</Button>
           </Grid>
           {formOpen ? (
             <Grid item xs={12}>

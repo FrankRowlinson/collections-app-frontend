@@ -5,7 +5,8 @@ const routes = {
   SIGNUP: '/auth/signup',
   CREATE_COLLECTION: '/create-collection',
   COLLECTIONS: '/collections',
-  ADD_ITEM: '/add-item'
+  ADD_ITEM: '/add-item',
+  SEARCH_RESULTS: '/search'
 }
 
 export default routes

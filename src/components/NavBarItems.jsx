@@ -5,7 +5,6 @@ import {
   Switch,
   Button,
   ListItem,
-  IconButton,
   ListItemText,
   ListItemButton,
 } from '@mui/material'
@@ -22,7 +21,7 @@ function NavBarItems({ variant, navItems }) {
   const { user } = useContext(UserContext)
 
   const topNavItems = (
-    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+    <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
       {navItems.map(
         (item) =>
           item.show && (
@@ -51,10 +50,6 @@ function NavBarItems({ variant, navItems }) {
             </NavLink>
           )
       )}
-      <IconButton sx={{ ml: 2 }} onClick={colorMode.toggleColorMode}>
-        {theme.palette.mode === 'dark' ? <MdDarkMode /> : <MdOutlineDarkMode />}
-      </IconButton>
-      {user.role === 'GUEST' ? '' : <LogoutButton variant="topNav" />}
     </Box>
   )
 

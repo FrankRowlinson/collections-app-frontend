@@ -16,6 +16,7 @@ import { ColorModeContext } from './context/ColorModeContext'
 import { getDesignTokens } from './themes/getDesignTokens'
 import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
+import SearchResults from './pages/SearchResults/SearchResults'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -66,8 +67,8 @@ function App() {
               <NavBar />
               <Container
                 sx={{
-                  mt: { xs: '20px', sm: '30px' },
-                  mb: { xs: '20px', sm: '60px' },
+                  mt: { xs: '20px', md: '30px' },
+                  mb: { xs: '20px', md: '60px' },
                 }}
               >
                 <Routes>
@@ -104,6 +105,10 @@ function App() {
                         <Navigate to={routes.SIGNUP} />
                       )
                     }
+                  />
+                  <Route
+                    path={routes.SEARCH_RESULTS}
+                    element={<SearchResults />}
                   />
                   <Route path="/*" element={<NotFoundPage />} />
                 </Routes>

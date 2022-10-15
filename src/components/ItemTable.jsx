@@ -12,11 +12,11 @@ function ItemTable({ items }) {
   const gridRef = useRef()
 
   const [selectedRows, setSelectedRows] = useState([])
-  
+
   const onSelectionChanged = useCallback(() => {
     setSelectedRows(gridRef.current.api.getSelectedRows())
   }, [])
-  
+
   const handleRowDeletion = () => {
     console.log(selectedRows)
   }
@@ -33,8 +33,7 @@ function ItemTable({ items }) {
     cellStyle: {
       display: 'flex',
       alignItems: 'center',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
+      overflow: 'hidden'
     },
   }
 
@@ -53,8 +52,22 @@ function ItemTable({ items }) {
   return (
     <Box sx={{ height: '500px', width: '100%', mb: 4 }} className={gridTheme}>
       <ButtonGroup>
-        <Button disabled={disabled} variant="contained" color="warning" onClick={handleRowShow}>Show in new tab</Button>
-        <Button disabled={disabled} variant="contained" color="error" onClick={handleRowDeletion}>Delete items</Button>
+        <Button
+          disabled={disabled}
+          variant="contained"
+          color="warning"
+          onClick={handleRowShow}
+        >
+          Show in new tab
+        </Button>
+        <Button
+          disabled={disabled}
+          variant="contained"
+          color="error"
+          onClick={handleRowDeletion}
+        >
+          Delete items
+        </Button>
       </ButtonGroup>
       <AgGridReact
         defaultColDef={defaultColDef}

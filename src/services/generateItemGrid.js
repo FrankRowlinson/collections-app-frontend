@@ -6,7 +6,7 @@ const TagsRenderer = (params) => {
     <>
       {params.data.tags &&
         params.data.tags.map((el) => {
-          return <Chip size="small" variant="outlined" label={el.name} />
+          return <Chip key={el.id} size="small" variant="outlined" label={el.name} />
         })}
     </>
   )
@@ -32,15 +32,18 @@ export function generateColumns(item) {
       sortable: false,
     },
   ]
-  item.fields.dateFields.length &&
-    item.fields.dateFields.forEach((el) =>
-      columns.push({ field: el.fieldName })
-    )
-  item.fields.stringFields.length &&
-    item.fields.stringFields.forEach((el) =>
-      columns.push({ field: el.fieldName })
-    )
-  return columns
+  if (item) {
+    item.fields.dateFields.length &&
+      item.fields.dateFields.forEach((el) =>
+        columns.push({ field: el.fieldName })
+      )
+    item.fields.stringFields.length &&
+      item.fields.stringFields.forEach((el) =>
+        columns.push({ field: el.fieldName })
+      )
+      return columns
+  }
+  return []
 }
 
 export function generateRows(items) {
