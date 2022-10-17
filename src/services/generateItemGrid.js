@@ -15,7 +15,8 @@ const TagsRenderer = (params) => {
 export function generateColumns(item) {
   const columns = [
     {
-      field: 'ID',
+      field: 'id',
+      headerName: 'ID',
       width: '100px',
       headerCheckboxSelection: true,
       checkboxSelection: true,
@@ -50,7 +51,7 @@ export function generateRows(items) {
   const rows = []
   items.forEach((el) => {
     const row = {
-      ID: el.id,
+      id: el.id,
       'Created At': moment(el.createdAt).format('LLL'),
       'Item name': el.name,
       tags: el.tags,

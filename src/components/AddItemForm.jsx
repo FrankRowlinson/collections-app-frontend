@@ -35,12 +35,7 @@ function AddItemForm() {
   const [tagOptions, setTagOptions] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    resetField,
-  } = useForm()
+  const { register, control, handleSubmit, resetField } = useForm()
 
   const itemImage = useWatch({
     control,
@@ -50,8 +45,8 @@ function AddItemForm() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getItemProps(id)
-      setTagOptions(data.tags.tags)
-      setCustomFields(data.fields.fields)
+      setTagOptions(data.tags)
+      setCustomFields(data.fields)
     }
     fetchData()
   }, [id])
@@ -129,7 +124,7 @@ function AddItemForm() {
               )}
             </Grid>
             {customFields.map((field, index) => {
-              const { id, name, type } = field
+              const { id, name: label, type } = field
               const InputElement = fieldMapping[customFieldTypes[type].type]
               return (
                 <Grid
@@ -139,7 +134,11 @@ function AddItemForm() {
                   sm={type === 'DATE' ? 4 : type === 'NUMBER' ? 4 : 12}
                   md={type === 'DATE' ? 6 : type === 'NUMBER' ? 6 : 12}
                 >
-                  <InputElement control={control} name={name} />
+                  <InputElement
+                    control={control}
+                    label={label}
+                    name={`${type}Field${index}`}
+                  />
                 </Grid>
               )
             })}

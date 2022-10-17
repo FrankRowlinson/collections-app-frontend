@@ -2,13 +2,15 @@ import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import {
   Card,
   CardHeader,
+  Snackbar,
   TextField,
   CardContent,
   Stack,
+  Typography,
   Alert,
 } from '@mui/material'
 import routes from '../constants/routes'
@@ -23,6 +25,8 @@ const schema = yup.object({
 })
 
 function LoginForm() {
+  const { state: success } = useLocation()
+  const [snackbarOpen, setSnackbarOpen] = useState(!!success)
   const [inProgress, setInProgess] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
   const { user, setUser } = useContext(UserContext)
@@ -44,49 +48,69 @@ function LoginForm() {
     setInProgess(false)
   }
 
+  const handleClose = (e, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setSnackbarOpen(false)
+  }
+
   return (
-    <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
-      {user.role !== 'GUEST' && <Navigate to={routes.HOME} />}
-      <CardHeader
-        title="Sign In"
-        subheader={<Link to={routes.SIGNUP}>Don't have an account?</Link>}
+    <>
+      <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
+        {user.role !== 'GUEST' && <Navigate to={routes.HOME} />}
+        <CardHeader
+          title="Sign In"
+          subheader={
+            <Typography component={Link} sx={{color: 'text.secondary'}} to={routes.SIGNUP}>
+              Don't have an account?
+            </Typography>
+          }
+        />
+        <CardContent sx={{}}>
+          {showStatus ? <AuthError form="signIn" /> : ''}
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            <Stack spacing={3}>
+              {errors.username ? (
+                <Alert color="error">{errors.username.message}</Alert>
+              ) : (
+                ''
+              )}
+              <TextField
+                id="username"
+                label="Username"
+                type="text"
+                variant="standard"
+                {...register('username')}
+              />
+              {errors.password ? (
+                <Alert color="error">{errors.password.message}</Alert>
+              ) : (
+                ''
+              )}
+              <TextField
+                id="password"
+                type="password"
+                label="Password"
+                variant="standard"
+                {...register('password')}
+              />
+              <AuthButton inProgress={inProgress} text="Sign In" />
+            </Stack>
+          </form>
+        </CardContent>
+      </Card>
+      <Snackbar
+        open={snackbarOpen}
+        onClose={handleClose}
+        autoHideDuration={5000}
+        sx={{ position: 'absolute' }}
+        message="You've signed up successfully"
       />
-      <CardContent sx={{}}>
-        {showStatus ? <AuthError form='signIn'/> : ''}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          <Stack spacing={3}>
-            {errors.username ? (
-              <Alert color="error">{errors.username.message}</Alert>
-            ) : (
-              ''
-            )}
-            <TextField
-              id="username"
-              label="Username"
-              type="text"
-              variant="standard"
-              {...register('username')}
-            />
-            {errors.password ? (
-              <Alert color="error">{errors.password.message}</Alert>
-            ) : (
-              ''
-            )}
-            <TextField
-              id="password"
-              type="password"
-              label="Password"
-              variant="standard"
-              {...register('password')}
-            />
-            <AuthButton inProgress={inProgress} text="Sign In" />
-          </Stack>
-        </form>
-      </CardContent>
-    </Card>
+    </>
   )
 }
 

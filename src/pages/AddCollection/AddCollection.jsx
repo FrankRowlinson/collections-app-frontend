@@ -22,9 +22,10 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import { sendCollection } from '../../services/sendCollection'
 import MarkdownPreview from '../../components/MarkdownPreview'
 import { getCollectionFormProps } from '../../services/getCollectionProps'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function AddCollection() {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [collectionTypes, setCollectionTypes] = useState([])
   const [fieldTypes, setFieldTypes] = useState({})
@@ -72,7 +73,7 @@ function AddCollection() {
 
   const onSubmit = async (data) => {
     const response = await sendCollection(data)
-    redirect(`/collections/byid/${response.data.collection_id}`)
+    navigate(`/collections/byid/${response.data.collection_id}`)
   }
 
   return (
@@ -102,7 +103,7 @@ function AddCollection() {
             />
           </Grid>
           <Grid item xs={12}>
-            <FormControl sx={{maxWidth: '300px'}} fullWidth>
+            <FormControl sx={{ maxWidth: '300px' }} fullWidth>
               <InputLabel id="collection-type">Collection type</InputLabel>
               <Select
                 {...register('collectionType')}
@@ -130,7 +131,7 @@ function AddCollection() {
             sx={{ position: 'relative' }}
           >
             <TextField
-              {...register('description')}
+              {...register('description', { maxLength: 2500 })}
               label="Description"
               id="collection-description-input"
               minRows={4}
@@ -245,6 +246,8 @@ function AddCollection() {
                     label="Field name"
                     {...register(`customField.${index}.name`, {
                       required: true,
+                      minLength: 3,
+                      maxLength: 75
                     })}
                   />
                 </Grid>

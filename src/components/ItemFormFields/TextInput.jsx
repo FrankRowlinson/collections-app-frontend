@@ -1,26 +1,26 @@
 import { TextField } from '@mui/material'
 import { useController } from 'react-hook-form'
 
-function Text({ name, control }) {
+function TextInput({ name, label, control }) {
   const {
     field: { onChange, value, ...field },
   } = useController({
     name,
     control,
-    defaultValue: { value: '', type: 'STRING' },
+    defaultValue: { value: '', type: 'STRING', label },
   })
 
   return (
     <TextField
       value={value.value}
       onChange={(e) => {
-        onChange({ value: e.target.value, type: 'STRING' })
+        onChange({ value: e.target.value, type: 'STRING', label })
       }}
       {...field}
-      label={name}
+      label={label}
       fullWidth
     />
   )
 }
 
-export default Text
+export default TextInput

@@ -110,6 +110,7 @@ function App() {
                     path={routes.SEARCH_RESULTS}
                     element={<SearchResults />}
                   />
+                  <Route path={routes.NOT_FOUND} element={<NotFoundPage />} />
                   <Route path="/*" element={<NotFoundPage />} />
                 </Routes>
               </Container>

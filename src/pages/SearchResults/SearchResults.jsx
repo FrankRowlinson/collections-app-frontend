@@ -9,13 +9,9 @@ function SearchResults() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        {query ? (
-          <Typography variant="h5">
-            Search results for: "{query}"
-          </Typography>
-        ) : (
-          ''
-        )}
+        <Typography variant="h5">
+          {query ? `Search results for: "${query}"` : 'Selected items'}
+        </Typography>
       </Grid>
       {items ? (
         items.map((el) => (

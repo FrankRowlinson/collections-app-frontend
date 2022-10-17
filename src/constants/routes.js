@@ -6,7 +6,8 @@ const routes = {
   CREATE_COLLECTION: '/create-collection',
   COLLECTIONS: '/collections',
   ADD_ITEM: '/add-item',
-  SEARCH_RESULTS: '/search'
+  SEARCH_RESULTS: '/search',
+  NOT_FOUND: '/not_found'
 }
 
 export default routes

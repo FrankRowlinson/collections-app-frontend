@@ -5,7 +5,7 @@ function Loader() {
   return (
     
     <Box sx={{display: 'flex', minHeight: "100vh", justifyContent: 'center', alignItems: 'center'}}>
-      <CircularProgress size={50} color="primary"/>
+      <CircularProgress color='inherit' size={50} thickness={4}/>
     </Box>
   )
 }

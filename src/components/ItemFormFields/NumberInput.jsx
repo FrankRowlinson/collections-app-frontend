@@ -1,34 +1,40 @@
-import { FormControl, InputLabel, Input } from '@mui/material'
+import { TextField } from '@mui/material'
 import { useController } from 'react-hook-form'
+import { useState } from 'react'
 
-function Number({ name, control }) {
+function NumberInput({ name, label, control }) {
   const {
-    field: { value, onChange, ...field },
+    field,
+    fieldState: { error },
   } = useController({
     name,
     control,
-    defaultValue: { value: '', type: 'NUMBER' },
+    defaultValue: { value: 0, type: 'NUMBER', label },
     rules: {
       validate: {
-        less_than: (value) => value.value > -2147483648,
-        more_than: (value) => value.value < 2147483647
-      }
+        less: (v) => v.value < 150_000_000,
+        more: (v) => v.value > -150_000_000,
+      },
     },
   })
+  const [value, setValue] = useState(field.value.value)
   return (
-    <FormControl fullWidth>
-      <InputLabel id={`custom-number-field`}>{name}</InputLabel>
-      <Input
-        value={value.value}
+    <>
+      <TextField
+        ref={field.ref}
+        value={value}
         onChange={(e) => {
-          onChange({ value: e.target.value, type: 'NUMBER' })
+          field.onChange({ value: e.target.value, type: 'NUMBER', label })
+          setValue(e.target.value)
         }}
-        {...field}
-        label={name}
+        onBlur={field.onBlur}
         type="number"
+        label={label}
+        error={!!error}
+        helperText="Number must be of a reasonable size"
       />
-    </FormControl>
+    </>
   )
 }
 
-export default Number
+export default NumberInput

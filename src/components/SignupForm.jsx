@@ -6,12 +6,13 @@ import {
   Stack,
   TextField,
   Alert,
+  Typography,
   InputAdornment,
 } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { authenticateUser } from '../services/authentication'
 import routes from '../constants/routes'
@@ -20,7 +21,12 @@ import AuthError from './AuthError'
 import FormPopover from './FormPopover'
 
 const schema = yup.object({
-  username: yup.string().required('Enter a valid username').min(4).max(25),
+  username: yup
+    .string()
+    .required('Enter a valid username')
+    .min(4)
+    .max(25)
+    .matches(/^[a-z]+[a-z0-9]*/i, 'Username must not start with digit'),
   email: yup.string().email().required('Enter a valid email address'),
   password: yup.string().required('Choose secure password').min(8),
   passwordRepeat: yup
@@ -29,6 +35,7 @@ const schema = yup.object({
 })
 
 function SignupForm() {
+  const navigate = useNavigate()
   const [inProgress, setInProgress] = useState(false)
   const [showStatus, setShowStatus] = useState(false)
 
@@ -41,7 +48,9 @@ function SignupForm() {
   const onSubmit = async (data) => {
     setInProgress(true)
     const response = await authenticateUser(data, 'signup')
-    response.status === 'ok' ? redirect(routes.LOGIN) : setShowStatus(true)
+    response.status === 'ok'
+      ? navigate(routes.LOGIN, { state: { success: true } })
+      : setShowStatus(true)
     setInProgress(false)
   }
 
@@ -50,7 +59,15 @@ function SignupForm() {
       <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
         <CardHeader
           title="Sign Up"
-          subheader={<Link to={routes.LOGIN}>Already have an account?</Link>}
+          subheader={
+            <Typography
+              component={Link}
+              sx={{ color: 'text.secondary' }}
+              to={routes.LOGIN}
+            >
+              Already have an account?
+            </Typography>
+          }
           subheaderTypographyProps={{ component: 'span' }}
         />
         <CardContent sx={{}}>

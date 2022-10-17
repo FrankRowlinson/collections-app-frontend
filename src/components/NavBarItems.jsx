@@ -21,7 +21,16 @@ function NavBarItems({ variant, navItems }) {
   const { user } = useContext(UserContext)
 
   const topNavItems = (
-    <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+    <Box
+      sx={{
+        display: { xs: 'none', lg: 'block' },
+        position: 'absolute',
+        mr: 'auto',
+        left: 0,
+        right: 0,
+        textAlign: 'center'
+      }}
+    >
       {navItems.map(
         (item) =>
           item.show && (

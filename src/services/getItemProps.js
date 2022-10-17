@@ -7,5 +7,6 @@ export async function getItemProps(id) {
   const tagsResponse = await axios.get(
     `${process.env.REACT_APP_HOST}items/tags`
   )
-  return { fields: fieldsResponse.data.fields, tags: tagsResponse.data }
+  console.log(fieldsResponse)
+  return { fields: fieldsResponse.data.fields, tags: tagsResponse.data.tags }
 }

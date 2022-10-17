@@ -6,23 +6,34 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
 import { generateColumns, generateRows } from '../services/generateItemGrid'
 import { useTheme } from '@mui/material/styles'
 import { Box, ButtonGroup, Button } from '@mui/material'
+import routes from '../constants/routes'
+import { useNavigate } from 'react-router-dom'
+import { getItemsById } from '../services/getItemsById'
+import { deleteItemsById } from '../services/deleteItemsById'
 
-function ItemTable({ items }) {
+function ItemTable({ items, rightToEdit }) {
   const theme = useTheme()
   const gridRef = useRef()
 
+  const navigate = useNavigate()
+
   const [selectedRows, setSelectedRows] = useState([])
+  const [inProgress, setInProgress] = useState(false)
 
   const onSelectionChanged = useCallback(() => {
     setSelectedRows(gridRef.current.api.getSelectedRows())
   }, [])
 
-  const handleRowDeletion = () => {
-    console.log(selectedRows)
+  const handleRowDeletion = async () => {
+    const response = await deleteItemsById(selectedRows.map((el) => el.id))
   }
 
-  const handleRowShow = () => {
-    console.log(selectedRows)
+  const handleRowShow = async () => {
+    setInProgress(true)
+    const response = await getItemsById(selectedRows.map((el) => el.id))
+    navigate(routes.SEARCH_RESULTS, {
+      state: { query: null, items: response.items },
+    })
   }
 
   const disabled = selectedRows.length === 0
@@ -33,7 +44,7 @@ function ItemTable({ items }) {
     cellStyle: {
       display: 'flex',
       alignItems: 'center',
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
   }
 
@@ -50,7 +61,7 @@ function ItemTable({ items }) {
   }, [items])
 
   return (
-    <Box sx={{ height: '500px', width: '100%', mb: 4 }} className={gridTheme}>
+    <Box sx={{ width: '100%', mb: 4 }} className={gridTheme}>
       <ButtonGroup>
         <Button
           disabled={disabled}
@@ -60,16 +71,19 @@ function ItemTable({ items }) {
         >
           Show in new tab
         </Button>
-        <Button
-          disabled={disabled}
-          variant="contained"
-          color="error"
-          onClick={handleRowDeletion}
-        >
-          Delete items
-        </Button>
+        {rightToEdit && (
+          <Button
+            disabled={disabled}
+            variant="contained"
+            color="error"
+            onClick={handleRowDeletion}
+          >
+            Delete items
+          </Button>
+        )}
       </ButtonGroup>
       <AgGridReact
+        domLayout="autoHeight"
         defaultColDef={defaultColDef}
         rowSelection="multiple"
         onSelectionChanged={onSelectionChanged}
