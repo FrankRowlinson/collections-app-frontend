@@ -7,12 +7,7 @@
     }
   ],
   "platformErrorOverrides": [
-    { "errorType": "NotFound", "serve": "/not_found" },
-    {
-      "errorType": "Unauthenticated",
-      "statusCode": "302",
-      "serve": "/auth/login"
-    }
+    { "errorType": "NotFound", "serve": "/not_found" }
   ],
   "mimeTypes": {
     "json": "application/json"
