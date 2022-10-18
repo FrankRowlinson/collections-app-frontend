@@ -7,7 +7,8 @@ const routes = {
   COLLECTIONS: '/collections',
   ADD_ITEM: '/add-item',
   SEARCH_RESULTS: '/search',
-  NOT_FOUND: '/not_found'
+  ADMIN: '/admin',
+  NOT_FOUND: '/not_found',
 }
 
 export default routes

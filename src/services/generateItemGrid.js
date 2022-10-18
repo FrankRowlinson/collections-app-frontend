@@ -6,7 +6,15 @@ const TagsRenderer = (params) => {
     <>
       {params.data.tags &&
         params.data.tags.map((el) => {
-          return <Chip key={el.id} size="small" variant="outlined" label={el.name} />
+          return (
+            <Chip
+              key={el.id}
+              size="small"
+              variant="outlined"
+              label={el.name}
+              sx={{ m: '1px' }}
+            />
+          )
         })}
     </>
   )
@@ -31,6 +39,15 @@ export function generateColumns(item) {
       autoHeight: true,
       width: 350,
       sortable: false,
+      cellStyle: {
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        paddingLeft: '5px',
+        paddingRight: '5px',
+      },
     },
   ]
   if (item) {
@@ -42,7 +59,7 @@ export function generateColumns(item) {
       item.fields.stringFields.forEach((el) =>
         columns.push({ field: el.fieldName })
       )
-      return columns
+    return columns
   }
   return []
 }

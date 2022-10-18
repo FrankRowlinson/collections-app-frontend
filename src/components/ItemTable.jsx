@@ -5,7 +5,13 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
 import { generateColumns, generateRows } from '../services/generateItemGrid'
 import { useTheme } from '@mui/material/styles'
-import { Box, ButtonGroup, Button } from '@mui/material'
+import {
+  Box,
+  ButtonGroup,
+  Button,
+  Backdrop,
+  CircularProgress,
+} from '@mui/material'
 import routes from '../constants/routes'
 import { useNavigate } from 'react-router-dom'
 import { getItemsById } from '../services/getItemsById'
@@ -42,9 +48,7 @@ function ItemTable({ items, rightToEdit }) {
     resizable: true,
     sortable: true,
     cellStyle: {
-      display: 'flex',
-      alignItems: 'center',
-      overflow: 'hidden',
+      paddingTop: '0.6rem',
     },
   }
 
@@ -60,8 +64,15 @@ function ItemTable({ items, rightToEdit }) {
     }
   }, [items])
 
+  const onFirstDataRendered = useCallback((params) => {
+    gridRef.current.api.sizeColumnsToFit()
+  }, [])
+
   return (
     <Box sx={{ width: '100%', mb: 4 }} className={gridTheme}>
+      <Backdrop sx={{ color: '#fff' }} open={inProgress}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <ButtonGroup>
         <Button
           disabled={disabled}
@@ -90,6 +101,7 @@ function ItemTable({ items, rightToEdit }) {
         columnDefs={columnDefs}
         rowData={rowData}
         ref={gridRef}
+        onFirstDataRendered={onFirstDataRendered}
       />
     </Box>
   )

@@ -24,7 +24,11 @@ function DateInput({ name, label, control }) {
       <Input
         value={value.value}
         onChange={(e) => {
-          onChange({ value: new Date(e.target.value), type: 'DATE', label })
+          onChange({
+            value: moment(new Date(e.target.value)).format('yyyy-MM-DD'),
+            type: 'DATE',
+            label,
+          })
         }}
         {...field}
         label={label}

@@ -15,7 +15,7 @@ import {
   MdDarkMode,
   MdOutlineDarkMode,
 } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getNavItems } from '../services/navigation'
 import { UserContext } from '../context/UserContext'
 import { ColorModeContext } from '../context/ColorModeContext'
@@ -83,7 +83,7 @@ function NavBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography variant="h6" sx={{ my: 2 }} component={Link} to={routes.HOME}>
         COLLECTIONS
       </Typography>
       <Divider />
@@ -114,17 +114,18 @@ function NavBar(props) {
           </IconButton>
           <Typography
             variant="h6"
-            component={NavLink}
+            component={Link}
             to={routes.HOME}
             color="inherit"
             sx={{
               display: { xs: 'none', lg: 'block' },
               textDecoration: 'none',
+              zIndex: 1
             }}
           >
             COLLECTIONS
           </Typography>
-          <Box flexGrow={1}></Box>
+          {/* <Box flexGrow={1}></Box> */}
           <NavBarItems navItems={navItems} variant="topNavItems" />
           <Box flexGrow={1}></Box>
           <SearchButton />

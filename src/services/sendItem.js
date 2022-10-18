@@ -10,7 +10,7 @@ function formatCustomFields(customFields) {
   }
   Object.keys(customFields).forEach((el) => {
     result[customFields[el].type].push({
-      fieldName: el.label,
+      fieldName: customFields[el].label,
       value: customFields[el].value,
     })
   })

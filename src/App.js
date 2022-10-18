@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { Container, CssBaseline } from '@mui/material'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { Box, CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { UserContext } from './context/UserContext'
 import { getUser, logout } from './services/authentication'
@@ -17,11 +17,13 @@ import { getDesignTokens } from './themes/getDesignTokens'
 import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
 import CollectionsList from './pages/CollectionsList/CollectionsList'
 import SearchResults from './pages/SearchResults/SearchResults'
+import AdminPage from './pages/AdminPage/AdminPage'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
   const [isLoading, setIsLoading] = useState(true)
   const [mode, setMode] = useState(localStorage.getItem('theme') || 'light')
+  const navigate = useNavigate()
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const colorMode = useMemo(
@@ -52,6 +54,7 @@ function App() {
     if (response.status === 'ok') {
       setUser({ role: 'GUEST' })
       setIsLoading(false)
+      navigate(routes.HOME)
     }
   }
 
@@ -65,7 +68,7 @@ function App() {
           ) : (
             <>
               <NavBar />
-              <Container
+              <Box
                 sx={{
                   mt: { xs: '20px', md: '30px' },
                   mb: { xs: '20px', md: '60px' },
@@ -111,9 +114,10 @@ function App() {
                     element={<SearchResults />}
                   />
                   <Route path={routes.NOT_FOUND} element={<NotFoundPage />} />
+                  <Route path={routes.ADMIN} element={<AdminPage />} />
                   <Route path="/*" element={<NotFoundPage />} />
                 </Routes>
-              </Container>
+              </Box>
             </>
           )}
         </UserContext.Provider>
