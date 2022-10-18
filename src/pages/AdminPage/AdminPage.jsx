@@ -1,4 +1,4 @@
-import { Alert, Typography, Grid, Box } from '@mui/material'
+import { Alert, Typography, Box } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import Loader from '../Loader/Loader'
