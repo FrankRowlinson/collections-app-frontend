@@ -3,16 +3,34 @@ import { AgGridReact } from 'ag-grid-react'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
-import { Box } from '@mui/material'
+import { Box, Button, ButtonGroup, Menu, MenuItem } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
+import { MdDeleteForever } from 'react-icons/md'
+import { TbLock, TbLockOpen } from 'react-icons/tb'
+import { RiUserSettingsLine } from 'react-icons/ri'
 import { generateColumns, generateRows } from '../services/generateUserGrid'
+import { useConfirm } from 'material-ui-confirm'
+import roles from '../constants/roles'
 
 function UserTable({ users }) {
   const theme = useTheme()
+  const confirm = useConfirm()
   const gridRef = useRef()
   const [rowData, setRowData] = useState([])
   const [columnDefs, setColumnDefs] = useState([])
+  const [selectedRows, setSelectedRows] = useState([])
+  const [anchorForRoleSelection, setAnchorForRoleSelection] = useState(null)
 
+  // role selection menu
+  const open = Boolean(anchorForRoleSelection)
+  const handleClick = (event) => {
+    setAnchorForRoleSelection(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorForRoleSelection(null)
+  }
+
+  // setup for user grip
   useEffect(() => {
     setRowData(generateRows(users || []))
     setColumnDefs(generateColumns())
@@ -26,14 +44,93 @@ function UserTable({ users }) {
     },
   }
 
+  const onSelectionChanged = useCallback(() => {
+    setSelectedRows(gridRef.current.api.getSelectedRows())
+  }, [])
+
   const onFirstDataRendered = useCallback((params) => {
     gridRef.current.api.sizeColumnsToFit()
   }, [])
 
+  const disabled = selectedRows.length === 0
+
+  // handlers for actions
+  const handleRoleChange = async (role) => {
+    confirm({
+      description: `You want to change role of ${selectedRows.length} selected user(s) to ${role}. Proceed?`,
+      confirmationText: 'Change',
+      confirmationButtonProps: { variant: 'contained', color: 'primary' }
+    })
+      .then(() => {
+        console.log('done')
+      })
+      .catch(() => {})
+  }
+  const handleBlock = async () => {
+    confirm({
+      description: `Do you want to block ${selectedRows.length} selected user(s)?`,
+      confirmationText: 'Block',
+      confirmationButtonProps: { variant: 'contained', color: 'warning' }      
+    }).then(() => {console.log('blocked')}).catch(() => {})
+  }
+  const handleUnblock = async () => {
+    confirm({
+      description: `Do you want to unblock ${selectedRows.length} selected user(s)?`,
+      confirmationText: 'Unblock',
+      confirmationButtonProps: { variant: 'contained', color: 'success' }    
+    }).then(() => {console.log('unblocked')}).catch(() => {})
+  }
+  const handleDelete = async () => {
+    confirm({
+      description: `Do you want to delete ${selectedRows.length} selected user(s)? This action is irreversible!`,
+      confirmationText: 'Delete',
+      confirmationButtonProps: { variant: 'contained', color: 'error' }  
+    }).then(() => {console.log('deleted')}).catch(() => {})
+  }
+
   const gridTheme =
     'ag-theme-alpine' + (theme.palette.mode === 'dark' ? '-dark' : '')
+
   return (
-    <Box className={gridTheme} sx={{ width: '100%' }}>
+    <Box maxWidth="lg" className={gridTheme} sx={{ width: '100%' }}>
+      <ButtonGroup>
+        <Button
+          startIcon={<RiUserSettingsLine />}
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+          disabled={disabled}
+        >
+          Change role
+        </Button>
+        <Button
+          startIcon={<TbLock />}
+          variant="contained"
+          color="warning"
+          onClick={handleBlock}
+          disabled={disabled}
+        >
+          Block
+        </Button>
+        <Button
+          startIcon={<TbLockOpen />}
+          variant="contained"
+          color="success"
+          onClick={handleUnblock}
+          disabled={disabled}
+        >
+          Unblock
+        </Button>
+        <Button
+          startIcon={<MdDeleteForever />}
+          variant="contained"
+          color="error"
+          onClick={handleDelete}
+          disabled={disabled}
+        >
+          Delete
+        </Button>
+      </ButtonGroup>
       <AgGridReact
         defaultColDef={defaultColDef}
         rowData={rowData}
@@ -42,7 +139,22 @@ function UserTable({ users }) {
         rowSelection="multiple"
         ref={gridRef}
         onFirstDataRendered={onFirstDataRendered}
+        onSelectionChanged={onSelectionChanged}
       />
+      <Menu open={open} anchorEl={anchorForRoleSelection} onClose={handleClose}>
+        {roles.map((el) => {
+          return (
+            <MenuItem
+              onClick={() => {
+                handleRoleChange(el)
+                handleClose()
+              }}
+            >
+              To: {el}
+            </MenuItem>
+          )
+        })}
+      </Menu>
     </Box>
   )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { Box, CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { ConfirmProvider } from 'material-ui-confirm'
 import { UserContext } from './context/UserContext'
 import { getUser, logout } from './services/authentication'
 import routes from './constants/routes'
@@ -62,65 +63,67 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <UserContext.Provider value={{ user, setUser, handleLogout }}>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <NavBar />
-              <Box
-                sx={{
-                  mt: { xs: '20px', md: '30px' },
-                  mb: { xs: '20px', md: '60px' },
-                }}
-              >
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route
-                    path={routes.COLLECTIONS}
-                    element={<CollectionsList />}
-                  />
-                  <Route
-                    path={`${routes.COLLECTIONS}/:userId`}
-                    element={<CollectionsList />}
-                  />
-                  <Route
-                    path={`${routes.COLLECTIONS}/byid/:id`}
-                    element={<CollectionDetail />}
-                  />
-                  <Route path="/items" element={<ItemDetail />} />
-                  <Route
-                    path={`${routes.AUTH}/*`}
-                    element={
-                      user.role === 'GUEST' ? (
-                        <AuthPage />
-                      ) : (
-                        <Navigate to={routes.HOME} />
-                      )
-                    }
-                  />
-                  <Route
-                    path={routes.CREATE_COLLECTION}
-                    element={
-                      user.role !== 'GUEST' ? (
-                        <AddCollection />
-                      ) : (
-                        <Navigate to={routes.SIGNUP} />
-                      )
-                    }
-                  />
-                  <Route
-                    path={routes.SEARCH_RESULTS}
-                    element={<SearchResults />}
-                  />
-                  <Route path={routes.NOT_FOUND} element={<NotFoundPage />} />
-                  <Route path={routes.ADMIN} element={<AdminPage />} />
-                  <Route path="/*" element={<NotFoundPage />} />
-                </Routes>
-              </Box>
-            </>
-          )}
-        </UserContext.Provider>
+        <ConfirmProvider>
+          <UserContext.Provider value={{ user, setUser, handleLogout }}>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <NavBar />
+                <Box
+                  sx={{
+                    mt: { xs: '20px', md: '30px' },
+                    mb: { xs: '20px', md: '60px' },
+                  }}
+                >
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route
+                      path={routes.COLLECTIONS}
+                      element={<CollectionsList />}
+                    />
+                    <Route
+                      path={`${routes.COLLECTIONS}/:userId`}
+                      element={<CollectionsList />}
+                    />
+                    <Route
+                      path={`${routes.COLLECTIONS}/byid/:id`}
+                      element={<CollectionDetail />}
+                    />
+                    <Route path="/items" element={<ItemDetail />} />
+                    <Route
+                      path={`${routes.AUTH}/*`}
+                      element={
+                        user.role === 'GUEST' ? (
+                          <AuthPage />
+                        ) : (
+                          <Navigate to={routes.HOME} />
+                        )
+                      }
+                    />
+                    <Route
+                      path={routes.CREATE_COLLECTION}
+                      element={
+                        user.role !== 'GUEST' ? (
+                          <AddCollection />
+                        ) : (
+                          <Navigate to={routes.SIGNUP} />
+                        )
+                      }
+                    />
+                    <Route
+                      path={routes.SEARCH_RESULTS}
+                      element={<SearchResults />}
+                    />
+                    <Route path={routes.NOT_FOUND} element={<NotFoundPage />} />
+                    <Route path={routes.ADMIN} element={<AdminPage />} />
+                    <Route path="/*" element={<NotFoundPage />} />
+                  </Routes>
+                </Box>
+              </>
+            )}
+          </UserContext.Provider>
+        </ConfirmProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   )

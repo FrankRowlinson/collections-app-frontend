@@ -70,7 +70,7 @@ function ItemTable({ items, rightToEdit }) {
 
   return (
     <Box sx={{ width: '100%', mb: 4 }} className={gridTheme}>
-      <Backdrop sx={{ color: '#fff' }} open={inProgress}>
+      <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
         <CircularProgress color="inherit" />
       </Backdrop>
       <ButtonGroup>
