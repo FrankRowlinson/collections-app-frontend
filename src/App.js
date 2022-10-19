@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { Box, CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -40,17 +40,7 @@ function App() {
     []
   )
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const user = await getUser()
-      setUser(user)
-      setIsLoading(false)
-      console.log(user.role)
-    }
-    fetchData()
-  }, [])
-
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     setIsLoading(true)
     const response = await logout()
     if (response.status === 'ok') {
@@ -58,7 +48,17 @@ function App() {
       setIsLoading(false)
       navigate(routes.HOME)
     }
-  }
+  }, [navigate])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = await getUser()
+      setUser(user)
+      setIsLoading(false)
+      if (!user.hasAccess) handleLogout()
+    }
+    fetchData()
+  }, [handleLogout])
 
   return (
     <ColorModeContext.Provider value={colorMode}>

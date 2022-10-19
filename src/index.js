@@ -8,8 +8,11 @@ import '@fontsource/roboto/700.css'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios'
+import getToken from './services/getToken'
 
 axios.defaults.withCredentials = true
+axios.defaults.baseURL = process.env.REACT_APP_HOST
+axios.defaults.headers.common['Authorization'] = `Bearer ${getToken()}`
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

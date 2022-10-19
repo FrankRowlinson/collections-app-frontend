@@ -1,27 +1,23 @@
 import axios from 'axios'
 
 export async function getCollection(id) {
-  const response = await axios.get(
-    `${process.env.REACT_APP_HOST}collections/byId/${id}`
-  )
+  const response = await axios.get(`collections/byId/${id}`)
   return response.data
 }
 
 export async function getCollections() {
-  const response = await axios.get(`${process.env.REACT_APP_HOST}collections`)
+  const response = await axios.get('collections')
   return response.data
 }
 
 export async function getBiggestCollections() {
-  const response = await axios.get(
-    `${process.env.REACT_APP_HOST}collections/biggest`
-  )
+  const response = await axios.get('collections/biggest')
   return response.data
 }
 
 export async function getCollectionsByUser(id) {
   const response = await axios.get(
-    `${process.env.REACT_APP_HOST}collections/userCollections${id ? `/${id}` : ''}`
+    `collections/userCollections${id ? `/${id}` : ''}`
   )
   return response.data
 }

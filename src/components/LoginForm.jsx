@@ -28,7 +28,7 @@ function LoginForm() {
   const { state: success } = useLocation()
   const [snackbarOpen, setSnackbarOpen] = useState(!!success)
   const [inProgress, setInProgess] = useState(false)
-  const [showStatus, setShowStatus] = useState(false)
+  const [status, setStatus] = useState(null)
   const { user, setUser } = useContext(UserContext)
 
   const {
@@ -43,7 +43,7 @@ function LoginForm() {
     if (response.status === 'ok') {
       setUser(getUser())
     } else {
-      setShowStatus(true)
+      setStatus(response.error)
     }
     setInProgess(false)
   }
@@ -68,7 +68,7 @@ function LoginForm() {
           }
         />
         <CardContent sx={{}}>
-          {showStatus ? <AuthError form="signIn" /> : ''}
+          {status ? <AuthError form="signIn" status={status}/> : ''}
           <form
             onSubmit={handleSubmit(onSubmit)}
             style={{ display: 'flex', flexDirection: 'column' }}
