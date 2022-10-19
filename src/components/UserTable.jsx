@@ -11,6 +11,12 @@ import { RiUserSettingsLine } from 'react-icons/ri'
 import { generateColumns, generateRows } from '../services/generateUserGrid'
 import { useConfirm } from 'material-ui-confirm'
 import roles from '../constants/roles'
+import {
+  changeUsersRole,
+  blockUsers,
+  unblockUsers,
+  deleteUsers,
+} from '../services/adminActions'
 
 function UserTable({ users }) {
   const theme = useTheme()
@@ -59,10 +65,13 @@ function UserTable({ users }) {
     confirm({
       description: `You want to change role of ${selectedRows.length} selected user(s) to ${role}. Proceed?`,
       confirmationText: 'Change',
-      confirmationButtonProps: { variant: 'contained', color: 'primary' }
+      confirmationButtonProps: { variant: 'contained', color: 'primary' },
     })
-      .then(() => {
-        console.log('done')
+      .then(async () => {
+        await changeUsersRole(
+          selectedRows.map((el) => el.id),
+          role
+        )
       })
       .catch(() => {})
   }
@@ -70,22 +79,34 @@ function UserTable({ users }) {
     confirm({
       description: `Do you want to block ${selectedRows.length} selected user(s)?`,
       confirmationText: 'Block',
-      confirmationButtonProps: { variant: 'contained', color: 'warning' }      
-    }).then(() => {console.log('blocked')}).catch(() => {})
+      confirmationButtonProps: { variant: 'contained', color: 'warning' },
+    })
+      .then(async () => {
+        await blockUsers(selectedRows.map((el) => el.id))
+      })
+      .catch(() => {})
   }
   const handleUnblock = async () => {
     confirm({
       description: `Do you want to unblock ${selectedRows.length} selected user(s)?`,
       confirmationText: 'Unblock',
-      confirmationButtonProps: { variant: 'contained', color: 'success' }    
-    }).then(() => {console.log('unblocked')}).catch(() => {})
+      confirmationButtonProps: { variant: 'contained', color: 'success' },
+    })
+      .then(async () => {
+        await unblockUsers(selectedRows.map((el) => el.id))
+      })
+      .catch(() => {})
   }
   const handleDelete = async () => {
     confirm({
       description: `Do you want to delete ${selectedRows.length} selected user(s)? This action is irreversible!`,
       confirmationText: 'Delete',
-      confirmationButtonProps: { variant: 'contained', color: 'error' }  
-    }).then(() => {console.log('deleted')}).catch(() => {})
+      confirmationButtonProps: { variant: 'contained', color: 'error' },
+    })
+      .then(async () => {
+        await deleteUsers(selectedRows.map((el) => el.id))
+      })
+      .catch(() => {})
   }
 
   const gridTheme =
@@ -98,12 +119,14 @@ function UserTable({ users }) {
           startIcon={<RiUserSettingsLine />}
           variant="contained"
           color="primary"
+          type="submit"
           onClick={handleClick}
           disabled={disabled}
         >
           Change role
         </Button>
         <Button
+        type="submit"
           startIcon={<TbLock />}
           variant="contained"
           color="warning"
@@ -116,6 +139,7 @@ function UserTable({ users }) {
           startIcon={<TbLockOpen />}
           variant="contained"
           color="success"
+          type="submit"
           onClick={handleUnblock}
           disabled={disabled}
         >
@@ -125,6 +149,7 @@ function UserTable({ users }) {
           startIcon={<MdDeleteForever />}
           variant="contained"
           color="error"
+          type="submit"
           onClick={handleDelete}
           disabled={disabled}
         >
@@ -145,6 +170,7 @@ function UserTable({ users }) {
         {roles.map((el) => {
           return (
             <MenuItem
+              key={el}
               onClick={() => {
                 handleRoleChange(el)
                 handleClose()

@@ -45,6 +45,7 @@ function App() {
       const user = await getUser()
       setUser(user)
       setIsLoading(false)
+      console.log(user.role)
     }
     fetchData()
   }, [])
