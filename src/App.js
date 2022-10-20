@@ -16,7 +16,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import { ColorModeContext } from './context/ColorModeContext'
 import { getDesignTokens } from './themes/getDesignTokens'
 import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
-import CollectionsList from './pages/CollectionsList/CollectionsList'
+import UserProfile from './pages/UserProfile/UserProfile'
 import SearchResults from './pages/SearchResults/SearchResults'
 import AdminPage from './pages/AdminPage/AdminPage'
 
@@ -25,8 +25,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [mode, setMode] = useState(localStorage.getItem('theme') || 'light')
   const navigate = useNavigate()
-
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
+
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
@@ -53,19 +53,22 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const user = await getUser()
-      setUser(user)
+      if (user.hasAccess) {
+        setUser(user)
+      }
       setIsLoading(false)
-      if (!user.hasAccess) handleLogout()
     }
     fetchData()
-  }, [handleLogout])
+  }, [])
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ConfirmProvider>
-          <UserContext.Provider value={{ user, setUser, handleLogout }}>
+          <UserContext.Provider
+            value={{ user, setUser, handleLogout }}
+          >
             {isLoading ? (
               <Loader />
             ) : (
@@ -80,12 +83,12 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route
-                      path={routes.COLLECTIONS}
-                      element={<CollectionsList />}
+                      path={routes.USER_PROFILE}
+                      element={<UserProfile />}
                     />
                     <Route
-                      path={`${routes.COLLECTIONS}/:userId`}
-                      element={<CollectionsList />}
+                      path={`${routes.USER_PROFILE}/:userId`}
+                      element={<UserProfile />}
                     />
                     <Route
                       path={`${routes.COLLECTIONS}/byid/:id`}

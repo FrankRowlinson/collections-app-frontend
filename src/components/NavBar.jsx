@@ -125,7 +125,6 @@ function NavBar(props) {
           >
             COLLECTIONS
           </Typography>
-          {/* <Box flexGrow={1}></Box> */}
           <NavBarItems navItems={navItems} variant="topNavItems" />
           <Box flexGrow={1}></Box>
           <SearchButton />

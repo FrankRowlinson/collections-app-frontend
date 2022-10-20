@@ -49,7 +49,7 @@ function AdminPage() {
             minHeight: '70vh',
           }}
         >
-          {hasAccess ? <UserTable users={users} /> : <Warning />}
+          {hasAccess ? <UserTable users={users} setUsers={setUsers} setHasAccess={setHasAccess} /> : <Warning />}
         </Box>
       )}
     </>

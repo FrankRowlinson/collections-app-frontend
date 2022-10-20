@@ -1,4 +1,11 @@
-import { useRef, useEffect, useState, useCallback } from 'react'
+import {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  useContext,
+  useMemo,
+} from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
@@ -11,6 +18,7 @@ import { RiUserSettingsLine } from 'react-icons/ri'
 import { generateColumns, generateRows } from '../services/generateUserGrid'
 import { useConfirm } from 'material-ui-confirm'
 import roles from '../constants/roles'
+import { UserContext } from '../context/UserContext'
 import {
   changeUsersRole,
   blockUsers,
@@ -19,6 +27,7 @@ import {
 } from '../services/adminActions'
 
 function UserTable({ users }) {
+  const { handleLogout } = useContext(UserContext)
   const theme = useTheme()
   const confirm = useConfirm()
   const gridRef = useRef()
@@ -36,11 +45,50 @@ function UserTable({ users }) {
     setAnchorForRoleSelection(null)
   }
 
-  // setup for user grip
+  // setup for user grid
+  useEffect(() => {
+    setColumnDefs(generateColumns())
+  }, [])
+
   useEffect(() => {
     setRowData(generateRows(users || []))
-    setColumnDefs(generateColumns())
   }, [users])
+
+  // update data based on action taken
+  const onRoleChange = (ids, role) => {
+    setRowData(
+      rowData.map((el) => {
+        return {
+          ...el,
+          role: ids.includes(el.id) ? role : el.role,
+        }
+      })
+    )
+  }
+
+  const onBlock = (ids) => {
+    setRowData(
+      rowData.map((el) => {
+        return {
+          ...el,
+          hasAccess: ids.includes(el.id) ? 'Blocked' : el.hasAccess,
+        }
+      })
+    )
+  }
+  const onUnblock = (ids) => {
+    setRowData(
+      rowData.map((el) => {
+        return {
+          ...el,
+          hasAccess: ids.includes(el.id) ? 'Active' : el.hasAccess,
+        }
+      })
+    )
+  }
+  const onDelete = (ids) => {
+    setRowData(rowData.filter((el) => !ids.includes(el.id)))
+  }
 
   const defaultColDef = {
     resizable: true,
@@ -68,10 +116,13 @@ function UserTable({ users }) {
       confirmationButtonProps: { variant: 'contained', color: 'primary' },
     })
       .then(async () => {
-        await changeUsersRole(
-          selectedRows.map((el) => el.id),
-          role
-        )
+        const ids = selectedRows.map((el) => el.id)
+        const response = await changeUsersRole(ids, role)
+        console.log(response)
+        if (response.triggerLogout) {
+          await handleLogout()
+        }
+        if (response.result.count > 0) onRoleChange(ids, role)
       })
       .catch(() => {})
   }
@@ -82,7 +133,13 @@ function UserTable({ users }) {
       confirmationButtonProps: { variant: 'contained', color: 'warning' },
     })
       .then(async () => {
-        await blockUsers(selectedRows.map((el) => el.id))
+        const ids = selectedRows.map((el) => el.id)
+        const response = await blockUsers(ids)
+        console.log(response)
+        if (response.triggerLogout) {
+          await handleLogout()
+        }
+        if (response.result.count > 0) onBlock(ids)
       })
       .catch(() => {})
   }
@@ -93,7 +150,13 @@ function UserTable({ users }) {
       confirmationButtonProps: { variant: 'contained', color: 'success' },
     })
       .then(async () => {
-        await unblockUsers(selectedRows.map((el) => el.id))
+        const ids = selectedRows.map((el) => el.id)
+        const response = await unblockUsers(ids)
+        console.log(response)
+        if (response.triggerLogout) {
+          await handleLogout()
+        }
+        if (response.result.count > 0) onUnblock(ids)
       })
       .catch(() => {})
   }
@@ -104,7 +167,12 @@ function UserTable({ users }) {
       confirmationButtonProps: { variant: 'contained', color: 'error' },
     })
       .then(async () => {
-        await deleteUsers(selectedRows.map((el) => el.id))
+        const ids = selectedRows.map((el) => el.id)
+        const response = await deleteUsers(ids)
+        if (response.triggerLogout) {
+          await handleLogout()
+        }
+        if (response.result.count > 0) onDelete(ids)
       })
       .catch(() => {})
   }
@@ -126,7 +194,7 @@ function UserTable({ users }) {
           Change role
         </Button>
         <Button
-        type="submit"
+          type="submit"
           startIcon={<TbLock />}
           variant="contained"
           color="warning"

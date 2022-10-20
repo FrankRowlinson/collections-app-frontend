@@ -62,18 +62,22 @@ function LoginForm() {
         <CardHeader
           title="Sign In"
           subheader={
-            <Typography component={Link} sx={{color: 'text.secondary'}} to={routes.SIGNUP}>
+            <Typography
+              component={Link}
+              sx={{ color: 'text.secondary' }}
+              to={routes.SIGNUP}
+            >
               Don't have an account?
             </Typography>
           }
         />
         <CardContent sx={{}}>
-          {status ? <AuthError form="signIn" status={status}/> : ''}
           <form
             onSubmit={handleSubmit(onSubmit)}
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <Stack spacing={3}>
+              {status && errors.length === 0 ? <AuthError form="signIn" status={status} /> : ''}
               {errors.username ? (
                 <Alert color="error">{errors.username.message}</Alert>
               ) : (

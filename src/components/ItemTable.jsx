@@ -31,7 +31,9 @@ function ItemTable({ items, rightToEdit }) {
   }, [])
 
   const handleRowDeletion = async () => {
-    await deleteItemsById(selectedRows.map((el) => el.id))
+    const ids = selectedRows.map((el) => el.id)
+    await deleteItemsById()
+    setRowData(rowData.filter((el) => !ids.includes(el.id)))
   }
 
   const handleRowShow = async () => {

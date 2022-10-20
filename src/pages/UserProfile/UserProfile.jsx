@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { getCollectionsByUser } from '../../services/fetchCollections'
 
-function CollectionsList() {
+function UserProfile() {
   const { userId } = useParams()
   const { user } = useContext(UserContext)
   const [collections, setCollections] = useState(null)
@@ -29,4 +29,4 @@ function CollectionsList() {
   )
 }
 
-export default CollectionsList
+export default UserProfile

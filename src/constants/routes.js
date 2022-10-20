@@ -4,6 +4,7 @@ const routes = {
   LOGIN: '/auth/login',
   SIGNUP: '/auth/signup',
   CREATE_COLLECTION: '/create-collection',
+  USER_PROFILE: '/profile',
   COLLECTIONS: '/collections',
   ADD_ITEM: '/add-item',
   SEARCH_RESULTS: '/search',
