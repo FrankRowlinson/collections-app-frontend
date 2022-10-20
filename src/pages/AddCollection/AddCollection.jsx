@@ -18,7 +18,6 @@ import {
 } from '@mui/material'
 import { MdAdd, MdCheckCircle, MdSave } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
-
 import { sendCollection } from '../../services/sendCollection'
 import MarkdownPreview from '../../components/MarkdownPreview'
 import { getCollectionFormProps } from '../../services/getCollectionProps'
@@ -30,6 +29,25 @@ function AddCollection() {
   const [collectionTypes, setCollectionTypes] = useState([])
   const [fieldTypes, setFieldTypes] = useState({})
   const [previewOpen, setPreviewOpen] = useState(false)
+  const {
+    register,
+    control,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { customField: { type: '', name: '' } },
+    shouldUnregister: true,
+  })
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'customField',
+    shouldUnregister: true,
+    rules: {
+      required: true,
+    },
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,26 +59,9 @@ function AddCollection() {
     fetchData()
   }, [])
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    resetField,
-    // formState: { errors }, // TODO: implement error display
-  } = useForm({
-    defaultValues: { customField: { type: '', name: '' } },
-    shouldUnregister: true,
-  })
-
   const coverImage = useWatch({
     control,
     name: 'collection-image',
-  })
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'customField',
-    shouldUnregister: true,
   })
 
   const handleClickPreviewOpen = () => {
@@ -99,28 +100,36 @@ function AddCollection() {
               id="collection-name"
               label="Collection name"
               autoComplete="off"
+              error={!!errors.collectionName}
+              helperText={
+                errors.collectionName ? errors.collectionName.message : ''
+              }
               fullWidth
             />
           </Grid>
           <Grid item xs={12}>
             <FormControl sx={{ maxWidth: '300px' }} fullWidth>
-              <InputLabel id="collection-type">Collection type</InputLabel>
+              <InputLabel error={!!errors.collectionType} id="collection-type">
+                Collection type
+              </InputLabel>
               <Select
-                {...register('collectionType')}
+                {...register('collectionType', { required: true })}
                 labelId="collection-type"
                 label="Collection Type"
                 defaultValue=""
+                error={!!errors.collectionType}
                 id="collection-type-select"
                 placeholder="Select..."
                 disabled={isLoading}
               >
-                {collectionTypes.map((el) => {
-                  return (
-                    <MenuItem key={el.name} value={el.name}>
-                      {el.name}
-                    </MenuItem>
-                  )
-                })}
+                {!isLoading &&
+                  collectionTypes.map((el) => {
+                    return (
+                      <MenuItem key={el.name} value={el.name}>
+                        {el.name}
+                      </MenuItem>
+                    )
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -247,7 +256,7 @@ function AddCollection() {
                     {...register(`customField.${index}.name`, {
                       required: true,
                       minLength: 3,
-                      maxLength: 75
+                      maxLength: 75,
                     })}
                   />
                 </Grid>

@@ -24,11 +24,7 @@ function NavBarItems({ variant, navItems }) {
     <Box
       sx={{
         display: { xs: 'none', lg: 'block' },
-        position: 'absolute',
-        mr: 'auto',
-        left: 0,
-        right: 0,
-        textAlign: 'center'
+        ml: 5,
       }}
     >
       {navItems.map(
@@ -65,7 +61,7 @@ function NavBarItems({ variant, navItems }) {
   const drawerItems = (
     <List>
       {navItems.map((item) =>
-        item.show ? (
+        item.show && (
           <ListItem key={item.label} disablePadding>
             <NavLink
               style={{ width: '100%', textDecoration: 'none' }}
@@ -82,8 +78,6 @@ function NavBarItems({ variant, navItems }) {
               )}
             </NavLink>
           </ListItem>
-        ) : (
-          ''
         )
       )}
       <ListItem key="logout" disablePadding>

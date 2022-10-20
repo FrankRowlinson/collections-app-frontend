@@ -14,10 +14,3 @@ export async function getBiggestCollections() {
   const response = await axios.get('collections/biggest')
   return response.data
 }
-
-export async function getCollectionsByUser(id) {
-  const response = await axios.get(
-    `collections/userCollections${id ? `/${id}` : ''}`
-  )
-  return response.data
-}

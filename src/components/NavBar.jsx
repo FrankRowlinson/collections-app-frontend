@@ -22,7 +22,7 @@ import { ColorModeContext } from '../context/ColorModeContext'
 import { useTheme } from '@mui/material/styles'
 import NavBarItems from '../components/NavBarItems'
 import routes from '../constants/routes'
-import LogoutButton from './LogoutButton'
+import ProfileMenu from './ProfileMenu'
 import SearchDialog from './SearchDialog'
 
 const drawerWidth = '300px'
@@ -82,8 +82,8 @@ function NavBar(props) {
   )
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }} component={Link} to={routes.HOME}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', height: '100%' }}>
+      <Typography variant="h6" color="inherit" sx={{ display: 'block', my: 3, textDecoration: 'none' }} component={Link} to={routes.HOME}>
         COLLECTIONS
       </Typography>
       <Divider />
@@ -130,7 +130,7 @@ function NavBar(props) {
           <SearchButton />
           <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
             <ThemeToggler />
-            {user.role === 'GUEST' ? '' : <LogoutButton variant="topNav" />}
+            {user.role === 'GUEST' ? '' : <ProfileMenu />}
           </Box>
         </Toolbar>
       </AppBar>
@@ -148,7 +148,7 @@ function NavBar(props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-            },
+            }
           }}
         >
           {drawer}

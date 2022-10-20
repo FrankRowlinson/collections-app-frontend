@@ -1,32 +1,11 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
-import { Button, ListItemButton, ListItemText } from '@mui/material'
+import { ListItemButton } from '@mui/material'
 
-function LogoutButton({ variant }) {
+function LogoutButton() {
   const text = 'Logout'
   const { handleLogout } = useContext(UserContext)
-
-  const topNavVariant = (
-    <Button color="inherit" variant="outlined" sx={{ml: 2}} onClick={handleLogout}>
-      {text}
-    </Button>
-  )
-
-  const drawerVariant = (
-    <ListItemButton onClick={handleLogout}>
-      <ListItemText>{text}</ListItemText>
-    </ListItemButton>
-  )
-
-  const variants = {
-    drawer: drawerVariant,
-    topNav: topNavVariant
-  }
-  return (
-    <>
-      {variants[variant]}
-    </>
-  )
+  return <ListItemButton onClick={handleLogout}>{text}</ListItemButton>
 }
 
 export default LogoutButton
