@@ -73,9 +73,17 @@ function CollectionDetail() {
               </Grid>
             </>
           )}
+
           <Grid item xs={12}>
-            <ItemTable items={collection.items} rightToEdit={rightToEdit} />
+            {collection.items && collection.items.length ? (
+              <ItemTable items={collection.items} rightToEdit={rightToEdit} />
+            ) : (
+              <Typography variant="body1">
+                <em>No items in collection</em>
+              </Typography>
+            )}
           </Grid>
+
           {rightToEdit && (
             <Grid item xs={12}>
               <Button

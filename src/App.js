@@ -66,9 +66,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ConfirmProvider>
-          <UserContext.Provider
-            value={{ user, setUser, handleLogout }}
-          >
+          <UserContext.Provider value={{ user, setUser, handleLogout }}>
             {isLoading ? (
               <Loader />
             ) : (
@@ -94,7 +92,10 @@ function App() {
                       path={`${routes.COLLECTIONS}/byid/:id`}
                       element={<CollectionDetail />}
                     />
-                    <Route path="/items" element={<ItemDetail />} />
+                    <Route
+                      path={`${routes.ITEMS}/byid/:id`}
+                      element={<ItemDetail />}
+                    />
                     <Route
                       path={`${routes.AUTH}/*`}
                       element={

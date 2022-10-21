@@ -3,17 +3,17 @@ import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import {
   Container,
   Grid,
-  Button,
   FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
   TextField,
+  InputLabel,
+  Select,
   Typography,
   Dialog,
   DialogActions,
   DialogContent,
   Divider,
+  MenuItem,
+  Button,
   Icon,
 } from '@mui/material'
 import { MdAdd, MdCheckCircle, MdSave } from 'react-icons/md'
@@ -65,6 +65,7 @@ function AddCollection() {
   })
 
   const handleClickPreviewOpen = () => {
+    console.log(coverImage)
     setPreviewOpen(true)
   }
 
@@ -180,13 +181,13 @@ function AddCollection() {
               </Button>
             </Grid>
             <Grid item flexGrow={1}>
-              {coverImage ? (
+              {coverImage && coverImage.length ? (
                 <Icon color="success" component={MdCheckCircle} />
               ) : (
                 'no file selected'
               )}
             </Grid>
-            {coverImage ? (
+            {coverImage && coverImage.length ? (
               <Grid item xs={12}>
                 <Button
                   variant="outlined"
@@ -204,6 +205,10 @@ function AddCollection() {
             <Grid item xs={12}>
               <Typography variant="h6" component="span">
                 Custom fields for your collection
+              </Typography>
+              <Typography variant="subtitle2" color="text.secondary">
+                Describe items in your collection with as much additional info
+                as you need with flexible options
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{ mb: 1 }}>

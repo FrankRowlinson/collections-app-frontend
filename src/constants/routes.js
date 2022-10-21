@@ -7,6 +7,7 @@ const routes = {
   USER_PROFILE: '/profile',
   COLLECTIONS: '/collections',
   ADD_ITEM: '/add-item',
+  ITEMS: '/items',
   SEARCH_RESULTS: '/search',
   ADMIN: '/admin',
   NOT_FOUND: '/not_found',

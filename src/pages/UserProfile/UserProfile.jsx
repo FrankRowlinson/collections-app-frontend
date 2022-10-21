@@ -1,32 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {
-  Typography,
-  Grid,
   Container,
-  Paper,
+  Grid,
   Box,
   Stack,
+  Paper,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActionArea,
+  Typography,
   Divider,
 } from '@mui/material'
 import { Image } from 'mui-image'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import { UserContext } from '../../context/UserContext'
 import getUserProfileData from '../../services/getUserProfileData'
 import Loader from '../Loader/Loader'
+import routes from '../../constants/routes'
 
 function UserProfile() {
   const { userId } = useParams()
   const { user } = useContext(UserContext)
   const [userData, setUserData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       // either use id from parameters or id of a user that is logged in
       const authorId = userId ? userId : user.id
       const data = await getUserProfileData(authorId)
-      console.log(data)
       setUserData(data)
       setIsLoading(false)
     }
@@ -42,7 +47,7 @@ function UserProfile() {
           component={Paper}
           elevation={2}
           maxWidth="lg"
-          sx={{ minHeight: '100vh' }}
+          sx={{ minHeight: '90vh' }}
         >
           <Grid container spacing={2}>
             <Grid
@@ -90,27 +95,59 @@ function UserProfile() {
               <Typography variant="h5">Personal collections</Typography>
               <Divider />
             </Grid>
-            <Grid item container xs={12}>
-              {userData.collections.map((el) => {
+            <Grid item xs={12}></Grid>
+            {/* Cards with collections */}
+            <Grid
+              item
+              container
+              xs={12}
+              spacing={2}
+              sx={{ mb: 3, alignItems: 'stretch' }}
+            >
+              {userData.collections.map((el, index) => {
                 return (
-                  <Grid item xs={12}>
-                    {el.name}
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    key={`collection-${index}`}
+                    sx={{ display: 'flex' }}
+                  >
+                    <CardActionArea
+                      onClick={() => {
+                        navigate(`${routes.COLLECTIONS}/byid/${el.id}`)
+                      }}
+                    >
+                      <Card sx={{ width: '100%', height: '100%' }}>
+                        <CardMedia
+                          component="img"
+                          sx={{ height: { xs: 250, sm: 200, md: 150 } }}
+                          image={
+                            el.img ||
+                            'https://via.placeholder.com/300?text=No+image'
+                          }
+                          alt=""
+                        />
+                        <CardContent>
+                          <Typography variant="h5" component="div">
+                            {el.name}
+                          </Typography>
+                          <Typography variant="overline" color="text.secondary">
+                            {el.type.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {moment(el.createdAt).format('LL')}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </CardActionArea>
                   </Grid>
                 )
               })}
             </Grid>
           </Grid>
-
-          {/* {collections
-  ? collections.map((el) => {
-    return (
-      <div key={el.id}>
-      {el.id}
-      <img src={el.img} alt="" />
-      </div>
-      )
-    })
-  : ''} */}
         </Container>
       )}
     </>
