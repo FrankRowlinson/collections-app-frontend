@@ -31,6 +31,6 @@ export async function sendItem(data, collectionId) {
   formattedData['itemImage'] &&
     formData.append('img', formattedData['itemImage'][0])
   formData.append('data', JSON.stringify(formattedData))
-  const res = await axios.post('items', formData)
-  return res
+  const response = await axios.post('items', formData)
+  return response.data
 }

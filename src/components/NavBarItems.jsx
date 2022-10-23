@@ -10,10 +10,10 @@ import {
 } from '@mui/material'
 import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
-import LogoutButton from '../components/LogoutButton'
 import { UserContext } from '../context/UserContext'
 import { useTheme } from '@mui/material/styles'
 import { ColorModeContext } from '../context/ColorModeContext'
+import ProfileMenu from './ProfileMenu'
 
 function NavBarItems({ variant, navItems }) {
   const theme = useTheme()
@@ -81,7 +81,7 @@ function NavBarItems({ variant, navItems }) {
         )
       )}
       <ListItem key="logout" disablePadding>
-        {user.role === 'GUEST' ? '' : <LogoutButton variant="drawer" />}
+        {user.role === 'GUEST' ? '' : <ProfileMenu />}
       </ListItem>
       <ListItem
         disablePadding

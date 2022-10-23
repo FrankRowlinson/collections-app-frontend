@@ -1,5 +1,7 @@
 import moment from 'moment'
 import { Chip } from '@mui/material'
+import { Link } from 'react-router-dom'
+import routes from '../constants/routes'
 
 const TagsRenderer = (params) => {
   return (
@@ -20,6 +22,10 @@ const TagsRenderer = (params) => {
   )
 }
 
+const NameRenderer = (params) => {
+  return <Link to={`${routes.ITEMS}/byid/${params.data.id}`}>{params.data['Item name']}</Link>
+}
+
 export function generateColumns(item) {
   const columns = [
     {
@@ -30,7 +36,7 @@ export function generateColumns(item) {
       checkboxSelection: true,
       showDisabledCheckboxes: false,
     },
-    { field: 'Item name' },
+    { field: 'Item name', cellRenderer: NameRenderer },
     { field: 'Created At' },
     {
       field: 'Tags',

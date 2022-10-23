@@ -22,8 +22,8 @@ import { ColorModeContext } from '../context/ColorModeContext'
 import { useTheme } from '@mui/material/styles'
 import NavBarItems from '../components/NavBarItems'
 import routes from '../constants/routes'
-import ProfileMenu from './ProfileMenu'
 import SearchDialog from './SearchDialog'
+import NavbarAvatar from './NavbarAvatar'
 
 const drawerWidth = '300px'
 
@@ -130,7 +130,7 @@ function NavBar(props) {
           <SearchButton />
           <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
             <ThemeToggler />
-            {user.role === 'GUEST' ? '' : <ProfileMenu />}
+            {user.role === 'GUEST' ? '' : <NavbarAvatar />}
           </Box>
         </Toolbar>
       </AppBar>

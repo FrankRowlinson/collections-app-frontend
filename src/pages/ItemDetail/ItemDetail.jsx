@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {
   Container,
   Grid,
@@ -7,6 +7,7 @@ import {
   Divider,
   Box,
   Chip,
+  Button,
 } from '@mui/material'
 import Image from 'mui-image'
 import Details from '../../components/Details'
@@ -16,8 +17,11 @@ import getItem from '../../services/getItem'
 import Loader from '../Loader/Loader'
 import routes from '../../constants/routes'
 import moment from 'moment'
+import LikeCommentButtonGroup from '../../components/LikeCommentButtonGroup'
+import { UserContext } from '../../context/UserContext'
 
 function ItemDetail() {
+  const { user } = useContext(UserContext)
   const [item, setItem] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
@@ -41,7 +45,14 @@ function ItemDetail() {
           <Grid container spacing={3}>
             {item.img && (
               <Grid item xs={12} md={4}>
-                <Paper sx={{ position: 'sticky', top: 20 }}>
+                <Button
+                  onClick={() => {
+                    console.log(item)
+                  }}
+                >
+                  123
+                </Button>
+                <Box sx={{ position: 'sticky', top: 20 }}>
                   <Image
                     src={item.img}
                     duration={1000}
@@ -50,7 +61,21 @@ function ItemDetail() {
                     errorIcon={true}
                     bgColor="inherit"
                   />
-                </Paper>
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}
+                  >
+                    <LikeCommentButtonGroup
+                      commentsCount={item.comments.length}
+                      likes={item.likes}
+                      beenLiked={
+                        item.likes.filter((e) => e.userId === user.id).length >
+                        0
+                      }
+                      itemId={item.id}
+                    />
+                  </Box>
+                  <Divider sx={{mt: 1}}/>
+                </Box>
               </Grid>
             )}
             <Grid item xs={12} md={item.img ? 8 : 12}>
@@ -110,15 +135,28 @@ function ItemDetail() {
                 </Typography>
                 <Divider sx={{ my: 1 }} />
                 <Details fields={item.fields} />
-                <Divider sx={{my: 2}}/>
-                {item.tags &&
-                  item.tags.map((el, index) => {
-                    return <Chip label={el.name} sx={{ mx: '3px' }} />
-                  })}
+                {/* tags */}
+                {item.tags?.length ? (
+                  <>
+                    <Divider sx={{ my: 2 }} />
+                    {item.tags.map((el, index) => {
+                      return <Chip label={el.name} sx={{ mx: '3px' }} />
+                    })}
+                  </>
+                ) : (
+                  ''
+                )}
+                {!item.img && (
+                  <>
+                    <Divider sx={{ my: 1 }} />
+                    <LikeCommentButtonGroup />
+                  </>
+                )}
               </Paper>
             </Grid>
           </Grid>
           {/* Comment Section */}
+          <Box sx={{ minHeight: '100vh' }}></Box>
           <CommentSection comments={item.comments} />
         </Container>
       )}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import {
   Icon,
@@ -20,6 +20,7 @@ import TextareaInput from './ItemFormFields/TextareaInput'
 import Loader from '../pages/Loader/Loader'
 import ControlledAutocomplete from './ItemFormFields/ControlledAutocomplete'
 import { sendItem } from '../services/sendItem'
+import routes from '../constants/routes'
 
 const fieldMapping = {
   number: NumberInput,
@@ -34,6 +35,8 @@ function AddItemForm() {
   const [customFields, setCustomFields] = useState(null)
   const [tagOptions, setTagOptions] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [inProgress, setInProgress] = useState(false)
+  const navigate = useNavigate()
 
   const { register, control, handleSubmit, resetField } = useForm()
 
@@ -57,8 +60,11 @@ function AddItemForm() {
     }
   }, [customFields])
 
-  const onSubmit = (data) => {
-    sendItem(data, id)
+  const onSubmit = async (data) => {
+    setInProgress(true)
+    const response = await sendItem(data, id)
+    navigate(`${routes.ITEMS}/byid/${response.itemId}`)
+    setInProgress(false)
   }
 
   return (
@@ -143,7 +149,7 @@ function AddItemForm() {
               )
             })}
             <Grid item xs={12}>
-              <Button variant="contained" type="submit">
+              <Button variant="contained" type="submit" disabled={inProgress}>
                 Create item!
               </Button>
             </Grid>
