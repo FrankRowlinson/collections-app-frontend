@@ -7,7 +7,6 @@ import {
   Divider,
   Box,
   Chip,
-  Button,
 } from '@mui/material'
 import Image from 'mui-image'
 import Details from '../../components/Details'
@@ -17,7 +16,7 @@ import getItem from '../../services/getItem'
 import Loader from '../Loader/Loader'
 import routes from '../../constants/routes'
 import moment from 'moment'
-import LikeCommentButtonGroup from '../../components/LikeCommentButtonGroup'
+import LikeButton from '../../components/LikeButton'
 import { UserContext } from '../../context/UserContext'
 import { ItemContext } from '../../context/ItemContext'
 
@@ -59,7 +58,7 @@ function ItemDetail() {
                     <Box
                       sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}
                     >
-                      <LikeCommentButtonGroup
+                      <LikeButton
                         likes={item.likes}
                         beenLiked={
                           item.likes.filter((e) => e.userId === user.id)
@@ -142,7 +141,7 @@ function ItemDetail() {
                   {!item.img && (
                     <>
                       <Divider sx={{ my: 1 }} />
-                      <LikeCommentButtonGroup
+                      <LikeButton
                         commentsCount={item.comments.length}
                         likes={item.likes}
                         beenLiked={

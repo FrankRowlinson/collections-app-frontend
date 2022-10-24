@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, CircularProgress } from '@mui/material'
-import { FaStar, FaRegStar, FaRegComment } from 'react-icons/fa'
+import { FaStar, FaRegStar } from 'react-icons/fa'
 import { like, dislike } from '../services/likeItem'
 import { useSnackbar } from 'notistack'
 
@@ -9,7 +9,7 @@ const likeAction = {
   false: dislike,
 }
 
-function LikeCommentButtonGroup({ itemId, likes, beenLiked, commentsCount }) {
+function LikeButton({ itemId, likes, beenLiked, commentsCount }) {
   const { enqueueSnackbar } = useSnackbar()
   const [selected, setSelected] = useState(beenLiked)
   const [inProgress, setInProgress] = useState(false)
@@ -30,20 +30,6 @@ function LikeCommentButtonGroup({ itemId, likes, beenLiked, commentsCount }) {
 
   return (
     <>
-      {/* <Button
-        variant="text"
-        sx={{
-          borderRadius: '25px',
-          fontSize: 16,
-          position: 'relative',
-          px: 2,
-        }}
-        endIcon={<FaRegComment size={26} />}
-        href="#comment-form"
-        color="inherit"
-      >
-        {commentsCount}
-      </Button> */}
       <Button
         variant="text"
         sx={{
@@ -76,4 +62,4 @@ function LikeCommentButtonGroup({ itemId, likes, beenLiked, commentsCount }) {
   )
 }
 
-export default LikeCommentButtonGroup
+export default LikeButton

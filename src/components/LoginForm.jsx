@@ -14,7 +14,7 @@ import {
   Alert,
 } from '@mui/material'
 import routes from '../constants/routes'
-import { authenticateUser, getUser } from '../services/authentication'
+import { authenticateUser } from '../services/authentication'
 import { UserContext } from '../context/UserContext'
 import AuthButton from './AuthButton'
 import AuthError from './AuthError'
