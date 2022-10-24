@@ -44,11 +44,10 @@ function UserProfile() {
         <Loader />
       ) : (
         <Container
-          component={Paper}
           elevation={2}
           maxWidth="lg"
-          sx={{ minHeight: '90vh' }}
         >
+          <Paper sx={{width: '100%', p: 2}}>
           <Grid container spacing={2}>
             <Grid
               item
@@ -148,6 +147,7 @@ function UserProfile() {
               })}
             </Grid>
           </Grid>
+          </Paper>
         </Container>
       )}
     </>

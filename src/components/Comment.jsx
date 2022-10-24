@@ -1,14 +1,23 @@
-import React from 'react'
 import moment from 'moment'
+import { Typography } from '@mui/material'
 
-function Comment(props) {
-  const {comment} = props
+function Comment({ comment }) {
   return (
-    <div>
-      <h5>{comment.author}</h5>
-      <p className="text-muted">{moment(comment.createdAt).format('LLL')}</p>
-      <p>{comment.text}</p>
-    </div>
+    <>
+      <Typography
+        variant="body1"
+        sx={{ fontWeight: 600, display: 'inline-block', mr: 1 }}
+      >
+        {comment.author.username}
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{ display: 'inline-block', color: 'text.secondary' }}
+      >
+        {moment(comment.createdAt).fromNow()}
+      </Typography>
+      <Typography variant="body1">{comment.text}</Typography>
+    </>
   )
 }
 

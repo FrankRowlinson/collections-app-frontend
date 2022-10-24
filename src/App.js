@@ -76,8 +76,8 @@ function App() {
                   <NavBar />
                   <Box
                     sx={{
-                      mt: { xs: '20px', md: '30px' },
-                      mb: { xs: '20px', md: '60px' },
+                      mt: 2,
+                      mb: 5,
                     }}
                   >
                     <Routes>
