@@ -47,13 +47,6 @@ function ItemDetail() {
             <Grid container spacing={2}>
               {item.img && (
                 <Grid item xs={12} md={4}>
-                  <Button
-                    onClick={() => {
-                      console.log(item)
-                    }}
-                  >
-                    123
-                  </Button>
                   <Box sx={{ position: 'sticky', top: 20 }}>
                     <Image
                       src={item.img}
@@ -80,7 +73,7 @@ function ItemDetail() {
                 </Grid>
               )}
               <Grid item xs={12} md={item.img ? 8 : 12}>
-                <Paper sx={{ p: 2 }}>
+                <Paper sx={{ p: 2, position: 'sticky', top: 20 }}>
                   <Box
                     sx={{
                       display: 'flex',

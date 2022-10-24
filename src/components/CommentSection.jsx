@@ -17,7 +17,6 @@ function CommentSection() {
       const data = await getComments(itemId)
       setComments(data.comments)
       setIsLoading(false)
-      console.log(data.comments)
     }
     fetchData()
     setTimeout(() => {
@@ -33,7 +32,7 @@ function CommentSection() {
         <Grid item container xs={12}>
           <Paper sx={{ width: '100%', p: 2 }}>
             <Typography variant="h6">{comments.length} comment(s)</Typography>
-            <CommentForm />
+            <CommentForm update={update} setUpdate={setUpdate} />
             <Stack spacing={1.5}>
               {comments.map((comment, index) => {
                 return (

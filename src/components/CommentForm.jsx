@@ -4,8 +4,9 @@ import { useContext } from 'react'
 import { ItemContext } from '../context/ItemContext'
 import { createComment } from '../services/comments'
 import { useState } from 'react'
+import ButtonProgress from './ButtonProgress'
 
-function CommentForm() {
+function CommentForm({ update, setUpdate }) {
   const { itemId } = useContext(ItemContext)
   const { register, handleSubmit, control } = useForm()
   const [inProgress, setInProgress] = useState(false)
@@ -14,6 +15,7 @@ function CommentForm() {
     setInProgress(true)
     createComment(itemId, data).then(() => {
       setInProgress(false)
+      setUpdate(!update)
     })
   }
   return (
@@ -22,6 +24,7 @@ function CommentForm() {
         <Grid container>
           <Grid item xs={12}>
             <TextField
+              autoComplete="off"
               placeholder="Start typing your comment..."
               fullWidth
               {...register('commentField')}
@@ -36,6 +39,7 @@ function CommentForm() {
               type="submit"
             >
               Leave comment
+              <ButtonProgress size={24} inProgress={inProgress} />
             </Button>
           </Grid>
         </Grid>

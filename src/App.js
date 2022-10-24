@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-import { Box, CssBaseline } from '@mui/material'
+import { Box, Button, CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ConfirmProvider } from 'material-ui-confirm'
 import { SnackbarProvider } from 'notistack'
@@ -20,6 +20,8 @@ import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
 import UserProfile from './pages/UserProfile/UserProfile'
 import SearchResults from './pages/SearchResults/SearchResults'
 import AdminPage from './pages/AdminPage/AdminPage'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -27,6 +29,11 @@ function App() {
   const [mode, setMode] = useState(localStorage.getItem('theme') || 'light')
   const navigate = useNavigate()
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
+  const [cookie, setCookie] = useState(Cookies.get('token'))
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${cookie}`
+  }, [cookie])
 
   const colorMode = useMemo(
     () => ({
@@ -48,16 +55,16 @@ function App() {
       setUser({ role: 'GUEST' })
       setIsLoading(false)
       navigate(routes.HOME)
+      setCookie(Cookies.get('token'))
     }
   }, [navigate])
 
   useEffect(() => {
     const fetchData = async () => {
       const user = await getUser()
-      if (user.hasAccess) {
-        setUser(user)
-      }
+      user.hasAccess && setUser(user)
       setIsLoading(false)
+      setCookie(Cookies.get('token'))
     }
     fetchData()
   }, [])
@@ -68,11 +75,13 @@ function App() {
         <SnackbarProvider>
           <CssBaseline />
           <ConfirmProvider>
-            <UserContext.Provider value={{ user, setUser, handleLogout }}>
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <UserContext.Provider
+                  value={{ user, setUser, handleLogout, setCookie }}
+                >
                   <NavBar />
                   <Box
                     sx={{
@@ -130,9 +139,9 @@ function App() {
                       <Route path="/*" element={<NotFoundPage />} />
                     </Routes>
                   </Box>
-                </>
-              )}
-            </UserContext.Provider>
+                </UserContext.Provider>
+              </>
+            )}
           </ConfirmProvider>
         </SnackbarProvider>
       </ThemeProvider>

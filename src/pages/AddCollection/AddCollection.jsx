@@ -22,10 +22,12 @@ import { sendCollection } from '../../services/sendCollection'
 import MarkdownPreview from '../../components/MarkdownPreview'
 import { getCollectionFormProps } from '../../services/getCollectionProps'
 import { useNavigate } from 'react-router-dom'
+import ButtonProgress from '../../components/ButtonProgress'
 
 function AddCollection() {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
+  const [inProgress, setInProgress] = useState(false)
   const [collectionTypes, setCollectionTypes] = useState([])
   const [fieldTypes, setFieldTypes] = useState({})
   const [previewOpen, setPreviewOpen] = useState(false)
@@ -44,9 +46,6 @@ function AddCollection() {
     control,
     name: 'customField',
     shouldUnregister: true,
-    rules: {
-      required: true,
-    },
   })
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function AddCollection() {
   })
 
   const handleClickPreviewOpen = () => {
-    console.log(coverImage)
     setPreviewOpen(true)
   }
 
@@ -74,6 +72,7 @@ function AddCollection() {
   }
 
   const onSubmit = async (data) => {
+    setInProgress(true)
     const response = await sendCollection(data)
     navigate(`/collections/byid/${response.data.collection_id}`)
   }
@@ -286,8 +285,14 @@ function AddCollection() {
             ))}
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained">
+            <Button
+              type="submit"
+              disabled={inProgress}
+              variant="contained"
+              sx={{ position: 'relative' }}
+            >
               Create new collection!
+              <ButtonProgress size={24} inProgress={inProgress} />
             </Button>
           </Grid>
         </Grid>

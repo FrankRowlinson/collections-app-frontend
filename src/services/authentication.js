@@ -3,7 +3,6 @@ import axios from 'axios'
 export async function authenticateUser(credentials, method) {
   const route = method === 'login' ? 'users/auth' : 'users'
   const response = await axios.post(route, credentials)
-  console.log(response.data)
   return response.data
 }
 

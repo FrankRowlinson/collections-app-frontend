@@ -21,6 +21,7 @@ import Loader from '../pages/Loader/Loader'
 import ControlledAutocomplete from './ItemFormFields/ControlledAutocomplete'
 import { sendItem } from '../services/sendItem'
 import routes from '../constants/routes'
+import ButtonProgress from './ButtonProgress'
 
 const fieldMapping = {
   number: NumberInput,
@@ -151,6 +152,7 @@ function AddItemForm() {
             <Grid item xs={12}>
               <Button variant="contained" type="submit" disabled={inProgress}>
                 Create item!
+                <ButtonProgress size={24} inProgress={inProgress} />
               </Button>
             </Grid>
           </Grid>

@@ -36,7 +36,7 @@ function UserProfile() {
       setIsLoading(false)
     }
     fetchData()
-  }, [userId, user.id])
+  }, [user, userId])
 
   return (
     <>
@@ -54,14 +54,14 @@ function UserProfile() {
               xs={12}
               sx={{ display: 'flex', justifyContent: 'between' }}
             >
-              <Typography variant="h4">{user.username}'s profile</Typography>
+              <Typography variant="h4">{userData.username}'s profile</Typography>
               <Box flexGrow={1}></Box>
               <Typography
-                title={user.role.toLowerCase()}
+                title={userData.role.toLowerCase()}
                 variant="h5"
                 sx={{ cursor: 'help' }}
               >
-                {user.role === 'USER' ? '👩🏻‍🦲' : '👮🏻‍♂️'}
+                {userData.role === 'USER' ? '👩🏻‍🦲' : '👮🏻‍♂️'}
               </Typography>
             </Grid>
             <Grid item xs={12}>
