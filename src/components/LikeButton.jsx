@@ -9,7 +9,7 @@ const likeAction = {
   false: dislike,
 }
 
-function LikeButton({ itemId, likes, beenLiked, commentsCount }) {
+function LikeButton({ itemId, likes, beenLiked }) {
   const { enqueueSnackbar } = useSnackbar()
   const [selected, setSelected] = useState(beenLiked)
   const [inProgress, setInProgress] = useState(false)

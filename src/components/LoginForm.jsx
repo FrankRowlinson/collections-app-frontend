@@ -18,7 +18,6 @@ import { authenticateUser } from '../services/authentication'
 import { UserContext } from '../context/UserContext'
 import AuthButton from './AuthButton'
 import AuthError from './AuthError'
-import Cookies from 'js-cookie'
 
 const schema = yup.object({
   username: yup.string().required('Enter a valid username').min(4).max(25),
@@ -30,7 +29,7 @@ function LoginForm() {
   const [snackbarOpen, setSnackbarOpen] = useState(!!success)
   const [inProgress, setInProgess] = useState(false)
   const [status, setStatus] = useState(null)
-  const { user, setCookie } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   const {
     register,
@@ -42,7 +41,6 @@ function LoginForm() {
     setInProgess(true)
     const response = await authenticateUser(data, 'login')
     if (response.status === 'ok') {
-      setCookie(Cookies.get('token'))
       window.location.reload(false)
     } else {
       setStatus(response.error)
