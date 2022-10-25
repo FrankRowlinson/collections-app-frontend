@@ -29,7 +29,6 @@ function ItemDetail() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getItem(id)
-      console.log(data.item)
       setItem(data.item)
       setIsLoading(false)
     }
@@ -132,7 +131,13 @@ function ItemDetail() {
                   {item.tags?.length ? (
                     <Box sx={{ py: 2 }}>
                       {item.tags.map((el, index) => {
-                        return <Chip label={el.name} sx={{ mx: '3px' }} />
+                        return (
+                          <Chip
+                            label={el.name}
+                            sx={{ m: '3px' }}
+                            key={`tag-${index}`}
+                          />
+                        )
                       })}
                     </Box>
                   ) : (
@@ -142,7 +147,6 @@ function ItemDetail() {
                     <>
                       <Divider sx={{ my: 1 }} />
                       <LikeButton
-                        commentsCount={item.comments.length}
                         likes={item.likes}
                         beenLiked={
                           item.likes.filter((e) => e.userId === user.id)

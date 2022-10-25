@@ -11,7 +11,6 @@ import {
   CardContent,
   Stack,
   Typography,
-  Alert,
 } from '@mui/material'
 import routes from '../constants/routes'
 import { authenticateUser } from '../services/authentication'
@@ -34,6 +33,7 @@ function LoginForm() {
   const {
     register,
     formState: { errors },
+    resetField,
     handleSubmit,
   } = useForm({ resolver: yupResolver(schema) })
 
@@ -44,6 +44,7 @@ function LoginForm() {
       window.location.reload(false)
     } else {
       setStatus(response.error)
+      resetField('password')
     }
     setInProgess(false)
   }
@@ -77,33 +78,23 @@ function LoginForm() {
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <Stack spacing={3}>
-              {status && errors.length === 0 ? (
-                <AuthError form="signIn" status={status} />
-              ) : (
-                ''
-              )}
-              {errors.username ? (
-                <Alert color="error">{errors.username.message}</Alert>
-              ) : (
-                ''
-              )}
+              {status && <AuthError form="signIn" status={status} />}
               <TextField
                 id="username"
                 label="Username"
                 type="text"
                 variant="standard"
+                error={Boolean(errors.username)}
+                helperText={errors.username && errors.username.message}
                 {...register('username')}
               />
-              {errors.password ? (
-                <Alert color="error">{errors.password.message}</Alert>
-              ) : (
-                ''
-              )}
               <TextField
                 id="password"
                 type="password"
                 label="Password"
                 variant="standard"
+                error={Boolean(errors.password)}
+                helperText={errors.password && errors.password.message}
                 {...register('password')}
               />
               <AuthButton inProgress={inProgress} text="Sign In" />

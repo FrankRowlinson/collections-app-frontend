@@ -5,7 +5,6 @@ import {
   CardHeader,
   Stack,
   TextField,
-  Alert,
   Typography,
   InputAdornment,
 } from '@mui/material'
@@ -43,6 +42,7 @@ function SignupForm() {
     register,
     formState: { errors },
     handleSubmit,
+    resetField
   } = useForm({ resolver: yupResolver(schema) })
 
   const onSubmit = async (data) => {
@@ -51,6 +51,8 @@ function SignupForm() {
     response.status === 'ok'
       ? navigate(routes.LOGIN, { state: { success: true } })
       : setShowStatus(true)
+      resetField('password')
+      resetField('passwordRepeat')
     setInProgress(false)
   }
 
@@ -71,22 +73,19 @@ function SignupForm() {
           subheaderTypographyProps={{ component: 'span' }}
         />
         <CardContent sx={{}}>
-          {showStatus && <AuthError form="signUp" />}
           <form
             onSubmit={handleSubmit(onSubmit)}
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <Stack spacing={3}>
-              {errors.username ? (
-                <Alert color="error">{errors.username.message}</Alert>
-              ) : (
-                ''
-              )}
+              {showStatus && <AuthError form="signUp" />}
               <TextField
                 id="username"
                 label="Username"
                 type="text"
                 variant="standard"
+                error={Boolean(errors.username)}
+                helperText={errors.username && errors.username.message}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="start">
@@ -96,16 +95,13 @@ function SignupForm() {
                 }}
                 {...register('username')}
               />
-              {errors.password ? (
-                <Alert color="error">{errors.password.message}</Alert>
-              ) : (
-                ''
-              )}
               <TextField
                 id="password"
                 type="password"
                 label="Password"
                 variant="standard"
+                error={Boolean(errors.password)}
+                helperText={errors.password && errors.password.message}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="start">
@@ -115,28 +111,25 @@ function SignupForm() {
                 }}
                 {...register('password')}
               />
-              {errors.passwordRepeat ? (
-                <Alert color="error">{errors.passwordRepeat.message}</Alert>
-              ) : (
-                ''
-              )}
               <TextField
                 id="repeat-password"
                 type="password"
                 label="Password again"
                 variant="standard"
+                error={Boolean(errors.passwordRepeat)}
+                helperText={
+                  errors.passwordRepeat && errors.passwordRepeat.message
+                }
                 {...register('passwordRepeat')}
               />
-              {errors.email ? (
-                <Alert color="error">{errors.email.message}</Alert>
-              ) : (
-                ''
-              )}
+
               <TextField
                 id="email"
                 label="Email"
                 type="email"
                 variant="standard"
+                error={Boolean(errors.email)}
+                helperText={errors.email && errors.email.message}
                 {...register('email')}
               />
               <AuthButton inProgress={inProgress} text="Sign Up" />

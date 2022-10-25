@@ -8,7 +8,7 @@ import ButtonProgress from './ButtonProgress'
 
 function CommentForm({ update, setUpdate }) {
   const { itemId } = useContext(ItemContext)
-  const { register, handleSubmit, control } = useForm()
+  const { register, handleSubmit, control, resetField } = useForm()
   const [inProgress, setInProgress] = useState(false)
   const comment = useWatch({ control, name: 'commentField' })
   const onSubmit = async (data) => {
@@ -16,6 +16,7 @@ function CommentForm({ update, setUpdate }) {
     createComment(itemId, data).then(() => {
       setInProgress(false)
       setUpdate(!update)
+      resetField('commentField')
     })
   }
   return (

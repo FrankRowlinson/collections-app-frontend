@@ -36,7 +36,7 @@ function CommentSection() {
             <Stack spacing={1.5}>
               {comments.map((comment, index) => {
                 return (
-                  <Box>
+                  <Box key={`comment-${index}`}>
                     <Comment comment={comment} />
                   </Box>
                 )
