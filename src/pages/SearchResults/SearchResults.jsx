@@ -7,7 +7,6 @@ import {
   CardContent,
   CardMedia,
   CardActionArea,
-  CardHeader,
 } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import routes from '../../constants/routes'
@@ -36,6 +35,7 @@ function SearchResults() {
               md={4}
               lg={3}
               key={`search-item-${index}`}
+              sx={{ display: 'flex' }}
             >
               <CardActionArea
                 onClick={() => {
@@ -43,10 +43,6 @@ function SearchResults() {
                 }}
               >
                 <Card sx={{ width: '100%', height: '100%' }}>
-                  <CardHeader
-                    title={el.name}
-                    subheader={`by ${el.author.username}`}
-                  />
                   <CardMedia
                     component="img"
                     sx={{ height: { xs: 350, sm: 300, md: 250 } }}
@@ -56,7 +52,17 @@ function SearchResults() {
                     alt=""
                   />
                   <CardContent>
-                    <Typography variant="overline">
+                    <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                      {el.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 300 }}
+                    >{`by ${el.author.username}`}</Typography>
+                    <Typography
+                      variant="overline"
+                      sx={{ color: 'text.secondary' }}
+                    >
                       {el.partOf.type.name} | {el.partOf.name}
                     </Typography>
                   </CardContent>

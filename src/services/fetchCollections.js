@@ -9,8 +9,3 @@ export async function getCollections() {
   const response = await axios.get('collections')
   return response.data
 }
-
-export async function getBiggestCollections() {
-  const response = await axios.get('collections/biggest')
-  return response.data
-}
