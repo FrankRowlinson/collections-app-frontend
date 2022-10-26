@@ -1,7 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCollection } from '../../services/fetchCollections'
-import { Container, Button, Typography, Divider, Grid } from '@mui/material'
+import {
+  Container,
+  Button,
+  Typography,
+  Divider,
+  Grid,
+} from '@mui/material'
 import AddItemForm from '../../components/AddItemForm'
 import ItemTable from '../../components/ItemTable'
 import Loader from '../Loader/Loader'
@@ -11,6 +17,8 @@ import { useNavigate } from 'react-router-dom'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import routes from '../../constants/routes'
 import Image from 'mui-image'
+import CollectionMenu from './CollectionMenu'
+
 
 function CollectionDetail() {
   const { user } = useContext(UserContext)
@@ -50,9 +58,16 @@ function CollectionDetail() {
       {isLoading ? (
         <Loader />
       ) : (
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Typography variant="h4">{collection.name}</Typography>
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={12}
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 500 }}>
+              {collection.name}
+            </Typography>
+            <CollectionMenu rightToEdit={rightToEdit}/>
           </Grid>
           {collection.img ? (
             <>
@@ -87,27 +102,25 @@ function CollectionDetail() {
           {rightToEdit && (
             <Grid item xs={12}>
               <Button
-                variant="contained"
-                color="primary"
+                variant={formOpen ? 'outlined' : 'contained'}
+                color={formOpen ? 'error' : 'primary'}
                 href="#add-item"
-                onClick={() => setFormOpen(true)}
+                onClick={() => setFormOpen(!formOpen)}
               >
-                Add item
+                {formOpen ? 'Cancel' : 'Add item'}
               </Button>
             </Grid>
           )}
-          {formOpen ? (
+          {formOpen && (
             <Grid item xs={12}>
               <Typography
                 id="add-item"
-                sx={{ pt: 2, mt: -2 }}
+                sx={{ pt: 1, mt: -1 }}
                 variant="h5"
               >{`Add item into "${collection.name}"`}</Typography>
               <Divider sx={{ mb: 2 }} />
               <AddItemForm />
             </Grid>
-          ) : (
-            ''
           )}
         </Grid>
       )}
