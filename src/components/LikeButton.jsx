@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Button, CircularProgress } from '@mui/material'
 import { FaStar, FaRegStar } from 'react-icons/fa'
 import { like, dislike } from '../services/likeItem'
 import { useSnackbar } from 'notistack'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
+import { useConfirm } from 'material-ui-confirm'
+import routes from '../constants/routes'
 
 const likeAction = {
   true: like,
@@ -10,11 +14,36 @@ const likeAction = {
 }
 
 function LikeButton({ itemId, likes, beenLiked }) {
+  const navigate = useNavigate()
+  const confirm = useConfirm()
+  const { user } = useContext(UserContext)
   const { enqueueSnackbar } = useSnackbar()
   const [selected, setSelected] = useState(beenLiked)
   const [inProgress, setInProgress] = useState(false)
 
-  const handleLike = async () => {
+  const handleLike = () => {
+    if (user.role === 'GUEST') {
+      showWarning()
+    } else {
+      performLikeAction()
+    }
+  }
+
+  const showWarning = () => {
+    confirm({
+      title: '',
+      description: 'You have to be a member to like items. Want to join now?',
+      confirmationButtonProps: { variant: 'contained' },
+      confirmationText: 'Yes, show me the way',
+      cancellationText: "Nah, I'll stay here",
+    })
+      .then(() => {
+        navigate(routes.SIGNUP)
+      })
+      .catch(() => {})
+  }
+
+  const performLikeAction = async () => {
     setInProgress(true)
     const response = await likeAction[!selected](itemId)
     if (response.status === 'ok') {

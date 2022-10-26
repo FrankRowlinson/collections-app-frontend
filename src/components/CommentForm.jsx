@@ -5,8 +5,10 @@ import { ItemContext } from '../context/ItemContext'
 import { createComment } from '../services/comments'
 import { useState } from 'react'
 import ButtonProgress from './ButtonProgress'
+import { UserContext } from '../context/UserContext'
 
 function CommentForm({ update, setUpdate }) {
+  const { user } = useContext(UserContext)
   const { itemId } = useContext(ItemContext)
   const { register, handleSubmit, control, resetField } = useForm()
   const [inProgress, setInProgress] = useState(false)
@@ -26,8 +28,13 @@ function CommentForm({ update, setUpdate }) {
           <Grid item xs={12}>
             <TextField
               autoComplete="off"
-              placeholder="Start typing your comment..."
+              placeholder={
+                user.role === 'GUEST'
+                  ? 'You have to be a member to comment...'
+                  : 'Start typing your comment...'
+              }
               fullWidth
+              disabled={user.role === 'GUEST'}
               {...register('commentField')}
               variant="standard"
             />
