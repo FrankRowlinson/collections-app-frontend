@@ -6,7 +6,8 @@ import {
   Typography,
   Divider,
   Box,
-  Chip,
+  Backdrop,
+  CircularProgress,
 } from '@mui/material'
 import Image from 'mui-image'
 import Details from '../../components/Details'
@@ -19,12 +20,14 @@ import moment from 'moment'
 import LikeButton from '../../components/LikeButton'
 import { UserContext } from '../../context/UserContext'
 import { ItemContext } from '../../context/ItemContext'
+import Tag from '../../components/Tag'
 
 function ItemDetail() {
   const { user } = useContext(UserContext)
   const [item, setItem] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
+  const [inProgress, setInProgress] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +44,9 @@ function ItemDetail() {
         <Loader />
       ) : (
         <ItemContext.Provider value={{ itemId: item.id }}>
+          <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
+            <CircularProgress color="inherit" />
+          </Backdrop>
           <Container sx={{ mt: '20px', minHeight: '90vh' }}>
             <Grid container spacing={2}>
               {item.img && (
@@ -132,9 +138,9 @@ function ItemDetail() {
                     <Box sx={{ py: 2 }}>
                       {item.tags.map((el, index) => {
                         return (
-                          <Chip
-                            label={el.name}
-                            sx={{ m: '3px' }}
+                          <Tag
+                            name={el.name}
+                            setInProgress={setInProgress}
                             key={`tag-${index}`}
                           />
                         )

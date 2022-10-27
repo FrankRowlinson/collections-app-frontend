@@ -32,7 +32,7 @@ function ItemTable({ items, rightToEdit }) {
 
   const handleRowDeletion = async () => {
     const ids = selectedRows.map((el) => el.id)
-    await deleteItemsById()
+    await deleteItemsById(ids)
     setRowData(rowData.filter((el) => !ids.includes(el.id)))
   }
 
@@ -71,7 +71,7 @@ function ItemTable({ items, rightToEdit }) {
   }, [])
 
   return (
-    <Box sx={{ width: '100%', mb: 4 }} className={gridTheme}>
+    <Box sx={{ width: '100%' }} className={gridTheme}>
       <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
         <CircularProgress color="inherit" />
       </Backdrop>

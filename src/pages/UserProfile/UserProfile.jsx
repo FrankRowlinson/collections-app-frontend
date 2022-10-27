@@ -51,7 +51,7 @@ function UserProfile() {
                 xs={12}
                 sx={{ display: 'flex', justifyContent: 'between' }}
               >
-                <Typography variant="h4">
+                <Typography variant="h5" sx={{fontWeight: 500}}>
                   {userData.username}'s profile
                 </Typography>
                 <Box flexGrow={1}></Box>
@@ -71,7 +71,9 @@ function UserProfile() {
               </Grid>
               <Grid item xs={12} sm={6} md={8} lg={9}>
                 <Stack spacing={2}>
-                  <Typography variant="h5">Accomplishments</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                    Accomplishments
+                  </Typography>
                   <Typography variant="body1">
                     <strong>Collections added:</strong>{' '}
                     {userData.collections.length}
@@ -90,7 +92,9 @@ function UserProfile() {
                 </Stack>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h5">Personal collections</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                  Personal collections
+                </Typography>
                 <Divider />
               </Grid>
               {/* Cards with collections */}

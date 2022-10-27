@@ -80,7 +80,7 @@ function AddCollection() {
   return (
     <Container maxWidth="md">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h5">Create new collection</Typography>
             <Divider />
@@ -154,8 +154,8 @@ function AddCollection() {
               sx={{
                 opacity: '0.7',
                 position: 'absolute',
-                top: '-7px',
-                right: '10px',
+                top: '-14px',
+                right: '0px',
               }}
               onClick={handleClickPreviewOpen}
             >

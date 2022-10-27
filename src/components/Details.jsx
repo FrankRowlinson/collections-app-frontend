@@ -7,7 +7,10 @@ function Details({ fields }) {
       <Stack spacing={1}>
         {fields.stringFields.map((el, index) => {
           return (
-            <Box key={`custom-boolean-${index}`}>
+            <Box
+              key={`custom-string-${index}`}
+              sx={{ display: !!el.value.length ? 'block' : 'none' }}
+            >
               <Typography
                 variant="body1"
                 component="span"
@@ -24,7 +27,7 @@ function Details({ fields }) {
         })}
         {fields.numberFields.map((el, index) => {
           return (
-            <Box key={`custom-boolean-${index}`}>
+            <Box key={`custom-number-${index}`}>
               <Typography
                 component="span"
                 variant="body1"
@@ -58,7 +61,10 @@ function Details({ fields }) {
         })}
         {fields.textFields.map((el, index) => {
           return (
-            <Box key={`custom-boolean-${index}`}>
+            <Box
+              key={`custom-text-${index}`}
+              sx={{ display: !!el.value.length ? 'block' : 'none' }}
+            >
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
                 {el.fieldName}
               </Typography>
@@ -68,7 +74,7 @@ function Details({ fields }) {
         })}
         {fields.dateFields.map((el, index) => {
           return (
-            <Box key={`custom-boolean-${index}`}>
+            <Box key={`custom-date-${index}`}>
               <Typography
                 variant="body1"
                 component="span"
