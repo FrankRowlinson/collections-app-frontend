@@ -30,10 +30,16 @@ function ItemTable({ items, rightToEdit }) {
     setSelectedRows(gridRef.current.api.getSelectedRows())
   }, [])
 
+  const resetSelection = useCallback(() => {
+    setSelectedRows([])
+    gridRef.current.api.deselectAll()
+  }, [])
+
   const handleRowDeletion = async () => {
     const ids = selectedRows.map((el) => el.id)
     await deleteItemsById(ids)
     setRowData(rowData.filter((el) => !ids.includes(el.id)))
+    resetSelection()
   }
 
   const handleRowShow = async () => {
@@ -42,6 +48,7 @@ function ItemTable({ items, rightToEdit }) {
     navigate(routes.SEARCH_RESULTS, {
       state: { query: null, items: response.items },
     })
+    resetSelection()
   }
 
   const disabled = selectedRows.length === 0

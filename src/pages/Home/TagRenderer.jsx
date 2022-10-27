@@ -3,6 +3,7 @@ import Tag from '../../components/Tag'
 const TagRenderer = (tag, size, color) => {
   return (
     <Tag
+      key={tag.key}
       name={tag.value}
       setInProgress={tag.setInProgress}
       inCloud={true}

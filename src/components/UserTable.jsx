@@ -1,10 +1,4 @@
-import {
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
-  useContext,
-} from 'react'
+import { useRef, useEffect, useState, useCallback, useContext } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
@@ -52,6 +46,11 @@ function UserTable({ users }) {
   useEffect(() => {
     setRowData(generateRows(users || []))
   }, [users])
+
+  const resetSelection = useCallback(() => {
+    setSelectedRows([])
+    gridRef.current.api.deselectAll()
+  }, [])
 
   // update data based on action taken
   const onRoleChange = (ids, role) => {
@@ -122,6 +121,7 @@ function UserTable({ users }) {
           await handleLogout()
         }
         if (response.result.count > 0) onRoleChange(ids, role)
+        resetSelection()
       })
       .catch(() => {})
   }
@@ -139,6 +139,7 @@ function UserTable({ users }) {
           await handleLogout()
         }
         if (response.result.count > 0) onBlock(ids)
+        resetSelection()
       })
       .catch(() => {})
   }
@@ -156,6 +157,7 @@ function UserTable({ users }) {
           await handleLogout()
         }
         if (response.result.count > 0) onUnblock(ids)
+        resetSelection()
       })
       .catch(() => {})
   }
@@ -172,6 +174,7 @@ function UserTable({ users }) {
           await handleLogout()
         }
         if (response.result.count > 0) onDelete(ids)
+        resetSelection()
       })
       .catch(() => {})
   }

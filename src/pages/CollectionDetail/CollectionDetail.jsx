@@ -1,14 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCollection } from '../../services/fetchCollections'
-import {
-  Container,
-  Button,
-  Typography,
-  Divider,
-  Grid,
-  Box,
-} from '@mui/material'
+import { Container, Typography, Grid, Box } from '@mui/material'
 import AddItemForm from '../../components/AddItemForm'
 import ItemTable from '../../components/ItemTable'
 import Loader from '../Loader/Loader'
@@ -26,7 +19,6 @@ function CollectionDetail() {
   const [rightToEdit, setRightToEdit] = useState(false)
   const [collection, setCollection] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [formOpen, setFormOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -63,7 +55,7 @@ function CollectionDetail() {
             <Typography variant="h5" sx={{ fontWeight: 500 }}>
               {collection.name}
             </Typography>
-            <CollectionMenu rightToEdit={rightToEdit} />
+            <CollectionMenu rightToEdit={rightToEdit} id={collection.id} />
           </Box>
           <Grid container spacing={2}>
             {collection.img ? (
@@ -113,30 +105,10 @@ function CollectionDetail() {
                 </Typography>
               )}
             </Grid>
-
-            {rightToEdit && (
-              <Grid item xs={12}>
-                <Button
-                  variant={formOpen ? 'outlined' : 'contained'}
-                  color={formOpen ? 'error' : 'primary'}
-                  href="#add-item"
-                  onClick={() => setFormOpen(!formOpen)}
-                >
-                  {formOpen ? 'Cancel' : 'Add item'}
-                </Button>
-              </Grid>
-            )}
-            {formOpen && (
-              <Grid item xs={12}>
-                <Typography
-                  id="add-item"
-                  sx={{ pt: 1, mt: -1, fontWeight: 500 }}
-                  variant="h6"
-                >{`Add item into "${collection.name}"`}</Typography>
-                <Divider sx={{ mb: 2 }} />
-                <AddItemForm />
-              </Grid>
-            )}
+            <AddItemForm
+              rightToEdit={rightToEdit}
+              collectionName={collection.name}
+            />
           </Grid>
         </>
       )}
