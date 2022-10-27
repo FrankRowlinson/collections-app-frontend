@@ -1,10 +1,28 @@
 import { Autocomplete, TextField, Chip } from '@mui/material'
 import { useController } from 'react-hook-form'
+import { useEffect } from 'react'
 
 function ControlledAutocomplete({ name, control, tagOptions }) {
   const {
     field: { ref, onChange, ...field },
-  } = useController({ name, control, defaultValue: [] })
+    fieldState: { error },
+  } = useController({
+    name,
+    control,
+    defaultValue: [],
+    rules: {
+      validate: {
+        tagLength: (value) =>
+          value.every((el) => el.length <= 15) || 'Maximum tag length is 15',
+        arrayLength: (value) =>
+          value.length <= 10 || 'Maximum amount of tags is 10',
+      },
+    },
+  })
+
+  useEffect(() => {
+    console.log(error)
+  })
 
   return (
     <Autocomplete
@@ -30,7 +48,14 @@ function ControlledAutocomplete({ name, control, tagOptions }) {
         ))
       }
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Tags" inputRef={ref} />
+        <TextField
+          {...params}
+          variant="outlined"
+          helperText={error && error.message}
+          error={Boolean(error)}
+          label="Tags"
+          inputRef={ref}
+        />
       )}
     />
   )
