@@ -245,10 +245,9 @@ function Home() {
                 <RecentItemsSkeleton />
               )}
             </Grid>
-          </Box>
-          <Grid item container xs={12} sx={{ alignSelf: 'flex-end', mt: 2 }}>
+          <Grid item container xs={12} sx={{ mt: 2 }}>
             <Grid item xs={12}>
-              <Typography variant="h6">Tags</Typography>
+              <Typography variant="h6">Popular tags</Typography>
             </Grid>
             <Grid item xs={12} sx={{ overflow: 'auto', mt: 1 }}>
               {tags && (
@@ -261,6 +260,7 @@ function Home() {
               )}
             </Grid>
           </Grid>
+          </Box>
         </Grid>
       </Grid>
     </Container>

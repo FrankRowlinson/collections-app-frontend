@@ -14,15 +14,17 @@ import {
   Divider,
   MenuItem,
   Button,
+  IconButton,
   Icon,
 } from '@mui/material'
-import { MdAdd, MdCheckCircle, MdSave } from 'react-icons/md'
+import { MdAdd, MdCheckCircle, MdSave, MdInfoOutline } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { sendCollection } from '../../services/sendCollection'
 import MarkdownPreview from '../../components/MarkdownPreview'
 import { getCollectionFormProps } from '../../services/getCollectionProps'
 import { useNavigate } from 'react-router-dom'
 import ButtonProgress from '../../components/ButtonProgress'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 
 function AddCollection() {
   const navigate = useNavigate()
@@ -31,6 +33,7 @@ function AddCollection() {
   const [collectionTypes, setCollectionTypes] = useState([])
   const [fieldTypes, setFieldTypes] = useState({})
   const [previewOpen, setPreviewOpen] = useState(false)
+  const [infoOpen, setInfoOpen] = useState(false)
   const {
     register,
     control,
@@ -63,12 +66,21 @@ function AddCollection() {
     name: 'collection-image',
   })
 
+  // dialogs
   const handleClickPreviewOpen = () => {
     setPreviewOpen(true)
   }
 
   const handlePreviewClose = () => {
     setPreviewOpen(false)
+  }
+
+  const handleClickInfoOpen = () => {
+    setInfoOpen(true)
+  }
+
+  const handleInfoClose = () => {
+    setInfoOpen(false)
   }
 
   const onSubmit = async (data) => {
@@ -79,10 +91,12 @@ function AddCollection() {
 
   return (
     <Container maxWidth="md">
+      <Typography variant="h5" sx={{ fontWeight: 500 }}>
+        Create new collection
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h5">Create new collection</Typography>
             <Divider />
           </Grid>
           <Grid item xs={12}>
@@ -203,7 +217,10 @@ function AddCollection() {
           <Grid item container xs={12} spacing={1}>
             <Grid item xs={12}>
               <Typography variant="h6" component="span">
-                Custom fields for your collection
+                Custom fields for your collection{' '}
+                <IconButton onClick={handleClickInfoOpen}>
+                  <MdInfoOutline size={20} />
+                </IconButton>
               </Typography>
               <Typography variant="subtitle2" color="text.secondary">
                 Describe items in your collection with as much additional info
@@ -305,6 +322,26 @@ function AddCollection() {
           />
           <DialogActions>
             <Button onClick={handlePreviewClose}>Close preview</Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={infoOpen} onClose={handleInfoClose}>
+        <DialogContent>
+          <ReactMarkdown>
+            {`Better explained with example.  
+            Let's say you want to add **"Description"** for every item in this collection, like the one
+            you see above. For that you want to add new *field* with type
+            **"Text"** and name it **"Description"**. Same goes for every other
+            type of field. *Release date for vinyl?* Add **"Date"** field and
+            name it **"Release date"** and you're good to go!  
+            If you want to add
+            something complex like *number with floating point* or *date **AND**
+            time* on the same field, you could use workaround with field type
+            **"Line"**. This is just plain string of text, but a little bit
+            shorter than proper **"Text"** field.`}
+          </ReactMarkdown>
+          <DialogActions>
+            <Button onClick={handleInfoClose}>Got it!</Button>
           </DialogActions>
         </DialogContent>
       </Dialog>

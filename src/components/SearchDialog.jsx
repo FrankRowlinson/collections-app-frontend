@@ -29,7 +29,7 @@ function SearchDialog({ open, setOpen, handleClose }) {
     navigate(routes.SEARCH_RESULTS, {
       state: {
         items: response.items,
-        query: data.search,
+        query: `Search results for: ${data.search}`,
       },
     })
     setInProgress(false)

@@ -51,7 +51,11 @@ function ControlledAutocomplete({ name, control, tagOptions }) {
         <TextField
           {...params}
           variant="outlined"
-          helperText={error && error.message}
+          helperText={
+            error
+              ? error.message
+              : "Press 'Enter' to add new tag if it's not present in dropdown"
+          }
           error={Boolean(error)}
           label="Tags"
           inputRef={ref}

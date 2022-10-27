@@ -1,7 +1,6 @@
 import {
   Typography,
   Grid,
-  Divider,
   Container,
   Card,
   CardContent,
@@ -21,10 +20,9 @@ function SearchResults() {
     <Container maxWidth="xl">
       <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
         <Grid item xs={12}>
-          <Typography variant="h5">
-            {query ? `Search results for: "${query}"` : 'Selected items'}
+          <Typography variant="h5" sx={{ fontWeight: 500 }}>
+            {query ? query : 'Selected items'}
           </Typography>
-          <Divider />
         </Grid>
         {items ? (
           items.map((el, index) => (
