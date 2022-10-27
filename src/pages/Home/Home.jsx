@@ -8,7 +8,9 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  CircularProgress,
   Box,
+  Backdrop,
 } from '@mui/material'
 import { TagCloud } from 'react-tagcloud'
 import { useNavigate } from 'react-router-dom'
@@ -21,6 +23,7 @@ import {
 import TagRenderer from './TagRenderer'
 import RecentItemsSkeleton from './RecentItemsSkeleton'
 import CollectionsSkeleton from './CollectionsSkeleton'
+import { searchByTag } from '../../services/search'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -31,6 +34,7 @@ function Home() {
   const [biggestCollections, setBiggestCollections] = useState(null)
   const [recentItems, setRecentItems] = useState(null)
   const [tags, setTags] = useState(null)
+  const [inProgress, setInProgress] = useState(false)
 
   // load biggest collections
   useEffect(() => {
@@ -59,8 +63,24 @@ function Home() {
     fetchData()
   }, [])
 
+  const handleTagSearch = async (tag) => {
+    setInProgress(true)
+    console.log(tag)
+    const response = await searchByTag(tag)
+    navigate(routes.SEARCH_RESULTS, {
+      state: {
+        items: response.items,
+        query: `Search results by tag: ${tag}`,
+      },
+    })
+    setInProgress(false)
+  }
+
   return (
     <Container maxWidth="xl">
+      <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={6}>
           <Box
@@ -240,16 +260,22 @@ function Home() {
               )}
             </Grid>
           </Box>
-        </Grid>
-        <Grid item xs={12}>
-          {tags && (
-            <TagCloud
-              tags={tags}
-              minSize={10}
-              maxSize={20}
-              renderer={TagRenderer}
-            />
-          )}
+          <Grid item container xs={12} sx={{ alignSelf: 'flex-end', mt: 2 }}>
+            <Grid item xs={12}>
+              <Typography variant="h6">Tags</Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ overflow: 'auto', mt: 1 }}>
+              {tags && (
+                <TagCloud
+                  tags={tags}
+                  minSize={10}
+                  maxSize={20}
+                  renderer={TagRenderer}
+                  onClick={(tag) => handleTagSearch(tag.value)}
+                />
+              )}
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Container>

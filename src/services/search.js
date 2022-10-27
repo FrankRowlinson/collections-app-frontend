@@ -6,3 +6,10 @@ export async function search(data) {
   })
   return response.data
 }
+
+export async function searchByTag(tag) {
+  const response = await axios.get('search/bytag', {
+    params: { tag },
+  })
+  return response.data
+}
