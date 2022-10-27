@@ -167,7 +167,7 @@ function Home() {
               width: '100%',
             }}
           >
-            <Grid container spacing={1} sx={{ position: 'sticky', top: 0 }}>
+            <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ mb: 0.5 }}>
                   Recent items
@@ -244,8 +244,7 @@ function Home() {
               ) : (
                 <RecentItemsSkeleton />
               )}
-            </Grid>
-          <Grid item container xs={12} sx={{ mt: 2 }}>
+          <Grid item container xs={12}>
             <Grid item xs={12}>
               <Typography variant="h6">Popular tags</Typography>
             </Grid>
@@ -260,6 +259,7 @@ function Home() {
               )}
             </Grid>
           </Grid>
+            </Grid>
           </Box>
         </Grid>
       </Grid>
