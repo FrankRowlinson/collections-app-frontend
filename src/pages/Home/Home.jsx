@@ -23,7 +23,6 @@ import {
 import TagRenderer from './TagRenderer'
 import RecentItemsSkeleton from './RecentItemsSkeleton'
 import CollectionsSkeleton from './CollectionsSkeleton'
-import { searchByTag } from '../../services/search'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -58,23 +57,10 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getTags()
-      setTags(data)
+      setTags(data.map((el) => ({ ...el, setInProgress: setInProgress })))
     }
     fetchData()
   }, [])
-
-  const handleTagSearch = async (tag) => {
-    setInProgress(true)
-    console.log(tag)
-    const response = await searchByTag(tag)
-    navigate(routes.SEARCH_RESULTS, {
-      state: {
-        items: response.items,
-        query: `Search results by tag: ${tag}`,
-      },
-    })
-    setInProgress(false)
-  }
 
   return (
     <Container maxWidth="xl">
@@ -268,10 +254,9 @@ function Home() {
               {tags && (
                 <TagCloud
                   tags={tags}
-                  minSize={10}
-                  maxSize={20}
+                  minSize={1}
+                  maxSize={4}
                   renderer={TagRenderer}
-                  onClick={(tag) => handleTagSearch(tag.value)}
                 />
               )}
             </Grid>

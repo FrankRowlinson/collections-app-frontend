@@ -1,16 +1,12 @@
-import { Chip, Typography } from '@mui/material'
+import Tag from '../../components/Tag'
 
-const TagRenderer = (tag, color, size) => {
+const TagRenderer = (tag, size, color) => {
   return (
-    <Chip
-      key={tag.key}
-      size='small'
-      label={
-        <Typography variant="overline" sx={{ fontSize: size }}>
-          {tag.value}
-        </Typography>
-      }
-      sx={{ m: '3px' }}
+    <Tag
+      name={tag.value}
+      setInProgress={tag.setInProgress}
+      inCloud={true}
+      color="default"
     />
   )
 }
