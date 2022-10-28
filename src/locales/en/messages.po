@@ -13,19 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/NotFoundPage/NotFoundPage.jsx:13
+#: src/pages/NotFoundPage/NotFoundPage.jsx:10
 msgid "404 NOT FOUND"
 msgstr "404 NOT FOUND"
 
-#: src/pages/UserProfile/UserProfile.jsx:79
+#: src/pages/UserProfile/UserProfile.jsx:81
 msgid "<0>Collections added:</0> {0}"
 msgstr "<0>Collections added:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:91
+#: src/pages/UserProfile/UserProfile.jsx:93
 msgid "<0>Comments left:</0> {0}"
 msgstr "<0>Comments left:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:85
+#: src/pages/UserProfile/UserProfile.jsx:87
 msgid "<0>Total items in all collections:</0> {0}"
 msgstr "<0>Total items in all collections:</0> {0}"
 
@@ -37,7 +37,7 @@ msgstr "Access denied"
 msgid "Access restricted"
 msgstr "Access restricted"
 
-#: src/pages/UserProfile/UserProfile.jsx:76
+#: src/pages/UserProfile/UserProfile.jsx:78
 msgid "Accomplishments"
 msgstr "Accomplishments"
 
@@ -61,6 +61,10 @@ msgstr "Already have an account?"
 #: src/pages/CollectionDetail/CollectionDetail.jsx:83
 msgid "Author: {0}"
 msgstr "Author: {0}"
+
+#: src/pages/UserProfile/UserProfile.jsx:72
+msgid "Avatar"
+msgstr "Avatar"
 
 #: src/pages/AddCollection/AddCollection.jsx:336
 msgid ""
@@ -323,6 +327,12 @@ msgstr "New field"
 msgid "No items in collection"
 msgstr "No items in collection"
 
+#: src/pages/Home/Home.jsx:121
+#: src/pages/Home/Home.jsx:212
+#: src/pages/UserProfile/UserProfile.jsx:141
+msgid "No+image"
+msgstr "No+image"
+
 #: src/constants/customFieldTypes.js:5
 msgid "Number"
 msgstr "Number"
@@ -352,7 +362,7 @@ msgstr "Password must be at least 8 characters"
 msgid "Passwords must match"
 msgstr "Passwords must match"
 
-#: src/pages/UserProfile/UserProfile.jsx:101
+#: src/pages/UserProfile/UserProfile.jsx:107
 msgid "Personal collections"
 msgstr "Personal collections"
 
@@ -372,7 +382,7 @@ msgstr "Profile"
 msgid "Recent items"
 msgstr "Recent items"
 
-#: src/pages/UserProfile/UserProfile.jsx:95
+#: src/pages/UserProfile/UserProfile.jsx:99
 msgid "Registered for {0}"
 msgstr "Registered for {0}"
 

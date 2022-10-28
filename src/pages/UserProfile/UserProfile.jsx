@@ -19,7 +19,7 @@ import { UserContext } from '../../context/UserContext'
 import getUserProfileData from '../../services/getUserProfileData'
 import Loader from '../Loader/Loader'
 import routes from '../../constants/routes'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 
 function UserProfile() {
   const { userId } = useParams()
@@ -68,7 +68,9 @@ function UserProfile() {
                 <Divider />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <Image src="https://via.placeholder.com/300?text=Avatar" />
+                <Image
+                  src={`https://via.placeholder.com/300?text=${t`Avatar`}`}
+                />
               </Grid>
               <Grid item xs={12} sm={6} md={8} lg={9}>
                 <Stack spacing={2}>
@@ -88,11 +90,15 @@ function UserProfile() {
                     </Trans>
                   </Typography>
                   <Typography variant="body1">
-                    <Trans><strong>Comments left:</strong> {userData._count.comments}</Trans>
+                    <Trans>
+                      <strong>Comments left:</strong> {userData._count.comments}
+                    </Trans>
                   </Typography>
                   <Divider />
                   <Typography variant="overline">
-                    <Trans>Registered for {moment(userData.createdAt).fromNow(true)}</Trans>
+                    <Trans>
+                      Registered for {moment(userData.createdAt).fromNow(true)}
+                    </Trans>
                   </Typography>
                 </Stack>
               </Grid>
@@ -132,7 +138,7 @@ function UserProfile() {
                             sx={{ height: { xs: 250, sm: 200, md: 150 } }}
                             image={
                               el.img ||
-                              'https://via.placeholder.com/300?text=No+image'
+                              `https://via.placeholder.com/300?text=${t`No+image`}`
                             }
                             alt=""
                           />

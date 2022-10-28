@@ -23,7 +23,7 @@ import {
 import TagRenderer from './TagRenderer'
 import RecentItemsSkeleton from './RecentItemsSkeleton'
 import CollectionsSkeleton from './CollectionsSkeleton'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -118,7 +118,7 @@ function Home() {
                             }}
                             image={
                               item.img ||
-                              'https://via.placeholder.com/300?text=No+image'
+                              `https://via.placeholder.com/300?text=${t`No+image`}`
                             }
                             component="img"
                           />
@@ -209,7 +209,7 @@ function Home() {
                             }}
                             image={
                               item.img ||
-                              'https://via.placeholder.com/300?text=No+image'
+                              `https://via.placeholder.com/300?text=${t`No+image`}`
                             }
                             component="img"
                           />

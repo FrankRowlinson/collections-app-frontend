@@ -13,19 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/NotFoundPage/NotFoundPage.jsx:13
+#: src/pages/NotFoundPage/NotFoundPage.jsx:10
 msgid "404 NOT FOUND"
 msgstr "404 NIE ZNALEZIONO"
 
-#: src/pages/UserProfile/UserProfile.jsx:79
+#: src/pages/UserProfile/UserProfile.jsx:81
 msgid "<0>Collections added:</0> {0}"
 msgstr "<0>Dodane kolekcje:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:91
+#: src/pages/UserProfile/UserProfile.jsx:93
 msgid "<0>Comments left:</0> {0}"
 msgstr "<0>Pozostawione komentarze:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:85
+#: src/pages/UserProfile/UserProfile.jsx:87
 msgid "<0>Total items in all collections:</0> {0}"
 msgstr "<0>Wszystkie przedmioty we wszystkich kolekcjach:</0> {0}"
 
@@ -37,7 +37,7 @@ msgstr "Dostęp ograniczony"
 msgid "Access restricted"
 msgstr "Konto jest zablokowane"
 
-#: src/pages/UserProfile/UserProfile.jsx:76
+#: src/pages/UserProfile/UserProfile.jsx:78
 msgid "Accomplishments"
 msgstr "Osiągnięcia"
 
@@ -61,6 +61,10 @@ msgstr "Posiadasz już konto?"
 #: src/pages/CollectionDetail/CollectionDetail.jsx:83
 msgid "Author: {0}"
 msgstr "Autor: {0}"
+
+#: src/pages/UserProfile/UserProfile.jsx:72
+msgid "Avatar"
+msgstr "Awatara"
 
 #: src/pages/AddCollection/AddCollection.jsx:336
 msgid ""
@@ -312,6 +316,12 @@ msgstr "Nowe pole"
 msgid "No items in collection"
 msgstr "Brak przedmiotów w kolekcji"
 
+#: src/pages/Home/Home.jsx:121
+#: src/pages/Home/Home.jsx:212
+#: src/pages/UserProfile/UserProfile.jsx:141
+msgid "No+image"
+msgstr "Brak+obrazka"
+
 #: src/constants/customFieldTypes.js:5
 msgid "Number"
 msgstr "Numer"
@@ -341,7 +351,7 @@ msgstr "Hasło musi zawierać co najmniej 8 znaków"
 msgid "Passwords must match"
 msgstr "Hasło musi pasować"
 
-#: src/pages/UserProfile/UserProfile.jsx:101
+#: src/pages/UserProfile/UserProfile.jsx:107
 msgid "Personal collections"
 msgstr "Dodane kolekcje"
 
@@ -361,7 +371,7 @@ msgstr "Profil"
 msgid "Recent items"
 msgstr "Ostatnie przedmioty"
 
-#: src/pages/UserProfile/UserProfile.jsx:95
+#: src/pages/UserProfile/UserProfile.jsx:99
 msgid "Registered for {0}"
 msgstr "Zarejestrowany na {0}"
 
