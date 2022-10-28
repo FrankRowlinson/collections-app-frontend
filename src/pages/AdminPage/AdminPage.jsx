@@ -1,5 +1,5 @@
 import { Alert, Typography, Box } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import Loader from '../Loader/Loader'
 import UserTable from '../../components/UserTable'

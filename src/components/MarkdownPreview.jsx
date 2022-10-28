@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useWatch } from 'react-hook-form'
 import { Paper } from '@mui/material'

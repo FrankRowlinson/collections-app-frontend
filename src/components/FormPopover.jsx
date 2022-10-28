@@ -1,4 +1,3 @@
-import React from 'react'
 import PopupState, { bindHover, bindPopover } from 'material-ui-popup-state'
 import HoverPopover from 'material-ui-popup-state/HoverPopover'
 import { Typography } from '@mui/material'

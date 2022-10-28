@@ -1,19 +1,18 @@
 import { Trans } from '@lingui/macro'
-import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { Container, Typography } from '@mui/material'
 
 function NotFoundPage() {
   const location = useLocation()
+  const message = location.state ? (
+    location.state.message
+  ) : (
+    <Trans>404 NOT FOUND</Trans>
+  )
   return (
-    <>
-      {location.state ? (
-        <div>{location.state.message}</div>
-      ) : (
-        <div>
-          <Trans>404 NOT FOUND</Trans>
-        </div>
-      )}
-    </>
+    <Container maxWidth="lg">
+        <Typography variant="h2">{message}</Typography>
+    </Container>
   )
 }
 

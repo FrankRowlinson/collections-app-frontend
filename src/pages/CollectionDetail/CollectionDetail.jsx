@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCollection } from '../../services/fetchCollections'
 import { Container, Typography, Grid, Box } from '@mui/material'
