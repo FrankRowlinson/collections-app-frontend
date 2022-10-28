@@ -10,6 +10,7 @@ import { deleteCollection } from '../../services/manageCollection'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../constants/routes'
 import { useSnackbar } from 'notistack'
+import { t, Trans } from '@lingui/macro'
 
 const CollectionMenu = ({ rightToEdit, id }) => {
   const { enqueueSnackbar } = useSnackbar()
@@ -21,13 +22,12 @@ const CollectionMenu = ({ rightToEdit, id }) => {
   })
   const onDelete = () => {
     confirm({
-      description:
-        'This action is irreversible! Are you sure you want to delete this collection?',
+      description: t`This action is irreversible! Are you sure you want to delete this collection?`,
     })
       .then(async () => {
         const response = await deleteCollection(id)
         if (response.status === 'ok') {
-          enqueueSnackbar('Collection successfully deleted', {
+          enqueueSnackbar(t`Collection successfully deleted`, {
             variant: 'success',
           })
           navigate(routes.HOME)
@@ -44,8 +44,12 @@ const CollectionMenu = ({ rightToEdit, id }) => {
         <BsThreeDotsVertical />
       </IconButton>
       <Menu {...bindMenu(popupState)}>
-        <MenuItem onClick={onEdit}>Edit</MenuItem>
-        <MenuItem onClick={onDelete}>Delete collection</MenuItem>
+        <MenuItem onClick={onEdit}>
+          <Trans>Edit</Trans>
+        </MenuItem>
+        <MenuItem onClick={onDelete}>
+          <Trans>Delete collection</Trans>
+        </MenuItem>
       </Menu>
     </Box>
   )

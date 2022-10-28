@@ -3,7 +3,7 @@ import { Grid, Skeleton } from '@mui/material'
 function RecentItemsSkeleton() {
   return (
     <>
-      {[...Array(12).keys()].map((item, index) => {
+      {[...Array(16).keys()].map((item, index) => {
         return (
           <Grid
             item

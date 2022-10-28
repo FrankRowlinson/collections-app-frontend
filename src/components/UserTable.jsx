@@ -18,6 +18,7 @@ import {
   unblockUsers,
   deleteUsers,
 } from '../services/adminActions'
+import { t, Trans } from '@lingui/macro'
 
 function UserTable({ users }) {
   const { handleLogout } = useContext(UserContext)
@@ -69,7 +70,7 @@ function UserTable({ users }) {
       rowData.map((el) => {
         return {
           ...el,
-          hasAccess: ids.includes(el.id) ? 'Blocked' : el.hasAccess,
+          hasAccess: ids.includes(el.id) ? t`Blocked` : el.hasAccess,
         }
       })
     )
@@ -79,7 +80,7 @@ function UserTable({ users }) {
       rowData.map((el) => {
         return {
           ...el,
-          hasAccess: ids.includes(el.id) ? 'Active' : el.hasAccess,
+          hasAccess: ids.includes(el.id) ? t`Active` : el.hasAccess,
         }
       })
     )
@@ -109,14 +110,13 @@ function UserTable({ users }) {
   // handlers for actions
   const handleRoleChange = async (role) => {
     confirm({
-      description: `You want to change role of ${selectedRows.length} selected user(s) to ${role}. Proceed?`,
-      confirmationText: 'Change',
+      description: t`You want to change role of ${selectedRows.length} selected user(s) to ${role}. Proceed?`,
+      confirmationText: t`Change`,
       confirmationButtonProps: { variant: 'contained', color: 'primary' },
     })
       .then(async () => {
         const ids = selectedRows.map((el) => el.id)
         const response = await changeUsersRole(ids, role)
-        console.log(response)
         if (response.triggerLogout) {
           await handleLogout()
         }
@@ -127,14 +127,13 @@ function UserTable({ users }) {
   }
   const handleBlock = async () => {
     confirm({
-      description: `Do you want to block ${selectedRows.length} selected user(s)?`,
-      confirmationText: 'Block',
+      description: t`Do you want to block ${selectedRows.length} selected user(s)?`,
+      confirmationText: t`Block`,
       confirmationButtonProps: { variant: 'contained', color: 'warning' },
     })
       .then(async () => {
         const ids = selectedRows.map((el) => el.id)
         const response = await blockUsers(ids)
-        console.log(response)
         if (response.triggerLogout) {
           await handleLogout()
         }
@@ -145,14 +144,13 @@ function UserTable({ users }) {
   }
   const handleUnblock = async () => {
     confirm({
-      description: `Do you want to unblock ${selectedRows.length} selected user(s)?`,
-      confirmationText: 'Unblock',
+      description: t`Do you want to unblock ${selectedRows.length} selected user(s)?`,
+      confirmationText: t`Unblock`,
       confirmationButtonProps: { variant: 'contained', color: 'success' },
     })
       .then(async () => {
         const ids = selectedRows.map((el) => el.id)
         const response = await unblockUsers(ids)
-        console.log(response)
         if (response.triggerLogout) {
           await handleLogout()
         }
@@ -163,8 +161,8 @@ function UserTable({ users }) {
   }
   const handleDelete = async () => {
     confirm({
-      description: `Do you want to delete ${selectedRows.length} selected user(s)? This action is irreversible!`,
-      confirmationText: 'Delete',
+      description: t`Do you want to delete ${selectedRows.length} selected user(s)? This action is irreversible!`,
+      confirmationText: t`Delete`,
       confirmationButtonProps: { variant: 'contained', color: 'error' },
     })
       .then(async () => {
@@ -193,7 +191,7 @@ function UserTable({ users }) {
           onClick={handleClick}
           disabled={disabled}
         >
-          Change role
+          <Trans>Change role</Trans>
         </Button>
         <Button
           type="submit"
@@ -203,7 +201,7 @@ function UserTable({ users }) {
           onClick={handleBlock}
           disabled={disabled}
         >
-          Block
+          <Trans>Block</Trans>
         </Button>
         <Button
           startIcon={<TbLockOpen />}
@@ -213,7 +211,7 @@ function UserTable({ users }) {
           onClick={handleUnblock}
           disabled={disabled}
         >
-          Unblock
+          <Trans>Unblock</Trans>
         </Button>
         <Button
           startIcon={<MdDeleteForever />}
@@ -223,7 +221,7 @@ function UserTable({ users }) {
           onClick={handleDelete}
           disabled={disabled}
         >
-          Delete
+          <Trans>Delete</Trans>
         </Button>
       </ButtonGroup>
       <AgGridReact
@@ -246,7 +244,7 @@ function UserTable({ users }) {
                 handleClose()
               }}
             >
-              To: {el}
+              <Trans>To: {el}</Trans>
             </MenuItem>
           )
         })}

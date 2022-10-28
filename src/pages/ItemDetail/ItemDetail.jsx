@@ -21,6 +21,7 @@ import LikeButton from '../../components/LikeButton'
 import { UserContext } from '../../context/UserContext'
 import { ItemContext } from '../../context/ItemContext'
 import Tag from '../../components/Tag'
+import { Trans } from "@lingui/macro"
 
 function ItemDetail() {
   const { user } = useContext(UserContext)
@@ -98,7 +99,7 @@ function ItemDetail() {
                           },
                         }}
                       >
-                        by {item.author.username}
+                        <Trans>by {item.author.username}</Trans>
                       </Typography>
                     </Box>
                     <Box>

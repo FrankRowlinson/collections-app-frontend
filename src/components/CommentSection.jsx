@@ -5,6 +5,7 @@ import Comment from '../components/Comment'
 import { getComments } from '../services/comments'
 import { ItemContext } from '../context/ItemContext'
 import Loader from '../pages/Loader/Loader'
+import { t } from '@lingui/macro'
 
 function CommentSection() {
   const { itemId } = useContext(ItemContext)
@@ -31,7 +32,7 @@ function CommentSection() {
       ) : (
         <Grid item container xs={12}>
           <Paper sx={{ width: '100%', p: 2 }}>
-            <Typography variant="h6">{comments.length} comment(s)</Typography>
+            <Typography variant="h6">{t`${comments.length} comment(s)`}</Typography>
             <CommentForm update={update} setUpdate={setUpdate} />
             <Stack spacing={1.5}>
               {comments.map((comment, index) => {

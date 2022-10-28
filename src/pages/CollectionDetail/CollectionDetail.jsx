@@ -12,6 +12,7 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import routes from '../../constants/routes'
 import Image from 'mui-image'
 import CollectionMenu from './CollectionMenu'
+import { t, Trans } from '@lingui/macro'
 
 function CollectionDetail() {
   const { user } = useContext(UserContext)
@@ -26,7 +27,7 @@ function CollectionDetail() {
       const response = await getCollection(id)
       response.error
         ? navigate(routes.NOT_FOUND, {
-            state: { message: 'Collection not found' },
+            state: { message: t`Collection not found` },
           })
         : setCollection(response.collection)
     }
@@ -79,7 +80,7 @@ function CollectionDetail() {
                         },
                       }}
                     >
-                      Author: {collection.author.username}
+                      <Trans>Author: {collection.author.username}</Trans>
                     </Typography>
                     <ReactMarkdown>{collection.description}</ReactMarkdown>
                   </Box>
@@ -88,7 +89,7 @@ function CollectionDetail() {
             ) : (
               <>
                 <Grid item xs={12}>
-                  There is no cover image for this collection
+                  <Trans>There is no cover image for this collection</Trans>
                 </Grid>
                 <Grid item xs={12}>
                   <ReactMarkdown>{collection.description}</ReactMarkdown>
@@ -101,7 +102,9 @@ function CollectionDetail() {
                 <ItemTable items={collection.items} rightToEdit={rightToEdit} />
               ) : (
                 <Typography variant="body1">
-                  <em>No items in collection</em>
+                  <em>
+                    <Trans>No items in collection</Trans>
+                  </em>
                 </Typography>
               )}
             </Grid>

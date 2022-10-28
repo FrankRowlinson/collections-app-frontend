@@ -16,6 +16,7 @@ import routes from '../constants/routes'
 import { useNavigate } from 'react-router-dom'
 import { getItemsById } from '../services/getItemsById'
 import { deleteItemsById } from '../services/deleteItemsById'
+import { Trans } from '@lingui/macro'
 
 function ItemTable({ items, rightToEdit }) {
   const theme = useTheme()
@@ -89,7 +90,7 @@ function ItemTable({ items, rightToEdit }) {
           color="warning"
           onClick={handleRowShow}
         >
-          Show in new tab
+          <Trans>Show in new tab</Trans>
         </Button>
         {rightToEdit && (
           <Button
@@ -98,7 +99,7 @@ function ItemTable({ items, rightToEdit }) {
             color="error"
             onClick={handleRowDeletion}
           >
-            Delete items
+            <Trans>Delete items</Trans>
           </Button>
         )}
       </ButtonGroup>

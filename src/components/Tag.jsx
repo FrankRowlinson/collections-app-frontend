@@ -1,3 +1,4 @@
+import { t } from '@lingui/macro'
 import { Chip, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import routes from '../constants/routes'
@@ -11,7 +12,7 @@ function Tag({ name, setInProgress, inCloud, color = 'default' }) {
     navigate(routes.SEARCH_RESULTS, {
       state: {
         items: response.items,
-        query: `Search results by tag: ${name}`,
+        query: t`Search results by tag: ${name}`,
       },
     })
     setInProgress(false)

@@ -19,6 +19,7 @@ import { UserContext } from '../../context/UserContext'
 import getUserProfileData from '../../services/getUserProfileData'
 import Loader from '../Loader/Loader'
 import routes from '../../constants/routes'
+import { Trans } from '@lingui/macro'
 
 function UserProfile() {
   const { userId } = useParams()
@@ -51,8 +52,8 @@ function UserProfile() {
                 xs={12}
                 sx={{ display: 'flex', justifyContent: 'between' }}
               >
-                <Typography variant="h5" sx={{fontWeight: 500}}>
-                  {userData.username}'s profile
+                <Typography variant="h5" sx={{ fontWeight: 500 }}>
+                  <Trans>{userData.username}'s profile</Trans>
                 </Typography>
                 <Box flexGrow={1}></Box>
                 <Typography
@@ -72,28 +73,32 @@ function UserProfile() {
               <Grid item xs={12} sm={6} md={8} lg={9}>
                 <Stack spacing={2}>
                   <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                    Accomplishments
+                    <Trans>Accomplishments</Trans>
                   </Typography>
                   <Typography variant="body1">
-                    <strong>Collections added:</strong>{' '}
-                    {userData.collections.length}
+                    <Trans>
+                      <strong>Collections added:</strong>{' '}
+                      {userData.collections.length}
+                    </Trans>
                   </Typography>
                   <Typography variant="body1">
-                    <strong>Total items in all collections:</strong>{' '}
-                    {userData._count.items}
+                    <Trans>
+                      <strong>Total items in all collections:</strong>{' '}
+                      {userData._count.items}
+                    </Trans>
                   </Typography>
                   <Typography variant="body1">
-                    <strong>Comments left:</strong> {userData._count.comments}
+                    <Trans><strong>Comments left:</strong> {userData._count.comments}</Trans>
                   </Typography>
                   <Divider />
                   <Typography variant="overline">
-                    Registered for {moment(userData.createdAt).fromNow(true)}
+                    <Trans>Registered for {moment(userData.createdAt).fromNow(true)}</Trans>
                   </Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  Personal collections
+                  <Trans>Personal collections</Trans>
                 </Typography>
                 <Divider />
               </Grid>

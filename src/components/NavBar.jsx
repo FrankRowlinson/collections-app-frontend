@@ -8,6 +8,8 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Menu,
+  MenuItem,
 } from '@mui/material'
 import {
   MdSegment,
@@ -24,8 +26,19 @@ import NavBarItems from '../components/NavBarItems'
 import routes from '../constants/routes'
 import SearchDialog from './SearchDialog'
 import NavbarAvatar from './NavbarAvatar'
+import { t, Trans } from '@lingui/macro'
+import { LocaleContext } from '../context/LocaleContext'
+import {
+  usePopupState,
+  bindTrigger,
+  bindMenu,
+} from 'material-ui-popup-state/hooks'
 
 const drawerWidth = '300px'
+const localeMapping = {
+  pl: `🇵🇱`,
+  en: `🇬🇧`,
+}
 
 function NavBar(props) {
   const { window } = props
@@ -33,6 +46,7 @@ function NavBar(props) {
   const { user } = useContext(UserContext)
   const theme = useTheme()
   const colorMode = useContext(ColorModeContext)
+  const { localeMode, locale } = useContext(LocaleContext)
   const [navItems, setNavItems] = useState(getNavItems(user.role))
   const [searchDialogOpen, setSearchDialogOpen] = useState(false)
 
@@ -58,6 +72,28 @@ function NavBar(props) {
     </IconButton>
   )
 
+  const LocaleSwitcher = () => {
+    const popupState = usePopupState({
+      variant: 'popover',
+      popupId: 'localeMenu',
+    })
+    return (
+      <>
+        <IconButton {...bindTrigger(popupState)} sx={{ color: 'black', mx: 0.5, fontSize: 20 }}>
+          {localeMapping[locale]}
+        </IconButton>
+        <Menu {...bindMenu(popupState)}>
+          <MenuItem onClick={() => localeMode.changeLocale('pl')}>
+            {localeMapping['pl']}
+          </MenuItem>
+          <MenuItem onClick={() => localeMode.changeLocale('en')}>
+            {localeMapping['en']}
+          </MenuItem>
+        </Menu>
+      </>
+    )
+  }
+
   const SearchButton = () => (
     <Button
       sx={{
@@ -76,14 +112,23 @@ function NavBar(props) {
           color: 'text.secondary',
         }}
       >
-        Search...
+        <Trans>Search...</Trans>
       </Typography>
     </Button>
   )
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', height: '100%' }}>
-      <Typography variant="h6" color="inherit" sx={{ display: 'block', my: 3, textDecoration: 'none' }} component={Link} to={routes.HOME}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: 'center', height: '100%' }}
+    >
+      <Typography
+        variant="h6"
+        color="inherit"
+        sx={{ display: 'block', my: 3, textDecoration: 'none' }}
+        component={Link}
+        to={routes.HOME}
+      >
         COLLECTIONS
       </Typography>
       <Divider />
@@ -105,7 +150,7 @@ function NavBar(props) {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label={t`open drawer`}
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { lg: 'none' } }}
@@ -120,7 +165,7 @@ function NavBar(props) {
             sx={{
               display: { xs: 'none', lg: 'block' },
               textDecoration: 'none',
-              zIndex: 1
+              zIndex: 1,
             }}
           >
             COLLECTIONS
@@ -130,6 +175,7 @@ function NavBar(props) {
           <SearchButton />
           <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
             <ThemeToggler />
+            <LocaleSwitcher />
             {user.role === 'GUEST' ? '' : <NavbarAvatar />}
           </Box>
         </Toolbar>
@@ -148,7 +194,7 @@ function NavBar(props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-            }
+            },
           }}
         >
           {drawer}

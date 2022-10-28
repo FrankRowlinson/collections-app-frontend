@@ -18,19 +18,26 @@ import routes from '../constants/routes'
 import AuthButton from './AuthButton'
 import AuthError from './AuthError'
 import FormPopover from './FormPopover'
+import { t, Trans } from '@lingui/macro'
 
 const schema = yup.object({
   username: yup
     .string()
-    .required('Enter a valid username')
+    .required(t`Enter a valid username`)
     .min(4)
     .max(25)
-    .matches(/^[a-z]+[a-z0-9]*/i, 'Username must not start with digit'),
-  email: yup.string().email().required('Enter a valid email address'),
-  password: yup.string().required('Choose secure password').min(8),
+    .matches(/^[a-z]+[a-z0-9]*/i, t`Username must not start with digit`),
+  email: yup
+    .string()
+    .email()
+    .required(t`Enter a valid email address`),
+  password: yup
+    .string()
+    .required(t`Choose secure password`)
+    .min(8),
   passwordRepeat: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .oneOf([yup.ref('password'), null], t`Passwords must match`),
 })
 
 function SignupForm() {
@@ -42,7 +49,7 @@ function SignupForm() {
     register,
     formState: { errors },
     handleSubmit,
-    resetField
+    resetField,
   } = useForm({ resolver: yupResolver(schema) })
 
   const onSubmit = async (data) => {
@@ -51,8 +58,8 @@ function SignupForm() {
     response.status === 'ok'
       ? navigate(routes.LOGIN, { state: { success: true } })
       : setShowStatus(true)
-      resetField('password')
-      resetField('passwordRepeat')
+    resetField('password')
+    resetField('passwordRepeat')
     setInProgress(false)
   }
 
@@ -60,14 +67,14 @@ function SignupForm() {
     <>
       <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
         <CardHeader
-          title="Sign Up"
+          title={t`Sign Up`}
           subheader={
             <Typography
               component={Link}
               sx={{ color: 'text.secondary' }}
               to={routes.LOGIN}
             >
-              Already have an account?
+              <Trans>Already have an account?</Trans>
             </Typography>
           }
           subheaderTypographyProps={{ component: 'span' }}
@@ -81,7 +88,7 @@ function SignupForm() {
               {showStatus && <AuthError form="signUp" />}
               <TextField
                 id="username"
-                label="Username"
+                label={t`Username`}
                 type="text"
                 variant="standard"
                 error={Boolean(errors.username)}
@@ -98,7 +105,7 @@ function SignupForm() {
               <TextField
                 id="password"
                 type="password"
-                label="Password"
+                label={t`Password`}
                 variant="standard"
                 error={Boolean(errors.password)}
                 helperText={errors.password && errors.password.message}
@@ -114,7 +121,7 @@ function SignupForm() {
               <TextField
                 id="repeat-password"
                 type="password"
-                label="Password again"
+                label={t`Password again`}
                 variant="standard"
                 error={Boolean(errors.passwordRepeat)}
                 helperText={
@@ -125,14 +132,14 @@ function SignupForm() {
 
               <TextField
                 id="email"
-                label="Email"
+                label={t`Email`}
                 type="email"
                 variant="standard"
                 error={Boolean(errors.email)}
                 helperText={errors.email && errors.email.message}
                 {...register('email')}
               />
-              <AuthButton inProgress={inProgress} text="Sign Up" />
+              <AuthButton inProgress={inProgress} text={t`Sign Up`} />
             </Stack>
           </form>
         </CardContent>

@@ -4,6 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import Loader from '../Loader/Loader'
 import UserTable from '../../components/UserTable'
 import { getUsers } from '../../services/getUsers'
+import { Trans } from '@lingui/macro'
 
 function AdminPage() {
   const { user } = useContext(UserContext)
@@ -29,10 +30,14 @@ function AdminPage() {
 
   const Warning = () => (
     <Alert color="error" variant="filled">
-      <Typography variant="h6">Access denied</Typography>
+      <Typography variant="h6">
+        <Trans>Access denied</Trans>
+      </Typography>
       <Typography variant="body1">
-        Seems like you've logged in as user with no admin rights or visiting as
-        guest.
+        <Trans>
+          Seems like you've logged in as user with no admin rights or visiting
+          as guest.
+        </Trans>
       </Typography>
     </Alert>
   )
@@ -49,7 +54,15 @@ function AdminPage() {
             minHeight: '70vh',
           }}
         >
-          {hasAccess ? <UserTable users={users} setUsers={setUsers} setHasAccess={setHasAccess} /> : <Warning />}
+          {hasAccess ? (
+            <UserTable
+              users={users}
+              setUsers={setUsers}
+              setHasAccess={setHasAccess}
+            />
+          ) : (
+            <Warning />
+          )}
         </Box>
       )}
     </>

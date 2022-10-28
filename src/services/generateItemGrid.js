@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { Chip } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { t } from '@lingui/macro'
 import routes from '../constants/routes'
 
 const TagsRenderer = (params) => {
@@ -23,7 +24,11 @@ const TagsRenderer = (params) => {
 }
 
 const NameRenderer = (params) => {
-  return <Link to={`${routes.ITEMS}/byid/${params.data.id}`}>{params.data['Item name']}</Link>
+  return (
+    <Link to={`${routes.ITEMS}/byid/${params.data.id}`}>
+      {params.data['Item name']}
+    </Link>
+  )
 }
 
 export function generateColumns(item) {
@@ -36,10 +41,15 @@ export function generateColumns(item) {
       checkboxSelection: true,
       showDisabledCheckboxes: false,
     },
-    { field: 'Item name', cellRenderer: NameRenderer },
-    { field: 'Created At' },
+    {
+      field: 'Item name',
+      headerName: t`Item name`,
+      cellRenderer: NameRenderer,
+    },
+    { field: 'Created At', headerName: t`Created At` },
     {
       field: 'Tags',
+      headerName: t`Tags`,
       cellRenderer: TagsRenderer,
       wrapText: true,
       autoHeight: true,

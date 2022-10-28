@@ -17,10 +17,14 @@ import { authenticateUser } from '../services/authentication'
 import { UserContext } from '../context/UserContext'
 import AuthButton from './AuthButton'
 import AuthError from './AuthError'
+import { t, Trans } from '@lingui/macro'
+
+const requiredUsernameError = t`Enter a valid username`
+const requiredPasswordError = t`Valid password is required`
 
 const schema = yup.object({
-  username: yup.string().required('Enter a valid username').min(4).max(25),
-  password: yup.string().required('Valid password is required'),
+  username: yup.string().required(requiredUsernameError).min(4).max(25),
+  password: yup.string().required(requiredPasswordError),
 })
 
 function LoginForm() {
@@ -61,14 +65,14 @@ function LoginForm() {
       <Card raised sx={{ mt: '20px', p: '10px 20px', borderRadius: '10px' }}>
         {user.role !== 'GUEST' && <Navigate to={routes.HOME} />}
         <CardHeader
-          title="Sign In"
+          title={t`Sign In`}
           subheader={
             <Typography
               component={Link}
               sx={{ color: 'text.secondary' }}
               to={routes.SIGNUP}
             >
-              Don't have an account?
+              <Trans>Don't have an account?</Trans>
             </Typography>
           }
         />
@@ -81,7 +85,7 @@ function LoginForm() {
               {status && <AuthError form="signIn" status={status} />}
               <TextField
                 id="username"
-                label="Username"
+                label={t`Username`}
                 type="text"
                 variant="standard"
                 error={Boolean(errors.username)}
@@ -91,13 +95,13 @@ function LoginForm() {
               <TextField
                 id="password"
                 type="password"
-                label="Password"
+                label={t`Password`}
                 variant="standard"
                 error={Boolean(errors.password)}
                 helperText={errors.password && errors.password.message}
                 {...register('password')}
               />
-              <AuthButton inProgress={inProgress} text="Sign In" />
+              <AuthButton inProgress={inProgress} text={t`Sign In`} />
             </Stack>
           </form>
         </CardContent>
@@ -107,7 +111,7 @@ function LoginForm() {
         onClose={handleClose}
         autoHideDuration={5000}
         sx={{ position: 'absolute' }}
-        message="You've signed up successfully"
+        message={t`You've signed up successfully`}
       />
     </>
   )

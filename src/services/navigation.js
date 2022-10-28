@@ -1,26 +1,27 @@
-import routes from "../constants/routes"
+import { t } from '@lingui/macro'
+import routes from '../constants/routes'
 
-export function getNavItems (role) {
+export function getNavItems(role) {
   const navItems = [
     {
-      label: 'Home',
+      label: t`Home`,
       route: routes.HOME,
-      show: true
+      show: true,
     },
     {
-      label: 'Login',
+      label: t`Login`,
       route: routes.LOGIN,
-      show: role === 'GUEST'
+      show: role === 'GUEST',
     },
     {
-      label: 'Sign Up',
+      label: t`Sign Up`,
       route: routes.SIGNUP,
-      show: role === 'GUEST'
+      show: role === 'GUEST',
     },
     {
-      label: 'Create Collection',
+      label: t`Create Collection`,
       route: routes.CREATE_COLLECTION,
-      show: role !== 'GUEST'
+      show: role !== 'GUEST',
     },
   ]
   return navItems

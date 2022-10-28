@@ -25,6 +25,7 @@ import { getCollectionFormProps } from '../../services/getCollectionProps'
 import { useNavigate } from 'react-router-dom'
 import ButtonProgress from '../../components/ButtonProgress'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import { t, Trans } from '@lingui/macro'
 
 function AddCollection() {
   const navigate = useNavigate()
@@ -92,7 +93,7 @@ function AddCollection() {
   return (
     <Container maxWidth="md">
       <Typography variant="h5" sx={{ fontWeight: 500 }}>
-        Create new collection
+        <Trans>Create new collection</Trans>
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
@@ -101,7 +102,7 @@ function AddCollection() {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6" component="span">
-              General information
+              <Trans>General information</Trans>
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -112,7 +113,7 @@ function AddCollection() {
                 maxLength: 100,
               })}
               id="collection-name"
-              label="Collection name"
+              label={t`Collection name`}
               autoComplete="off"
               error={!!errors.collectionName}
               helperText={
@@ -124,12 +125,12 @@ function AddCollection() {
           <Grid item xs={12}>
             <FormControl sx={{ maxWidth: '300px' }} fullWidth>
               <InputLabel error={!!errors.collectionType} id="collection-type">
-                Collection type
+                <Trans>Collection type</Trans>
               </InputLabel>
               <Select
                 {...register('collectionType', { required: true })}
                 labelId="collection-type"
-                label="Collection Type"
+                label={t`Collection Type`}
                 defaultValue=""
                 error={!!errors.collectionType}
                 id="collection-type-select"
@@ -155,12 +156,12 @@ function AddCollection() {
           >
             <TextField
               {...register('description', { maxLength: 2500 })}
-              label="Description"
+              label={t`Description`}
               id="collection-description-input"
               minRows={4}
               multiline
               fullWidth
-              helperText="You can use Markdown to format text inside!"
+              helperText={t`You can use Markdown to format text inside!`}
             ></TextField>
             <Button
               component="a"
@@ -173,7 +174,7 @@ function AddCollection() {
               }}
               onClick={handleClickPreviewOpen}
             >
-              Markdown preview
+              <Trans>Markdown preview</Trans>
             </Button>
           </Grid>
           <Grid
@@ -190,14 +191,14 @@ function AddCollection() {
                 component={InputLabel}
               >
                 <input type="file" hidden {...register('collection-image')} />
-                Cover Image
+                <Trans>Cover Image</Trans>
               </Button>
             </Grid>
             <Grid item flexGrow={1}>
               {coverImage && coverImage.length ? (
                 <Icon color="success" component={MdCheckCircle} />
               ) : (
-                'no file selected'
+                t`no file selected`
               )}
             </Grid>
             {coverImage && coverImage.length ? (
@@ -207,7 +208,7 @@ function AddCollection() {
                   color="error"
                   onClick={() => resetField('collection-image')}
                 >
-                  Reset image
+                  <Trans>Reset image</Trans>
                 </Button>
               </Grid>
             ) : (
@@ -217,14 +218,16 @@ function AddCollection() {
           <Grid item container xs={12} spacing={1}>
             <Grid item xs={12}>
               <Typography variant="h6" component="span">
-                Custom fields for your collection{' '}
-                <IconButton onClick={handleClickInfoOpen}>
+                <Trans>Custom fields for your collection</Trans>
+                <IconButton sx={{ ml: '5px' }} onClick={handleClickInfoOpen}>
                   <MdInfoOutline size={20} />
                 </IconButton>
               </Typography>
               <Typography variant="subtitle2" color="text.secondary">
-                Describe items in your collection with as much additional info
-                as you need with flexible options
+                <Trans>
+                  Describe items in your collection with as much additional info
+                  as you need with flexible options
+                </Trans>
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{ mb: 1 }}>
@@ -238,7 +241,7 @@ function AddCollection() {
                   })
                 }}
               >
-                New field
+                <Trans>New field</Trans>
               </Button>
             </Grid>
 
@@ -247,11 +250,11 @@ function AddCollection() {
                 <Grid item xs={12} md={4}>
                   <FormControl fullWidth>
                     <InputLabel id={`customField.${index}.label`}>
-                      Field Type
+                      {t`Field Type`}
                     </InputLabel>
                     <Select
                       labelId={`customField.${index}.label`}
-                      label="Field Type"
+                      label={t`Field Type`}
                       defaultValue=""
                       {...register(`customField.${index}.type`, {
                         required: true,
@@ -273,7 +276,7 @@ function AddCollection() {
                   <TextField
                     fullWidth
                     autoComplete="off"
-                    label="Field name"
+                    label={t`Field name`}
                     {...register(`customField.${index}.name`, {
                       required: true,
                       minLength: 3,
@@ -295,7 +298,7 @@ function AddCollection() {
                       remove(index)
                     }}
                   >
-                    Delete field
+                    <Trans>Delete field</Trans>
                   </Button>
                 </Grid>
               </Grid>
@@ -308,7 +311,7 @@ function AddCollection() {
               variant="contained"
               sx={{ position: 'relative' }}
             >
-              Create new collection!
+              <Trans>Create new collection!</Trans>
               <ButtonProgress size={24} inProgress={inProgress} />
             </Button>
           </Grid>
@@ -321,14 +324,16 @@ function AddCollection() {
             control={control}
           />
           <DialogActions>
-            <Button onClick={handlePreviewClose}>Close preview</Button>
+            <Button onClick={handlePreviewClose}>
+              <Trans>Close preview</Trans>
+            </Button>
           </DialogActions>
         </DialogContent>
       </Dialog>
       <Dialog open={infoOpen} onClose={handleInfoClose}>
         <DialogContent>
           <ReactMarkdown>
-            {`Better explained with example.  
+            {t`Better explained with example.  
             Let's say you want to add **"Description"** for every item in this collection, like the one
             you see above. For that you want to add new *field* with type
             **"Text"** and name it **"Description"**. Same goes for every other
@@ -341,7 +346,9 @@ function AddCollection() {
             shorter than proper **"Text"** field.`}
           </ReactMarkdown>
           <DialogActions>
-            <Button onClick={handleInfoClose}>Got it!</Button>
+            <Button onClick={handleInfoClose}>
+              <Trans>Got it!</Trans>
+            </Button>
           </DialogActions>
         </DialogContent>
       </Dialog>

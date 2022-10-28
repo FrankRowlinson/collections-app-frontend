@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material'
 import { useController } from 'react-hook-form'
 import { useState } from 'react'
+import { t } from '@lingui/macro'
 
 function NumberInput({ name, label, control }) {
   const {
@@ -31,7 +32,7 @@ function NumberInput({ name, label, control }) {
         type="number"
         label={label}
         error={!!error}
-        helperText="Number must be of a reasonable size"
+        helperText={t`Number must be of a reasonable size`}
       />
     </>
   )

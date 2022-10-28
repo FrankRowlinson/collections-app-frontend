@@ -24,6 +24,7 @@ import ControlledAutocomplete from './ItemFormFields/ControlledAutocomplete'
 import { sendItem } from '../services/sendItem'
 import routes from '../constants/routes'
 import ButtonProgress from './ButtonProgress'
+import { t, Trans } from '@lingui/macro'
 
 const fieldMapping = {
   number: NumberInput,
@@ -82,7 +83,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
       navigate(`${routes.ITEMS}/byid/${response.itemId}`)
     }
     reset()
-    enqueueSnackbar('Item successfully created!', { variant: 'success' })
+    enqueueSnackbar(t`Item successfully created!`, { variant: 'success' })
     setInProgress(false)
   }
 
@@ -97,7 +98,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
             onClick={() => setFormOpen(!formOpen)}
             disabled={isLoading}
           >
-            {formOpen ? 'Cancel' : 'Add item'}
+            {formOpen ? t`Cancel` : t`Add item`}
             <ButtonProgress size={24} inProgress={isLoading} />
           </Button>
         </Grid>
@@ -108,24 +109,26 @@ function AddItemForm({ rightToEdit, collectionName }) {
             id="add-item"
             sx={{ pt: 1, mt: -1, fontWeight: 500 }}
             variant="h6"
-          >{`Add item into "${collectionName}"`}</Typography>
+          >{t`Add item into "${collectionName}"`}</Typography>
           <Divider sx={{ mb: 2 }} />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography variant="h6">General information</Typography>
+                <Typography variant="h6">
+                  <Trans>General information</Trans>
+                </Typography>
               </Grid>
               <Grid item xs={12} sm={8} md={6}>
                 <TextField
                   fullWidth
                   error={Boolean(errors.itemName)}
                   helperText={errors.itemName && errors.itemName.message}
-                  label="Item name"
+                  label={t`Item name`}
                   {...register('itemName', {
-                    required: 'Item name is required',
+                    required: t`Item name is required`,
                     maxLength: {
                       value: 50,
-                      message: 'Maximum length of name is 50',
+                      message: t`Maximum length of name is 50`,
                     },
                   })}
                 />
@@ -146,7 +149,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
                   color={itemImage ? 'success' : 'primary'}
                 >
                   <input type="file" hidden {...register('itemImage')} />
-                  Image of item
+                  <Trans>Image of item</Trans>
                 </Button>
                 {itemImage ? (
                   <Button
@@ -154,10 +157,10 @@ function AddItemForm({ rightToEdit, collectionName }) {
                     color="error"
                     onClick={() => resetField('itemImage')}
                   >
-                    Reset image
+                    <Trans>Reset image</Trans>
                   </Button>
                 ) : (
-                  'no file selected'
+                  t`no file selected`
                 )}
               </Grid>
               {customFields.map((field, index) => {
@@ -186,7 +189,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
                   type="submit"
                   disabled={inProgress}
                 >
-                  Create item!
+                  <Trans>Create item!</Trans>
                   <ButtonProgress size={24} inProgress={inProgress} />
                 </Button>
                 <FormControlLabel
@@ -198,7 +201,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
                       }}
                     />
                   }
-                  label="Open item page as soon as it is created"
+                  label={t`Open item page as soon as it is created`}
                 />
               </Grid>
             </Grid>

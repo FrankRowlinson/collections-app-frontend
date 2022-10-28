@@ -1,0 +1,554 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-10-28 12:07+0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/pages/NotFoundPage/NotFoundPage.jsx:13
+msgid "404 NOT FOUND"
+msgstr "404 NOT FOUND"
+
+#: src/pages/UserProfile/UserProfile.jsx:79
+msgid "<0>Collections added:</0> {0}"
+msgstr "<0>Collections added:</0> {0}"
+
+#: src/pages/UserProfile/UserProfile.jsx:91
+msgid "<0>Comments left:</0> {0}"
+msgstr "<0>Comments left:</0> {0}"
+
+#: src/pages/UserProfile/UserProfile.jsx:85
+msgid "<0>Total items in all collections:</0> {0}"
+msgstr "<0>Total items in all collections:</0> {0}"
+
+#: src/pages/AdminPage/AdminPage.jsx:34
+msgid "Access denied"
+msgstr "Access denied"
+
+#: src/components/AuthError.jsx:5
+msgid "Access restricted"
+msgstr "Access restricted"
+
+#: src/pages/UserProfile/UserProfile.jsx:76
+msgid "Accomplishments"
+msgstr "Accomplishments"
+
+#: src/components/UserTable.jsx:83
+#: src/services/generateUserGrid.js:47
+msgid "Active"
+msgstr "Active"
+
+#: src/components/AddItemForm.jsx:101
+msgid "Add item"
+msgstr "Add item"
+
+#: src/components/AddItemForm.jsx:112
+msgid "Add item into \"{collectionName}\""
+msgstr "Add item into \"{collectionName}\""
+
+#: src/components/SignupForm.jsx:77
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: src/pages/CollectionDetail/CollectionDetail.jsx:83
+msgid "Author: {0}"
+msgstr "Author: {0}"
+
+#: src/pages/AddCollection/AddCollection.jsx:336
+msgid ""
+"Better explained with example.  \n"
+"Let's say you want to add **\"Description\"** for every item in this collection, like the one\n"
+"you see above. For that you want to add new *field* with type\n"
+"**\"Text\"** and name it **\"Description\"**. Same goes for every other\n"
+"type of field. *Release date for vinyl?* Add **\"Date\"** field and\n"
+"name it **\"Release date\"** and you're good to go!  \n"
+"If you want to add\n"
+"something complex like *number with floating point* or *date **AND**\n"
+"time* on the same field, you could use workaround with field type\n"
+"**\"Line\"**. This is just plain string of text, but a little bit\n"
+"shorter than proper **\"Text\"** field."
+msgstr ""
+"Better explained with example.  \n"
+"Let's say you want to add **\"Description\"** for every item in this collection, like the one\n"
+"you see above. For that you want to add new *field* with type\n"
+"**\"Text\"** and name it **\"Description\"**. Same goes for every other\n"
+"type of field. *Release date for vinyl?* Add **\"Date\"** field and\n"
+"name it **\"Release date\"** and you're good to go!  \n"
+"If you want to add\n"
+"something complex like *number with floating point* or *date **AND**\n"
+"time* on the same field, you could use workaround with field type\n"
+"**\"Line\"**. This is just plain string of text, but a little bit\n"
+"shorter than proper **\"Text\"** field."
+
+#: src/pages/Home/Home.jsx:82
+msgid "Biggest collections"
+msgstr "Biggest collections"
+
+#: src/components/UserTable.jsx:131
+#: src/components/UserTable.jsx:204
+msgid "Block"
+msgstr "Block"
+
+#: src/components/UserTable.jsx:73
+#: src/services/generateUserGrid.js:47
+msgid "Blocked"
+msgstr "Blocked"
+
+#: src/components/AddItemForm.jsx:101
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/components/UserTable.jsx:114
+msgid "Change"
+msgstr "Change"
+
+#: src/components/UserTable.jsx:194
+msgid "Change role"
+msgstr "Change role"
+
+#: src/components/SignupForm.jsx:36
+msgid "Choose secure password"
+msgstr "Choose secure password"
+
+#: src/pages/AddCollection/AddCollection.jsx:328
+msgid "Close preview"
+msgstr "Close preview"
+
+#: src/pages/AddCollection/AddCollection.jsx:133
+msgid "Collection Type"
+msgstr "Collection Type"
+
+#: src/pages/AddCollection/AddCollection.jsx:116
+msgid "Collection name"
+msgstr "Collection name"
+
+#: src/pages/CollectionDetail/CollectionDetail.jsx:30
+msgid "Collection not found"
+msgstr "Collection not found"
+
+#: src/pages/CollectionDetail/CollectionMenu.jsx:30
+msgid "Collection successfully deleted"
+msgstr "Collection successfully deleted"
+
+#: src/pages/AddCollection/AddCollection.jsx:128
+msgid "Collection type"
+msgstr "Collection type"
+
+#: src/pages/AddCollection/AddCollection.jsx:194
+msgid "Cover Image"
+msgstr "Cover Image"
+
+#: src/services/navigation.js:22
+msgid "Create Collection"
+msgstr "Create Collection"
+
+#: src/components/AddItemForm.jsx:192
+msgid "Create item!"
+msgstr "Create item!"
+
+#: src/pages/AddCollection/AddCollection.jsx:96
+msgid "Create new collection"
+msgstr "Create new collection"
+
+#: src/pages/AddCollection/AddCollection.jsx:314
+msgid "Create new collection!"
+msgstr "Create new collection!"
+
+#: src/services/generateItemGrid.js:49
+msgid "Created At"
+msgstr "Created At"
+
+#: src/pages/AddCollection/AddCollection.jsx:221
+msgid "Custom fields for your collection"
+msgstr "Custom fields for your collection"
+
+#: src/constants/customFieldTypes.js:8
+msgid "Date"
+msgstr "Date"
+
+#: src/components/UserTable.jsx:165
+#: src/components/UserTable.jsx:224
+msgid "Delete"
+msgstr "Delete"
+
+#: src/pages/CollectionDetail/CollectionMenu.jsx:51
+msgid "Delete collection"
+msgstr "Delete collection"
+
+#: src/pages/AddCollection/AddCollection.jsx:301
+msgid "Delete field"
+msgstr "Delete field"
+
+#: src/components/ItemTable.jsx:102
+msgid "Delete items"
+msgstr "Delete items"
+
+#: src/pages/AddCollection/AddCollection.jsx:227
+msgid "Describe items in your collection with as much additional info as you need with flexible options"
+msgstr "Describe items in your collection with as much additional info as you need with flexible options"
+
+#: src/pages/AddCollection/AddCollection.jsx:159
+msgid "Description"
+msgstr "Description"
+
+#: src/components/UserTable.jsx:130
+msgid "Do you want to block {0} selected user(s)?"
+msgstr "Do you want to block {0} selected user(s)?"
+
+#: src/components/UserTable.jsx:164
+msgid "Do you want to delete {0} selected user(s)? This action is irreversible!"
+msgstr "Do you want to delete {0} selected user(s)? This action is irreversible!"
+
+#: src/components/UserTable.jsx:147
+msgid "Do you want to unblock {0} selected user(s)?"
+msgstr "Do you want to unblock {0} selected user(s)?"
+
+#: src/components/LoginForm.jsx:75
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: src/pages/CollectionDetail/CollectionMenu.jsx:48
+msgid "Edit"
+msgstr "Edit"
+
+#: src/components/SignupForm.jsx:135
+msgid "Email"
+msgstr "Email"
+
+#: src/components/SignupForm.jsx:33
+msgid "Enter a valid email address"
+msgstr "Enter a valid email address"
+
+#: src/components/LoginForm.jsx:22
+#: src/components/SignupForm.jsx:26
+msgid "Enter a valid username"
+msgstr "Enter a valid username"
+
+#: src/pages/AddCollection/AddCollection.jsx:253
+#: src/pages/AddCollection/AddCollection.jsx:257
+msgid "Field Type"
+msgstr "Field Type"
+
+#: src/pages/AddCollection/AddCollection.jsx:279
+msgid "Field name"
+msgstr "Field name"
+
+#: src/pages/SearchResults/SearchResults.jsx:74
+msgid "Found nothing... try different query"
+msgstr "Found nothing... try different query"
+
+#: src/components/AddItemForm.jsx:118
+#: src/pages/AddCollection/AddCollection.jsx:105
+msgid "General information"
+msgstr "General information"
+
+#: src/pages/AddCollection/AddCollection.jsx:350
+msgid "Got it!"
+msgstr "Got it!"
+
+#: src/services/navigation.js:7
+msgid "Home"
+msgstr "Home"
+
+#: src/components/AddItemForm.jsx:152
+msgid "Image of item"
+msgstr "Image of item"
+
+#: src/components/AddItemForm.jsx:126
+#: src/services/generateItemGrid.js:46
+msgid "Item name"
+msgstr "Item name"
+
+#: src/components/AddItemForm.jsx:128
+msgid "Item name is required"
+msgstr "Item name is required"
+
+#: src/components/AddItemForm.jsx:86
+msgid "Item successfully created!"
+msgstr "Item successfully created!"
+
+#: src/components/LikeButton.jsx:52
+msgid "Item {0} your favorites"
+msgstr "Item {0} your favorites"
+
+#: src/components/CommentForm.jsx:50
+msgid "Leave comment"
+msgstr "Leave comment"
+
+#: src/components/ItemFormFields/ControlledAutocomplete.jsx:29
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/services/navigation.js:12
+msgid "Login"
+msgstr "Login"
+
+#: src/components/LogoutButton.jsx:8
+msgid "Logout"
+msgstr "Logout"
+
+#: src/pages/AddCollection/AddCollection.jsx:177
+msgid "Markdown preview"
+msgstr "Markdown preview"
+
+#: src/components/ItemFormFields/ControlledAutocomplete.jsx:18
+msgid "Maximum amount of tags is 10"
+msgstr "Maximum amount of tags is 10"
+
+#: src/components/AddItemForm.jsx:131
+msgid "Maximum length of name is 50"
+msgstr "Maximum length of name is 50"
+
+#: src/components/ItemFormFields/ControlledAutocomplete.jsx:16
+msgid "Maximum tag length is 15"
+msgstr "Maximum tag length is 15"
+
+#: src/components/LikeButton.jsx:39
+msgid "Nah, I'll stay here"
+msgstr "Nah, I'll stay here"
+
+#: src/pages/AddCollection/AddCollection.jsx:244
+msgid "New field"
+msgstr "New field"
+
+#: src/pages/CollectionDetail/CollectionDetail.jsx:106
+msgid "No items in collection"
+msgstr "No items in collection"
+
+#: src/constants/customFieldTypes.js:5
+msgid "Number"
+msgstr "Number"
+
+#: src/components/ItemFormFields/NumberInput.jsx:35
+msgid "Number must be of a reasonable size"
+msgstr "Number must be of a reasonable size"
+
+#: src/components/AddItemForm.jsx:204
+msgid "Open item page as soon as it is created"
+msgstr "Open item page as soon as it is created"
+
+#: src/components/LoginForm.jsx:98
+#: src/components/SignupForm.jsx:108
+msgid "Password"
+msgstr "Password"
+
+#: src/components/SignupForm.jsx:124
+msgid "Password again"
+msgstr "Password again"
+
+#: src/constants/texts.js:5
+msgid "Password must be at least 8 characters"
+msgstr "Password must be at least 8 characters"
+
+#: src/components/SignupForm.jsx:40
+msgid "Passwords must match"
+msgstr "Passwords must match"
+
+#: src/pages/UserProfile/UserProfile.jsx:101
+msgid "Personal collections"
+msgstr "Personal collections"
+
+#: src/pages/Home/Home.jsx:251
+msgid "Popular tags"
+msgstr "Popular tags"
+
+#: src/components/ItemFormFields/ControlledAutocomplete.jsx:53
+msgid "Press 'Enter' to add new tag if it's not present in dropdown"
+msgstr "Press 'Enter' to add new tag if it's not present in dropdown"
+
+#: src/components/ProfileMenu.jsx:15
+msgid "Profile"
+msgstr "Profile"
+
+#: src/pages/Home/Home.jsx:174
+msgid "Recent items"
+msgstr "Recent items"
+
+#: src/pages/UserProfile/UserProfile.jsx:95
+msgid "Registered for {0}"
+msgstr "Registered for {0}"
+
+#: src/services/generateUserGrid.js:24
+msgid "Registration date"
+msgstr "Registration date"
+
+#: src/components/AddItemForm.jsx:160
+#: src/pages/AddCollection/AddCollection.jsx:211
+msgid "Reset image"
+msgstr "Reset image"
+
+#: src/services/generateUserGrid.js:20
+msgid "Role"
+msgstr "Role"
+
+#: src/components/SearchDialog.jsx:64
+msgid "Search"
+msgstr "Search"
+
+#: src/components/Tag.jsx:15
+msgid "Search results by tag: {name}"
+msgstr "Search results by tag: {name}"
+
+#: src/components/SearchDialog.jsx:33
+msgid "Search results for: {0}"
+msgstr "Search results for: {0}"
+
+#: src/components/NavBar.jsx:115
+msgid "Search..."
+msgstr "Search..."
+
+#: src/pages/AdminPage/AdminPage.jsx:37
+msgid "Seems like you've logged in as user with no admin rights or visiting as guest."
+msgstr "Seems like you've logged in as user with no admin rights or visiting as guest."
+
+#: src/pages/SearchResults/SearchResults.jsx:25
+msgid "Selected items"
+msgstr "Selected items"
+
+#: src/constants/customFieldTypes.js:4
+msgid "Short text"
+msgstr "Short text"
+
+#: src/components/ItemTable.jsx:93
+msgid "Show in new tab"
+msgstr "Show in new tab"
+
+#: src/components/LoginForm.jsx:68
+#: src/components/LoginForm.jsx:104
+msgid "Sign In"
+msgstr "Sign In"
+
+#: src/components/SignupForm.jsx:70
+#: src/components/SignupForm.jsx:142
+#: src/services/navigation.js:17
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: src/components/CommentForm.jsx:35
+msgid "Start typing your comment..."
+msgstr "Start typing your comment..."
+
+#: src/services/generateUserGrid.js:32
+msgid "Status"
+msgstr "Status"
+
+#: src/components/ItemFormFields/ControlledAutocomplete.jsx:56
+#: src/services/generateItemGrid.js:52
+msgid "Tags"
+msgstr "Tags"
+
+#: src/constants/customFieldTypes.js:6
+msgid "Text"
+msgstr "Text"
+
+#: src/pages/CollectionDetail/CollectionDetail.jsx:92
+msgid "There is no cover image for this collection"
+msgstr "There is no cover image for this collection"
+
+#: src/pages/CollectionDetail/CollectionMenu.jsx:25
+msgid "This action is irreversible! Are you sure you want to delete this collection?"
+msgstr "This action is irreversible! Are you sure you want to delete this collection?"
+
+#: src/components/UserTable.jsx:247
+msgid "To: {el}"
+msgstr "To: {el}"
+
+#: src/components/UserTable.jsx:148
+#: src/components/UserTable.jsx:214
+msgid "Unblock"
+msgstr "Unblock"
+
+#: src/components/AuthError.jsx:13
+msgid "User with this username or email already exists"
+msgstr "User with this username or email already exists"
+
+#: src/components/LoginForm.jsx:88
+#: src/components/SignupForm.jsx:91
+#: src/services/generateUserGrid.js:16
+msgid "Username"
+msgstr "Username"
+
+#: src/constants/texts.js:4
+msgid "Username must be at least 4 characters long and must not start with digit"
+msgstr "Username must be at least 4 characters long and must not start with digit"
+
+#: src/components/SignupForm.jsx:29
+msgid "Username must not start with digit"
+msgstr "Username must not start with digit"
+
+#: src/components/AuthError.jsx:6
+msgid "Username or password are incorrect"
+msgstr "Username or password are incorrect"
+
+#: src/components/LoginForm.jsx:23
+msgid "Valid password is required"
+msgstr "Valid password is required"
+
+#: src/constants/customFieldTypes.js:7
+msgid "Yes / No"
+msgstr "Yes / No"
+
+#: src/components/LikeButton.jsx:38
+msgid "Yes, show me the way"
+msgstr "Yes, show me the way"
+
+#: src/pages/AddCollection/AddCollection.jsx:164
+msgid "You can use Markdown to format text inside!"
+msgstr "You can use Markdown to format text inside!"
+
+#: src/components/CommentForm.jsx:34
+msgid "You have to be a member to comment..."
+msgstr "You have to be a member to comment..."
+
+#: src/components/LikeButton.jsx:36
+msgid "You have to be a member to like items. Want to join now?"
+msgstr "You have to be a member to like items. Want to join now?"
+
+#: src/components/UserTable.jsx:113
+msgid "You want to change role of {0} selected user(s) to {role}. Proceed?"
+msgstr "You want to change role of {0} selected user(s) to {role}. Proceed?"
+
+#: src/components/LoginForm.jsx:114
+msgid "You've signed up successfully"
+msgstr "You've signed up successfully"
+
+#: src/pages/ItemDetail/ItemDetail.jsx:102
+msgid "by {0}"
+msgstr "by {0}"
+
+#: src/services/generateUserGrid.js:28
+msgid "email"
+msgstr "email"
+
+#: src/App.js:50
+#~ msgid "en"
+#~ msgstr "en"
+
+#: src/components/AddItemForm.jsx:163
+#: src/pages/AddCollection/AddCollection.jsx:201
+msgid "no file selected"
+msgstr "no file selected"
+
+#: src/components/NavBar.jsx:153
+msgid "open drawer"
+msgstr "open drawer"
+
+#: src/components/CommentSection.jsx:35
+msgid "{0} comment(s)"
+msgstr "{0} comment(s)"
+
+#: src/pages/Home/Home.jsx:150
+msgid "{0} item(s)"
+msgstr "{0} item(s)"
+
+#: src/pages/UserProfile/UserProfile.jsx:56
+msgid "{0}'s profile"
+msgstr "{0}'s profile"

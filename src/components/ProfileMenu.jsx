@@ -2,6 +2,7 @@ import { ListItemButton, Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LogoutButton from './LogoutButton'
 import routes from '../constants/routes'
+import { Trans } from '@lingui/macro'
 
 function ProfileMenu() {
   return (
@@ -11,7 +12,7 @@ function ProfileMenu() {
         component={Link}
         to={routes.USER_PROFILE}
       >
-        Profile
+        <Trans>Profile</Trans>
       </ListItemButton>
       <LogoutButton />
     </Box>

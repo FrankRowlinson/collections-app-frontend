@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import { useConfirm } from 'material-ui-confirm'
 import routes from '../constants/routes'
+import { t } from '@lingui/macro'
 
 const likeAction = {
   true: like,
@@ -32,10 +33,10 @@ function LikeButton({ itemId, likes, beenLiked }) {
   const showWarning = () => {
     confirm({
       title: '',
-      description: 'You have to be a member to like items. Want to join now?',
+      description: t`You have to be a member to like items. Want to join now?`,
       confirmationButtonProps: { variant: 'contained' },
-      confirmationText: 'Yes, show me the way',
-      cancellationText: "Nah, I'll stay here",
+      confirmationText: t`Yes, show me the way`,
+      cancellationText: t`Nah, I'll stay here`,
     })
       .then(() => {
         navigate(routes.SIGNUP)
@@ -48,8 +49,8 @@ function LikeButton({ itemId, likes, beenLiked }) {
     const response = await likeAction[!selected](itemId)
     if (response.status === 'ok') {
       enqueueSnackbar(
-        `Item ${
-          response.action === 'disliked' ? 'removed from ' : 'added to '
+        t`Item ${
+          response.action === 'disliked' ? t`removed from ` : t`added to `
         } your favorites`
       )
       setSelected(!selected)

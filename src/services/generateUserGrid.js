@@ -1,3 +1,4 @@
+import { t } from '@lingui/macro'
 import moment from 'moment'
 
 export function generateColumns() {
@@ -12,22 +13,23 @@ export function generateColumns() {
     },
     {
       field: 'username',
-      headerName: 'Username',
+      headerName: t`Username`,
     },
     {
       field: 'role',
-      headerName: 'Role',
+      headerName: t`Role`,
     },
     {
       field: 'createdAt',
-      headerName: 'Registration date',
+      headerName: t`Registration date`,
     },
     {
       field: 'email',
+      headerName: t`email`,
     },
     {
       field: 'hasAccess',
-      headerName: 'Status',
+      headerName: t`Status`,
     },
   ]
   return columns
@@ -42,7 +44,7 @@ export function generateRows(users) {
       role: user.role,
       email: user.email,
       createdAt: moment(user.createdAt).format('L'),
-      hasAccess: user.hasAccess ? 'Active' : 'Blocked', 
+      hasAccess: user.hasAccess ? t`Active` : t`Blocked`,
     }
     rows.push(row)
   })

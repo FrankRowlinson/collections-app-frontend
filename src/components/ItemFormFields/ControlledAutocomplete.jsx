@@ -1,6 +1,6 @@
 import { Autocomplete, TextField, Chip } from '@mui/material'
 import { useController } from 'react-hook-form'
-import { useEffect } from 'react'
+import { t } from '@lingui/macro'
 
 function ControlledAutocomplete({ name, control, tagOptions }) {
   const {
@@ -13,15 +13,11 @@ function ControlledAutocomplete({ name, control, tagOptions }) {
     rules: {
       validate: {
         tagLength: (value) =>
-          value.every((el) => el.length <= 15) || 'Maximum tag length is 15',
+          value.every((el) => el.length <= 15) || t`Maximum tag length is 15`,
         arrayLength: (value) =>
-          value.length <= 10 || 'Maximum amount of tags is 10',
+          value.length <= 10 || t`Maximum amount of tags is 10`,
       },
     },
-  })
-
-  useEffect(() => {
-    console.log(error)
   })
 
   return (
@@ -30,7 +26,7 @@ function ControlledAutocomplete({ name, control, tagOptions }) {
       id="tags-filled"
       options={tagOptions.map((option) => option.name)}
       loading={!!tagOptions.length}
-      loadingText="Loading..."
+      loadingText={t`Loading...`}
       freeSolo
       name="ControlledAutocomplete"
       {...field}
@@ -54,10 +50,10 @@ function ControlledAutocomplete({ name, control, tagOptions }) {
           helperText={
             error
               ? error.message
-              : "Press 'Enter' to add new tag if it's not present in dropdown"
+              : t`Press 'Enter' to add new tag if it's not present in dropdown`
           }
           error={Boolean(error)}
-          label="Tags"
+          label={t`Tags`}
           inputRef={ref}
         />
       )}

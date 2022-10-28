@@ -1,3 +1,4 @@
+import { t, Trans } from '@lingui/macro'
 import {
   Typography,
   Grid,
@@ -21,7 +22,7 @@ function SearchResults() {
       <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
         <Grid item xs={12}>
           <Typography variant="h5" sx={{ fontWeight: 500 }}>
-            {query ? query : 'Selected items'}
+            {query ? query : t`Selected items`}
           </Typography>
         </Grid>
         {items ? (
@@ -70,7 +71,7 @@ function SearchResults() {
           ))
         ) : (
           <Typography variant="h6">
-            Found nothing... try different query
+            <Trans>Found nothing... try different query</Trans>
           </Typography>
         )}
       </Grid>

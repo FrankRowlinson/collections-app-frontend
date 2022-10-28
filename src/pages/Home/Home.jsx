@@ -23,6 +23,7 @@ import {
 import TagRenderer from './TagRenderer'
 import RecentItemsSkeleton from './RecentItemsSkeleton'
 import CollectionsSkeleton from './CollectionsSkeleton'
+import { Trans } from '@lingui/macro'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -78,7 +79,7 @@ function Home() {
             <Grid container spacing={0.5} sx={{ position: 'sticky', top: 0 }}>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ mb: 1 }}>
-                  Biggest collections
+                  <Trans>Biggest collections</Trans>
                 </Typography>
               </Grid>
               {biggestCollections ? (
@@ -146,7 +147,7 @@ function Home() {
                               sx={{ fontSize: 13, fontWeight: 300 }}
                               textAlign="end"
                             >
-                              {item._count.items} item(s)
+                              <Trans>{item._count.items} item(s)</Trans>
                             </Typography>
                           </CardContent>
                         </Card>
@@ -170,7 +171,7 @@ function Home() {
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Typography variant="h6" sx={{ mb: 0.5 }}>
-                  Recent items
+                  <Trans>Recent items</Trans>
                 </Typography>
               </Grid>
               {recentItems ? (
@@ -244,21 +245,23 @@ function Home() {
               ) : (
                 <RecentItemsSkeleton />
               )}
-          <Grid item container xs={12}>
-            <Grid item xs={12}>
-              <Typography variant="h6">Popular tags</Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ overflow: 'auto', mt: 1 }}>
-              {tags && (
-                <TagCloud
-                  tags={tags}
-                  minSize={1}
-                  maxSize={4}
-                  renderer={TagRenderer}
-                />
-              )}
-            </Grid>
-          </Grid>
+              <Grid item container xs={12}>
+                <Grid item xs={12}>
+                  <Typography variant="h6">
+                    <Trans>Popular tags</Trans>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ overflow: 'auto', mt: 1 }}>
+                  {tags && (
+                    <TagCloud
+                      tags={tags}
+                      minSize={1}
+                      maxSize={4}
+                      renderer={TagRenderer}
+                    />
+                  )}
+                </Grid>
+              </Grid>
             </Grid>
           </Box>
         </Grid>

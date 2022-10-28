@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { search } from '../services/search'
 import routes from '../constants/routes'
+import { t, Trans } from '@lingui/macro'
 
 function SearchDialog({ open, setOpen, handleClose }) {
   const navigate = useNavigate()
@@ -29,7 +30,7 @@ function SearchDialog({ open, setOpen, handleClose }) {
     navigate(routes.SEARCH_RESULTS, {
       state: {
         items: response.items,
-        query: `Search results for: ${data.search}`,
+        query: t`Search results for: ${data.search}`,
       },
     })
     setInProgress(false)
@@ -60,7 +61,7 @@ function SearchDialog({ open, setOpen, handleClose }) {
               color="inherit"
               sx={{ position: 'absolute', right: 10, top: 10, bottom: 10 }}
             >
-              Search
+              <Trans>Search</Trans>
             </Button>
           </form>
         </DialogContent>
