@@ -1,4 +1,5 @@
-import { FormControl, InputLabel, Input } from '@mui/material'
+import { TextField } from '@mui/material'
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import { useController } from 'react-hook-form'
 import moment from 'moment'
 
@@ -19,23 +20,19 @@ function DateInput({ name, label, control }) {
   })
 
   return (
-    <FormControl fullWidth>
-      <InputLabel id={`custom-date-field`}>{label}</InputLabel>
-      <Input
-        value={value.value}
-        onChange={(e) => {
-          onChange({
-            value: moment(new Date(e.target.value)).format('yyyy-MM-DD'),
-            type: 'DATE',
-            label,
-          })
-        }}
-        {...field}
-        label={label}
-        placeholder=""
-        type="date"
-      />
-    </FormControl>
+    <DesktopDatePicker
+      label={label}
+      value={value.value}
+      {...field}
+      onChange={(newValue) => {
+        onChange({
+          value: moment(new Date(newValue)).format('yyyy-MM-DD'),
+          type: 'DATE',
+          label,
+        })
+      }}
+      renderInput={(params) => <TextField {...params} />}
+    />
   )
 }
 

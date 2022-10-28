@@ -3,6 +3,8 @@ import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import moment from 'moment'
 import localization from 'moment/locale/pl'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { messages as enMessages } from './locales/en/messages'
 import { messages as plMessages } from './locales/pl/messages'
 import { en, pl } from 'make-plural/plurals'
@@ -97,80 +99,85 @@ function App() {
     <I18nProvider i18n={i18n}>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
-          <LocaleContext.Provider value={{ localeMode, locale }}>
-            <SnackbarProvider>
-              <CssBaseline />
-              <ConfirmProvider>
-                {isLoading ? (
-                  <Loader />
-                ) : (
-                  <>
-                    <UserContext.Provider
-                      value={{ user, setUser, handleLogout }}
-                    >
-                      <NavBar />
-                      <Box
-                        sx={{
-                          mt: 2,
-                          mb: 5,
-                        }}
+          <LocalizationProvider dateAdapter={AdapterMoment}>
+            <LocaleContext.Provider value={{ localeMode, locale }}>
+              <SnackbarProvider>
+                <CssBaseline />
+                <ConfirmProvider>
+                  {isLoading ? (
+                    <Loader />
+                  ) : (
+                    <>
+                      <UserContext.Provider
+                        value={{ user, setUser, handleLogout }}
                       >
-                        <Routes>
-                          <Route path="/" element={<Home />} />
-                          <Route
-                            path={routes.USER_PROFILE}
-                            element={<UserProfile />}
-                          />
-                          <Route
-                            path={`${routes.USER_PROFILE}/:userId`}
-                            element={<UserProfile />}
-                          />
-                          <Route
-                            path={`${routes.COLLECTIONS}/byid/:id`}
-                            element={<CollectionDetail />}
-                          />
-                          <Route
-                            path={`${routes.ITEMS}/byid/:id`}
-                            element={<ItemDetail />}
-                          />
-                          <Route
-                            path={`${routes.AUTH}/*`}
-                            element={
-                              user.role === 'GUEST' ? (
-                                <AuthPage />
-                              ) : (
-                                <Navigate to={routes.HOME} />
-                              )
-                            }
-                          />
-                          <Route
-                            path={routes.CREATE_COLLECTION}
-                            element={
-                              user.role !== 'GUEST' ? (
-                                <AddCollection />
-                              ) : (
-                                <Navigate to={routes.SIGNUP} />
-                              )
-                            }
-                          />
-                          <Route
-                            path={routes.SEARCH_RESULTS}
-                            element={<SearchResults />}
-                          />
-                          <Route
-                            path={routes.NOT_FOUND}
-                            element={<NotFoundPage />}
-                          />
-                          <Route path={routes.ADMIN} element={<AdminPage />} />
-                          <Route path="/*" element={<NotFoundPage />} />
-                        </Routes>
-                      </Box>
-                    </UserContext.Provider>
-                  </>
-                )}
-              </ConfirmProvider>
-            </SnackbarProvider>
-          </LocaleContext.Provider>
+                        <NavBar />
+                        <Box
+                          sx={{
+                            mt: 2,
+                            mb: 5,
+                          }}
+                        >
+                          <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route
+                              path={routes.USER_PROFILE}
+                              element={<UserProfile />}
+                            />
+                            <Route
+                              path={`${routes.USER_PROFILE}/:userId`}
+                              element={<UserProfile />}
+                            />
+                            <Route
+                              path={`${routes.COLLECTIONS}/byid/:id`}
+                              element={<CollectionDetail />}
+                            />
+                            <Route
+                              path={`${routes.ITEMS}/byid/:id`}
+                              element={<ItemDetail />}
+                            />
+                            <Route
+                              path={`${routes.AUTH}/*`}
+                              element={
+                                user.role === 'GUEST' ? (
+                                  <AuthPage />
+                                ) : (
+                                  <Navigate to={routes.HOME} />
+                                )
+                              }
+                            />
+                            <Route
+                              path={routes.CREATE_COLLECTION}
+                              element={
+                                user.role !== 'GUEST' ? (
+                                  <AddCollection />
+                                ) : (
+                                  <Navigate to={routes.SIGNUP} />
+                                )
+                              }
+                            />
+                            <Route
+                              path={routes.SEARCH_RESULTS}
+                              element={<SearchResults />}
+                            />
+                            <Route
+                              path={routes.NOT_FOUND}
+                              element={<NotFoundPage />}
+                            />
+                            <Route
+                              path={routes.ADMIN}
+                              element={<AdminPage />}
+                            />
+                            <Route path="/*" element={<NotFoundPage />} />
+                          </Routes>
+                        </Box>
+                      </UserContext.Provider>
+                    </>
+                  )}
+                </ConfirmProvider>
+              </SnackbarProvider>
+            </LocaleContext.Provider>
+          </LocalizationProvider>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </I18nProvider>
