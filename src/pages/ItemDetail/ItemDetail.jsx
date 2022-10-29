@@ -21,7 +21,7 @@ import LikeButton from '../../components/LikeButton'
 import { UserContext } from '../../context/UserContext'
 import { ItemContext } from '../../context/ItemContext'
 import Tag from '../../components/Tag'
-import { Trans } from "@lingui/macro"
+import { Trans } from '@lingui/macro'
 
 function ItemDetail() {
   const { user } = useContext(UserContext)
@@ -48,7 +48,7 @@ function ItemDetail() {
           <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
             <CircularProgress color="inherit" />
           </Backdrop>
-          <Container sx={{ mt: '20px', minHeight: '90vh' }}>
+          <Container sx={{ mt: '20px' }}>
             <Grid container spacing={2}>
               {item.img && (
                 <Grid item xs={12} md={4}>

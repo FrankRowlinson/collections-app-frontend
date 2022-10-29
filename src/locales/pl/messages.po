@@ -164,6 +164,7 @@ msgid "Custom fields for your collection"
 msgstr "Pola niestandardowe dla Twojej kolekcji"
 
 #: src/constants/customFieldTypes.js:8
+#: src/services/getCollectionProps.js:9
 msgid "Date"
 msgstr "Data"
 
@@ -234,7 +235,7 @@ msgstr "Typ pola"
 msgid "Field name"
 msgstr "Nazwa pola"
 
-#: src/pages/SearchResults/SearchResults.jsx:74
+#: src/pages/SearchResults/SearchResults.jsx:81
 msgid "Found nothing... try different query"
 msgstr "Nic nie znalazłem... wypróbuj inne zapytanie"
 
@@ -323,6 +324,7 @@ msgid "No+image"
 msgstr "Brak+obrazka"
 
 #: src/constants/customFieldTypes.js:5
+#: src/services/getCollectionProps.js:6
 msgid "Number"
 msgstr "Numer"
 
@@ -343,7 +345,7 @@ msgstr "Hasło"
 msgid "Password again"
 msgstr "Powtórz hasło"
 
-#: src/constants/texts.js:5
+#: src/components/FormPopover.jsx:10
 msgid "Password must be at least 8 characters"
 msgstr "Hasło musi zawierać co najmniej 8 znaków"
 
@@ -388,19 +390,27 @@ msgstr "Zresetuj obraz"
 msgid "Role"
 msgstr "Rola"
 
-#: src/components/SearchDialog.jsx:64
+#: src/components/SearchDialog.jsx:65
 msgid "Search"
 msgstr "Szukaj"
 
+#: src/pages/SearchResults/SearchResults.jsx:20
+msgid "Search results by tag"
+msgstr "Wyniki wyszukiwania według tagu"
+
 #: src/components/Tag.jsx:15
-msgid "Search results by tag: {name}"
-msgstr "Wyniki wyszukiwania według tagu: {name}"
+#~ msgid "Search results by tag: {name}"
+#~ msgstr "Wyniki wyszukiwania według tagu: {name}"
+
+#: src/pages/SearchResults/SearchResults.jsx:22
+msgid "Search results for"
+msgstr "Wyniki wyszukiwania dla"
 
 #: src/components/SearchDialog.jsx:33
-msgid "Search results for: {0}"
-msgstr "Wyniki wyszukiwania dla: {0}"
+#~ msgid "Search results for: {0}"
+#~ msgstr "Wyniki wyszukiwania dla: {0}"
 
-#: src/components/NavBar.jsx:115
+#: src/components/NavBar.jsx:124
 msgid "Search..."
 msgstr "Szukaj..."
 
@@ -408,11 +418,12 @@ msgstr "Szukaj..."
 msgid "Seems like you've logged in as user with no admin rights or visiting as guest."
 msgstr "Wygląda na to, że zalogowałeś się jako użytkownik bez uprawnień administratora lub odwiedzający jako gość."
 
-#: src/pages/SearchResults/SearchResults.jsx:25
+#: src/pages/SearchResults/SearchResults.jsx:21
 msgid "Selected items"
 msgstr "Wybrane przedmioty"
 
 #: src/constants/customFieldTypes.js:4
+#: src/services/getCollectionProps.js:5
 msgid "Short text"
 msgstr "Krótki tekst"
 
@@ -445,6 +456,7 @@ msgid "Tags"
 msgstr "Tagi"
 
 #: src/constants/customFieldTypes.js:6
+#: src/services/getCollectionProps.js:7
 msgid "Text"
 msgstr "Tekst"
 
@@ -475,7 +487,7 @@ msgstr "Użytkownik o tej nazwie użytkownika lub adresie e-mail już istnieje"
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: src/constants/texts.js:4
+#: src/components/FormPopover.jsx:9
 msgid "Username must be at least 4 characters long and must not start with digit"
 msgstr "Nazwa użytkownika musi mieć co najmniej 4 znaki i nie może zaczynać się od cyfry"
 
@@ -492,6 +504,7 @@ msgid "Valid password is required"
 msgstr "Wymagane jest prawidłowe hasło"
 
 #: src/constants/customFieldTypes.js:7
+#: src/services/getCollectionProps.js:8
 msgid "Yes / No"
 msgstr "Tak / Nie"
 
@@ -520,6 +533,7 @@ msgid "You've signed up successfully"
 msgstr "Zarejestrowałeś się pomyślnie"
 
 #: src/pages/ItemDetail/ItemDetail.jsx:102
+#: src/pages/SearchResults/SearchResults.jsx:67
 msgid "by {0}"
 msgstr "przez {0}"
 
@@ -536,7 +550,7 @@ msgstr "e-mail"
 msgid "no file selected"
 msgstr "nie wybrano pliku"
 
-#: src/components/NavBar.jsx:153
+#: src/components/NavBar.jsx:162
 msgid "open drawer"
 msgstr "otwórz menu"
 

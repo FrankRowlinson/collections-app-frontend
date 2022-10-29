@@ -13,8 +13,15 @@ import routes from '../../constants/routes'
 
 function SearchResults() {
   const {
-    state: { query, items },
+    state: { type, query, items },
   } = useLocation()
+
+  const searchResultHeaders = {
+    tag: t`Search results by tag`,
+    select: t`Selected items`,
+    search: t`Search results for`,
+  }
+
   const navigate = useNavigate()
 
   return (
@@ -22,7 +29,7 @@ function SearchResults() {
       <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
         <Grid item xs={12}>
           <Typography variant="h5" sx={{ fontWeight: 500 }}>
-            {query ? query : t`Selected items`}
+            {searchResultHeaders[type] + (query ? `: ${query}` : '')}
           </Typography>
         </Grid>
         {items ? (
@@ -57,7 +64,7 @@ function SearchResults() {
                     <Typography
                       variant="body2"
                       sx={{ fontWeight: 300 }}
-                    >{`by ${el.author.username}`}</Typography>
+                    >{t`by ${el.author.username}`}</Typography>
                     <Typography
                       variant="overline"
                       sx={{ color: 'text.secondary' }}

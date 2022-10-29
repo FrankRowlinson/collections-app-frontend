@@ -91,8 +91,10 @@ function NavBar(props) {
           {locales.map((item, index) => {
             return (
               <MenuItem
-                key={`${locale.name}-top`}
-                onClick={() => localeMode.changeLocale(item.name)}
+                key={`${locale.name}-top-${index}`}
+                onClick={() => {
+                  localeMode.changeLocale(item.name)
+                }}
               >
                 {item.flag}
               </MenuItem>

@@ -47,7 +47,7 @@ function ItemTable({ items, rightToEdit }) {
     setInProgress(true)
     const response = await getItemsById(selectedRows.map((el) => el.id))
     navigate(routes.SEARCH_RESULTS, {
-      state: { query: null, items: response.items },
+      state: { type: 'select', items: response.items, query: null },
     })
     resetSelection()
   }
