@@ -5,8 +5,10 @@ import {
   Switch,
   Button,
   ListItem,
+  ToggleButton,
   ListItemText,
   ListItemButton,
+  ToggleButtonGroup,
 } from '@mui/material'
 import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
@@ -14,11 +16,35 @@ import { UserContext } from '../context/UserContext'
 import { useTheme } from '@mui/material/styles'
 import { ColorModeContext } from '../context/ColorModeContext'
 import ProfileMenu from './ProfileMenu'
+import { LocaleContext } from '../context/LocaleContext'
+import locales from '../constants/locales'
 
 function NavBarItems({ variant, navItems }) {
   const theme = useTheme()
   const colorMode = useContext(ColorModeContext)
   const { user } = useContext(UserContext)
+  const { localeMode, locale } = useContext(LocaleContext)
+
+  const LocaleSwitcher = () => {
+    return (
+      <ToggleButtonGroup>
+        {locales.map((item, index) => (
+          <ToggleButton
+            size="small"
+            value={item.name}
+            selected={item.name === locale}
+            key={`${item.name}-drawer`}
+            sx={{ fontSize: 20, py: 0, px: 2 }}
+            onClick={() => {
+              localeMode.changeLocale(item.name)
+            }}
+          >
+            {item.flag}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    )
+  }
 
   const topNavItems = (
     <Box
@@ -60,28 +86,34 @@ function NavBarItems({ variant, navItems }) {
 
   const drawerItems = (
     <List>
-      {navItems.map((item) =>
-        item.show && (
-          <ListItem key={item.label} disablePadding>
-            <NavLink
-              style={{ width: '100%', textDecoration: 'none' }}
-              to={item.route}
-              end
-            >
-              {({ isActive }) => (
-                <ListItemButton
-                  sx={{ color: 'text.primary' }}
-                  selected={isActive}
-                >
-                  <ListItemText>{item.label}</ListItemText>
-                </ListItemButton>
-              )}
-            </NavLink>
-          </ListItem>
-        )
+      {navItems.map(
+        (item) =>
+          item.show && (
+            <ListItem key={item.label} disablePadding>
+              <NavLink
+                style={{ width: '100%', textDecoration: 'none' }}
+                to={item.route}
+                end
+              >
+                {({ isActive }) => (
+                  <ListItemButton
+                    sx={{ color: 'text.primary' }}
+                    selected={isActive}
+                  >
+                    <ListItemText>{item.label}</ListItemText>
+                  </ListItemButton>
+                )}
+              </NavLink>
+            </ListItem>
+          )
       )}
       <ListItem key="logout" disablePadding>
         {user.role === 'GUEST' ? '' : <ProfileMenu />}
+      </ListItem>
+      <ListItem
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <LocaleSwitcher />
       </ListItem>
       <ListItem
         disablePadding

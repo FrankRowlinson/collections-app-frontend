@@ -33,12 +33,10 @@ import {
   bindTrigger,
   bindMenu,
 } from 'material-ui-popup-state/hooks'
+import locales from '../constants/locales'
 
 const drawerWidth = '300px'
-const localeMapping = {
-  pl: `🇵🇱`,
-  en: `🇬🇧`,
-}
+const localeMapping = {}
 
 function NavBar(props) {
   const { window } = props
@@ -53,6 +51,10 @@ function NavBar(props) {
   useEffect(() => {
     setNavItems(getNavItems(user.role))
   }, [user])
+
+  useEffect(() => {
+    locales.forEach((el) => (localeMapping[el.name] = el.flag))
+  }, [])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -79,16 +81,23 @@ function NavBar(props) {
     })
     return (
       <>
-        <IconButton {...bindTrigger(popupState)} sx={{ color: 'black', mx: 0.5, fontSize: 20 }}>
+        <IconButton
+          {...bindTrigger(popupState)}
+          sx={{ color: 'black', mx: 0.5, fontSize: 20 }}
+        >
           {localeMapping[locale]}
         </IconButton>
         <Menu {...bindMenu(popupState)}>
-          <MenuItem onClick={() => localeMode.changeLocale('pl')}>
-            {localeMapping['pl']}
-          </MenuItem>
-          <MenuItem onClick={() => localeMode.changeLocale('en')}>
-            {localeMapping['en']}
-          </MenuItem>
+          {locales.map((item, index) => {
+            return (
+              <MenuItem
+                key={`${locale.name}-top`}
+                onClick={() => localeMode.changeLocale(item.name)}
+              >
+                {item.flag}
+              </MenuItem>
+            )
+          })}
         </Menu>
       </>
     )
