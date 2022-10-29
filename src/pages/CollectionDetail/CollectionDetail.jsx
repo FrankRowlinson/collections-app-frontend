@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCollection } from '../../services/fetchCollections'
-import { Container, Typography, Grid, Box } from '@mui/material'
+import { Container, Typography, Grid, Box, Divider, Paper } from '@mui/material'
 import AddItemForm from '../../components/AddItemForm'
 import ItemTable from '../../components/ItemTable'
 import Loader from '../Loader/Loader'
@@ -13,6 +13,7 @@ import routes from '../../constants/routes'
 import Image from 'mui-image'
 import CollectionMenu from './CollectionMenu'
 import { t, Trans } from '@lingui/macro'
+import moment from 'moment'
 
 function CollectionDetail() {
   const { user } = useContext(UserContext)
@@ -30,6 +31,7 @@ function CollectionDetail() {
             state: { message: t`Collection not found` },
           })
         : setCollection(response.collection)
+      console.log(response.collection)
     }
     fetchData()
   }, [id, navigate])
@@ -52,12 +54,6 @@ function CollectionDetail() {
         <Loader />
       ) : (
         <>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h5" sx={{ fontWeight: 500 }}>
-              {collection.name}
-            </Typography>
-            <CollectionMenu rightToEdit={rightToEdit} id={collection.id} />
-          </Box>
           <Grid container spacing={2}>
             {collection.img ? (
               <>
@@ -66,13 +62,31 @@ function CollectionDetail() {
                     <Image src={collection.img} />
                   </Box>
                 </Grid>
-                <Grid item xs={12} sm={6} md={8}>
-                  <Box sx={{ position: 'sticky', top: 20 }}>
+              </>
+            ) : (
+              ''
+            )}
+            <Grid
+              item
+              xs={12}
+              sm={collection.img ? 6 : 12}
+              md={collection.img ? 8 : 12}
+            >
+              <Paper sx={{ p: 2, position: 'sticky', top: 20 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Box>
                     <Typography
                       variant="subtitle1"
                       component={Link}
                       to={`${routes.USER_PROFILE}/${collection.author.id}`}
                       sx={{
+                        mr: 2,
                         textDecoration: 'none',
                         color: 'text.primary',
                         '&:hover': {
@@ -82,20 +96,41 @@ function CollectionDetail() {
                     >
                       <Trans>Author: {collection.author.username}</Trans>
                     </Typography>
-                    <ReactMarkdown>{collection.description}</ReactMarkdown>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: 'text.secondary' }}
+                    >
+                      {moment(collection.createdAt).format('LL')}
+                    </Typography>
                   </Box>
-                </Grid>
-              </>
-            ) : (
-              <>
-                <Grid item xs={12}>
-                  <Trans>There is no cover image for this collection</Trans>
-                </Grid>
-                <Grid item xs={12}>
+                  <Box>
+                    <CollectionMenu
+                      rightToEdit={rightToEdit}
+                      id={collection.id}
+                    />
+                  </Box>
+                </Box>
+                <Typography variant="h5" sx={{ fontWeight: 500, textAlign: 'center' }}>
+                  {collection.name}
+                </Typography>
+
+                <Box sx={{ position: 'sticky', top: 20 }}>
+                  <Typography
+                    variant="overline"
+                    textAlign="center"
+                    sx={{
+                      display: 'block',
+                      textDecoration: 'none',
+                      color: 'text.primary',
+                    }}
+                  >
+                    {collection.type.name}
+                  </Typography>
+                  <Divider sx={{ my: 1 }}/>
                   <ReactMarkdown>{collection.description}</ReactMarkdown>
-                </Grid>
-              </>
-            )}
+                </Box>
+              </Paper>
+            </Grid>
 
             <Grid item xs={12}>
               {collection.items && collection.items.length ? (

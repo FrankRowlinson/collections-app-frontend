@@ -152,7 +152,6 @@ function ItemDetail() {
                   )}
                   {!item.img && (
                     <>
-                      <Divider sx={{ my: 1 }} />
                       <LikeButton
                         likes={item.likes}
                         beenLiked={

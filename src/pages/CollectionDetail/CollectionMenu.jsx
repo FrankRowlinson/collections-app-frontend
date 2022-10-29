@@ -40,7 +40,7 @@ const CollectionMenu = ({ rightToEdit, id }) => {
 
   return (
     <Box sx={{ display: rightToEdit ? 'block' : 'none' }}>
-      <IconButton {...bindTrigger(popupState)}>
+      <IconButton {...bindTrigger(popupState)} size='small'>
         <BsThreeDotsVertical />
       </IconButton>
       <Menu {...bindMenu(popupState)}>
