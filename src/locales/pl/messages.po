@@ -58,7 +58,7 @@ msgstr "Dodaj przedmiot do \"{collectionName}\""
 msgid "Already have an account?"
 msgstr "Posiadasz już konto?"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:83
+#: src/pages/CollectionDetail/CollectionDetail.jsx:103
 msgid "Author: {0}"
 msgstr "Autor: {0}"
 
@@ -80,6 +80,17 @@ msgid ""
 "**\"Line\"**. This is just plain string of text, but a little bit\n"
 "shorter than proper **\"Text\"** field."
 msgstr ""
+"Lepiej wyjaśnione na przykładzie. \n"
+"Powiedzmy, że chcesz dodać **\"Opis\"** do każdego elementu w tej kolekcji, takiego jak ten\n"
+"widzisz powyżej. W tym celu chcesz dodać nowe *pole* z typem\n"
+"**\"Tekst\"** i nazwij go **\"Opis\"**. To samo dotyczy wszystkich innych\n"
+"rodzaj pola. *Data wydania winylu?* Dodaj pole **\"Data\"** i\n"
+"nazwij go **\"Data wydania\"** i gotowe! \n"
+"Jeśli chcesz dodać\n"
+"coś złożonego, jak *liczba zmiennoprzecinkowa* lub *data **ORAZ**\n"
+"czas* na tym samym polu, możesz użyć obejścia z typem pola\n"
+"**\"Linia\"**. To jest zwykły ciąg tekstu, ale trochę\n"
+"krótsze niż właściwe pole **\"Tekst\"**."
 
 #: src/pages/Home/Home.jsx:82
 msgid "Biggest collections"
@@ -96,6 +107,7 @@ msgid "Blocked"
 msgstr "Zablokowany"
 
 #: src/components/AddItemForm.jsx:101
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:87
 msgid "Cancel"
 msgstr "Anulować"
 
@@ -120,14 +132,15 @@ msgid "Collection Type"
 msgstr "Typ kolekcji"
 
 #: src/pages/AddCollection/AddCollection.jsx:116
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:63
 msgid "Collection name"
 msgstr "Nazwa kolekcji"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:30
+#: src/pages/CollectionDetail/CollectionDetail.jsx:32
 msgid "Collection not found"
 msgstr "Nie znaleziono kolekcji"
 
-#: src/pages/CollectionDetail/CollectionMenu.jsx:30
+#: src/pages/CollectionDetail/CollectionMenu.jsx:34
 msgid "Collection successfully deleted"
 msgstr "Kolekcja pomyślnie usunięta"
 
@@ -173,7 +186,7 @@ msgstr "Data"
 msgid "Delete"
 msgstr "Usuwać"
 
-#: src/pages/CollectionDetail/CollectionMenu.jsx:51
+#: src/pages/CollectionDetail/CollectionMenu.jsx:63
 msgid "Delete collection"
 msgstr "Usuń kolekcję"
 
@@ -190,8 +203,13 @@ msgid "Describe items in your collection with as much additional info as you nee
 msgstr "Opisz przedmioty w swojej kolekcji, podając tyle dodatkowych informacji, ile potrzebujesz, dzięki elastycznym opcjom"
 
 #: src/pages/AddCollection/AddCollection.jsx:159
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:72
 msgid "Description"
 msgstr "Opis"
+
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:79
+msgid "Description preview with markdown"
+msgstr "Podgląd opisu z markdown"
 
 #: src/components/UserTable.jsx:130
 msgid "Do you want to block {0} selected user(s)?"
@@ -209,9 +227,13 @@ msgstr "Czy chcesz odblokować {0} wybranych użytkowników?"
 msgid "Don't have an account?"
 msgstr "Nie masz konta?"
 
-#: src/pages/CollectionDetail/CollectionMenu.jsx:48
+#: src/pages/CollectionDetail/CollectionMenu.jsx:60
 msgid "Edit"
 msgstr "Edytować"
+
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:57
+msgid "Edit collection info"
+msgstr "Edytuj informacje o kolekcji"
 
 #: src/components/SignupForm.jsx:135
 msgid "Email"
@@ -225,6 +247,10 @@ msgstr "Wpisz poprawny adres e-mail"
 #: src/components/SignupForm.jsx:26
 msgid "Enter a valid username"
 msgstr "Wpisz poprawną nazwę użytkownika"
+
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:47
+msgid "Error happened on server. Try again later"
+msgstr "Na serwerze wystąpił błąd. Spróbuj ponownie później"
 
 #: src/pages/AddCollection/AddCollection.jsx:253
 #: src/pages/AddCollection/AddCollection.jsx:257
@@ -313,7 +339,7 @@ msgstr "Nie, zostanę tutaj"
 msgid "New field"
 msgstr "Nowe pole"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:106
+#: src/pages/CollectionDetail/CollectionDetail.jsx:153
 msgid "No items in collection"
 msgstr "Brak przedmiotów w kolekcji"
 
@@ -390,6 +416,10 @@ msgstr "Zresetuj obraz"
 msgid "Role"
 msgstr "Rola"
 
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:90
+msgid "Save changes"
+msgstr "Zapisz zmiany"
+
 #: src/components/SearchDialog.jsx:65
 msgid "Search"
 msgstr "Szukaj"
@@ -398,19 +428,11 @@ msgstr "Szukaj"
 msgid "Search results by tag"
 msgstr "Wyniki wyszukiwania według tagu"
 
-#: src/components/Tag.jsx:15
-#~ msgid "Search results by tag: {name}"
-#~ msgstr "Wyniki wyszukiwania według tagu: {name}"
-
 #: src/pages/SearchResults/SearchResults.jsx:22
 msgid "Search results for"
 msgstr "Wyniki wyszukiwania dla"
 
-#: src/components/SearchDialog.jsx:33
-#~ msgid "Search results for: {0}"
-#~ msgstr "Wyniki wyszukiwania dla: {0}"
-
-#: src/components/NavBar.jsx:124
+#: src/components/NavBar.jsx:126
 msgid "Search..."
 msgstr "Szukaj..."
 
@@ -460,11 +482,7 @@ msgstr "Tagi"
 msgid "Text"
 msgstr "Tekst"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:92
-msgid "There is no cover image for this collection"
-msgstr "Ta kolekcja nie ma obrazu okładki"
-
-#: src/pages/CollectionDetail/CollectionMenu.jsx:25
+#: src/pages/CollectionDetail/CollectionMenu.jsx:29
 msgid "This action is irreversible! Are you sure you want to delete this collection?"
 msgstr "Ta akcja jest nieodwracalna! Czy na pewno chcesz usunąć tę kolekcję?"
 
@@ -524,6 +542,10 @@ msgstr "Aby komentować, musisz być członkiem..."
 msgid "You have to be a member to like items. Want to join now?"
 msgstr "Musisz być członkiem, aby polubić przedmioty. Chcesz dołączyć teraz?"
 
+#: src/pages/CollectionDetail/CollectionEditForm.jsx:38
+msgid "You haven't made any changes"
+msgstr "Nie wprowadziłeś żadnych zmian"
+
 #: src/components/UserTable.jsx:113
 msgid "You want to change role of {0} selected user(s) to {role}. Proceed?"
 msgstr "Chcesz zmienić rolę {0} wybranych użytkowników na {role}. Przystępować?"
@@ -550,7 +572,7 @@ msgstr "e-mail"
 msgid "no file selected"
 msgstr "nie wybrano pliku"
 
-#: src/components/NavBar.jsx:162
+#: src/components/NavBar.jsx:164
 msgid "open drawer"
 msgstr "otwórz menu"
 

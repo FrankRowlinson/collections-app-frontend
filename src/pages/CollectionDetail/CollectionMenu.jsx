@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { IconButton, Menu, MenuItem, Box } from '@mui/material'
 import {
   usePopupState,
@@ -11,16 +12,19 @@ import { useNavigate } from 'react-router-dom'
 import routes from '../../constants/routes'
 import { useSnackbar } from 'notistack'
 import { t, Trans } from '@lingui/macro'
+import CollectionEditForm from './CollectionEditForm'
 
 const CollectionMenu = ({ rightToEdit, id }) => {
   const { enqueueSnackbar } = useSnackbar()
   const navigate = useNavigate()
   const confirm = useConfirm()
+  const [editFormOpen, setEditFormOpen] = useState(false)
   const popupState = usePopupState({
     variant: 'popover',
     popupId: 'collection-menu',
   })
   const onDelete = () => {
+    popupState.close()
     confirm({
       description: t`This action is irreversible! Are you sure you want to delete this collection?`,
     })
@@ -36,11 +40,19 @@ const CollectionMenu = ({ rightToEdit, id }) => {
       .catch(() => {})
   }
 
-  const onEdit = () => {}
+  const onEdit = () => {
+    popupState.close()
+    setEditFormOpen(true)
+  }
 
   return (
     <Box sx={{ display: rightToEdit ? 'block' : 'none' }}>
-      <IconButton {...bindTrigger(popupState)} size='small'>
+      <CollectionEditForm
+        open={editFormOpen}
+        setEditFormOpen={setEditFormOpen}
+        collectionId={id}
+      />
+      <IconButton {...bindTrigger(popupState)} size="small">
         <BsThreeDotsVertical />
       </IconButton>
       <Menu {...bindMenu(popupState)}>

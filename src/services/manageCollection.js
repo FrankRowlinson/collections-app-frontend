@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-export async function editCollection(id) {
-  console.log('collection been edited')
+export async function editCollection(id, data) {
+  const response = await axios.patch('collections/edit', { id, ...data })
+  return response.data
 }
 
 export async function deleteCollection(id) {

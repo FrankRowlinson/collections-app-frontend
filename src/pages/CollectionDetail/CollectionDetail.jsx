@@ -14,6 +14,7 @@ import Image from 'mui-image'
 import CollectionMenu from './CollectionMenu'
 import { t, Trans } from '@lingui/macro'
 import moment from 'moment'
+import { CollectionContext } from '../../context/CollectionContext'
 
 function CollectionDetail() {
   const { user } = useContext(UserContext)
@@ -31,7 +32,6 @@ function CollectionDetail() {
             state: { message: t`Collection not found` },
           })
         : setCollection(response.collection)
-      console.log(response.collection)
     }
     fetchData()
   }, [id, navigate])
@@ -54,100 +54,113 @@ function CollectionDetail() {
         <Loader />
       ) : (
         <>
-          <Grid container spacing={2}>
-            {collection.img ? (
-              <>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Box sx={{ position: 'sticky', top: 20 }}>
-                    <Image src={collection.img} />
-                  </Box>
-                </Grid>
-              </>
-            ) : (
-              ''
-            )}
-            <Grid
-              item
-              xs={12}
-              sm={collection.img ? 6 : 12}
-              md={collection.img ? 8 : 12}
-            >
-              <Paper sx={{ p: 2, position: 'sticky', top: 20 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Box>
-                    <Typography
-                      variant="subtitle1"
-                      component={Link}
-                      to={`${routes.USER_PROFILE}/${collection.author.id}`}
-                      sx={{
-                        mr: 2,
-                        textDecoration: 'none',
-                        color: 'text.primary',
-                        '&:hover': {
-                          textDecoration: 'underline',
-                        },
-                      }}
-                    >
-                      <Trans>Author: {collection.author.username}</Trans>
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: 'text.secondary' }}
-                    >
-                      {moment(collection.createdAt).format('LL')}
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <CollectionMenu
-                      rightToEdit={rightToEdit}
-                      id={collection.id}
-                    />
-                  </Box>
-                </Box>
-                <Typography variant="h5" sx={{ fontWeight: 500, textAlign: 'center' }}>
-                  {collection.name}
-                </Typography>
-
-                <Box sx={{ position: 'sticky', top: 20 }}>
-                  <Typography
-                    variant="overline"
-                    textAlign="center"
+          <CollectionContext.Provider
+            value={{
+              name: collection.name,
+              description: collection.description,
+            }}
+          >
+            <Grid container spacing={2}>
+              {collection.img ? (
+                <>
+                  <Grid item xs={12} sm={6} md={4}>
+                    <Box sx={{ position: 'sticky', top: 20 }}>
+                      <Image src={collection.img} />
+                    </Box>
+                  </Grid>
+                </>
+              ) : (
+                ''
+              )}
+              <Grid
+                item
+                xs={12}
+                sm={collection.img ? 6 : 12}
+                md={collection.img ? 8 : 12}
+              >
+                <Paper sx={{ p: 2, position: 'sticky', top: 20 }}>
+                  <Box
                     sx={{
-                      display: 'block',
-                      textDecoration: 'none',
-                      color: 'text.primary',
+                      display: 'flex',
+                      width: '100%',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    {collection.type.name}
+                    <Box>
+                      <Typography
+                        variant="subtitle1"
+                        component={Link}
+                        to={`${routes.USER_PROFILE}/${collection.author.id}`}
+                        sx={{
+                          mr: 2,
+                          textDecoration: 'none',
+                          color: 'text.primary',
+                          '&:hover': {
+                            textDecoration: 'underline',
+                          },
+                        }}
+                      >
+                        <Trans>Author: {collection.author.username}</Trans>
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: 'text.secondary' }}
+                      >
+                        {moment(collection.createdAt).format('LL')}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <CollectionMenu
+                        rightToEdit={rightToEdit}
+                        id={collection.id}
+                      />
+                    </Box>
+                  </Box>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: 500, textAlign: 'center' }}
+                  >
+                    {collection.name}
                   </Typography>
-                  <Divider sx={{ my: 1 }}/>
-                  <ReactMarkdown>{collection.description}</ReactMarkdown>
-                </Box>
-              </Paper>
-            </Grid>
 
-            <Grid item xs={12}>
-              {collection.items && collection.items.length ? (
-                <ItemTable items={collection.items} rightToEdit={rightToEdit} />
-              ) : (
-                <Typography variant="body1">
-                  <em>
-                    <Trans>No items in collection</Trans>
-                  </em>
-                </Typography>
-              )}
+                  <Box sx={{ position: 'sticky', top: 20 }}>
+                    <Typography
+                      variant="overline"
+                      textAlign="center"
+                      sx={{
+                        display: 'block',
+                        textDecoration: 'none',
+                        color: 'text.primary',
+                      }}
+                    >
+                      {collection.type.name}
+                    </Typography>
+                    <Divider sx={{ my: 1 }} />
+                    <ReactMarkdown>{collection.description}</ReactMarkdown>
+                  </Box>
+                </Paper>
+              </Grid>
+
+              <Grid item xs={12}>
+                {collection.items && collection.items.length ? (
+                  <ItemTable
+                    items={collection.items}
+                    rightToEdit={rightToEdit}
+                  />
+                ) : (
+                  <Typography variant="body1">
+                    <em>
+                      <Trans>No items in collection</Trans>
+                    </em>
+                  </Typography>
+                )}
+              </Grid>
+              <AddItemForm
+                rightToEdit={rightToEdit}
+                collectionName={collection.name}
+              />
             </Grid>
-            <AddItemForm
-              rightToEdit={rightToEdit}
-              collectionName={collection.name}
-            />
-          </Grid>
+          </CollectionContext.Provider>
         </>
       )}
     </Container>
