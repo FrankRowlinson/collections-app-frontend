@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
 import { Stack, Paper, Typography, Grid, Box } from '@mui/material'
 import CommentForm from './CommentForm'
-import Comment from '../components/Comment'
-import { getComments } from '../services/comments'
-import { ItemContext } from '../context/ItemContext'
-import Loader from '../pages/Loader/Loader'
+import Comment from './Comment'
+import { getComments } from '../../../services/comments'
+import { ItemContext } from '../../../context/ItemContext'
+import Loader from '../../../shared/Loader'
 import { t } from '@lingui/macro'
 
 function CommentSection() {

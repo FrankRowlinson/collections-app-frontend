@@ -12,12 +12,12 @@ import {
 } from '@mui/material'
 import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
-import { UserContext } from '../context/UserContext'
+import { UserContext } from '../../context/UserContext'
 import { useTheme } from '@mui/material/styles'
-import { ColorModeContext } from '../context/ColorModeContext'
+import { ColorModeContext } from '../../context/ColorModeContext'
 import ProfileMenu from './ProfileMenu'
-import { LocaleContext } from '../context/LocaleContext'
-import locales from '../constants/locales'
+import { LocaleContext } from '../../context/LocaleContext'
+import locales from '../../constants/locales'
 
 function NavBarItems({ variant, navItems }) {
   const theme = useTheme()

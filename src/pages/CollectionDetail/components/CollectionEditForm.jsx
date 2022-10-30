@@ -11,12 +11,12 @@ import {
 } from '@mui/material'
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import MarkdownPreview from '../../components/MarkdownPreview'
-import { CollectionContext } from '../../context/CollectionContext'
+import MarkdownPreview from '../../../shared/MarkdownPreview'
+import { CollectionContext } from '../../../context/CollectionContext'
 import { Trans, t } from '@lingui/macro'
-import { editCollection } from '../../services/manageCollection'
+import { editCollection } from '../../../services/manageCollection'
 import { useSnackbar } from 'notistack'
-import ButtonProgress from '../../components/ButtonProgress'
+import ButtonProgress from '../../../shared/ButtonProgress'
 
 function CollectionEditForm({ collectionId, open, setEditFormOpen }) {
   const { enqueueSnackbar } = useSnackbar()
@@ -88,7 +88,7 @@ function CollectionEditForm({ collectionId, open, setEditFormOpen }) {
           </Button>
           <Button disabled={inProgress} type="submit" variant="contained">
             <Trans>Save changes</Trans>
-            <ButtonProgress inProgress={inProgress} size={24} />
+            <ButtonProgress inProgress={inProgress} />
           </Button>
         </DialogActions>
       </form>

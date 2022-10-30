@@ -13,17 +13,17 @@ import {
 } from '@mui/material'
 import { MdSave, MdCheckCircle } from 'react-icons/md'
 import { useSnackbar } from 'notistack'
-import { getItemProps } from '../services/getItemProps'
-import { customFieldTypes } from '../constants/customFieldTypes'
-import NumberInput from './ItemFormFields/NumberInput'
-import DateInput from './ItemFormFields/DateInput'
-import CustomCheckbox from './ItemFormFields/CustomCheckbox'
-import TextInput from './ItemFormFields/TextInput'
-import TextareaInput from './ItemFormFields/TextareaInput'
-import ControlledAutocomplete from './ItemFormFields/ControlledAutocomplete'
-import { sendItem } from '../services/sendItem'
-import routes from '../constants/routes'
-import ButtonProgress from './ButtonProgress'
+import { getItemProps } from '../../../services/getItemProps'
+import { customFieldTypes } from '../../../constants/customFieldTypes'
+import NumberInput from '../../../shared/ItemFormFields/NumberInput'
+import DateInput from '../../../shared/ItemFormFields/DateInput'
+import CustomCheckbox from '../../../shared/ItemFormFields/CustomCheckbox'
+import TextInput from '../../../shared/ItemFormFields/TextInput'
+import TextareaInput from '../../../shared/ItemFormFields/TextareaInput'
+import ControlledAutocomplete from '../../../shared/ItemFormFields/ControlledAutocomplete'
+import { sendItem } from '../../../services/sendItem'
+import routes from '../../../constants/routes'
+import ButtonProgress from '../../../shared/ButtonProgress'
 import { t, Trans } from '@lingui/macro'
 
 const fieldMapping = {
@@ -99,7 +99,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
             disabled={isLoading}
           >
             {formOpen ? t`Cancel` : t`Add item`}
-            <ButtonProgress size={24} inProgress={isLoading} />
+            <ButtonProgress inProgress={isLoading} />
           </Button>
         </Grid>
       )}
@@ -190,7 +190,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
                   disabled={inProgress}
                 >
                   <Trans>Create item!</Trans>
-                  <ButtonProgress size={24} inProgress={inProgress} />
+                  <ButtonProgress inProgress={inProgress} />
                 </Button>
                 <FormControlLabel
                   control={

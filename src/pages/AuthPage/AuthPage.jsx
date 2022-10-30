@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { Box } from '@mui/material'
-import LoginForm from '../../components/LoginForm'
-import SignupForm from '../../components/SignupForm'
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 import NotFoundPage from '../NotFoundPage/NotFoundPage'
 
 function AuthPage() {

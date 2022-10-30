@@ -1,11 +1,11 @@
 import { useForm, useWatch } from 'react-hook-form'
 import { TextField, Button, Grid, Box } from '@mui/material'
 import { useContext } from 'react'
-import { ItemContext } from '../context/ItemContext'
-import { createComment } from '../services/comments'
+import { ItemContext } from '../../../context/ItemContext'
+import { UserContext } from '../../../context/UserContext'
+import { createComment } from '../../../services/comments'
 import { useState } from 'react'
-import ButtonProgress from './ButtonProgress'
-import { UserContext } from '../context/UserContext'
+import ButtonProgress from '../../../shared/ButtonProgress'
 import { Trans, t } from '@lingui/macro'
 
 function CommentForm({ update, setUpdate }) {
@@ -48,7 +48,7 @@ function CommentForm({ update, setUpdate }) {
               type="submit"
             >
               <Trans>Leave comment</Trans>
-              <ButtonProgress size={24} inProgress={inProgress} />
+              <ButtonProgress inProgress={inProgress} />
             </Button>
           </Grid>
         </Grid>

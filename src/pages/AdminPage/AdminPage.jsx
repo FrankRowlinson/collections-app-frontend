@@ -1,8 +1,8 @@
 import { Alert, Typography, Box } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
-import Loader from '../Loader/Loader'
-import UserTable from '../../components/UserTable'
+import Loader from '../../shared/Loader'
+import UserTable from './components/UserTable'
 import { getUsers } from '../../services/getUsers'
 import { Trans } from '@lingui/macro'
 

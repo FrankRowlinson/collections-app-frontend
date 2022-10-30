@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import routes from '../constants/routes'
+import routes from '../../constants/routes'
 import { Trans } from '@lingui/macro'
 
 function SearchDialog({ open, setOpen, handleClose }) {

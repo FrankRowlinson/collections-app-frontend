@@ -12,9 +12,9 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import routes from '../constants/routes'
-import { authenticateUser } from '../services/authentication'
-import { UserContext } from '../context/UserContext'
+import routes from '../../../constants/routes'
+import { authenticateUser } from '../../../services/authentication'
+import { UserContext } from '../../../context/UserContext'
 import AuthButton from './AuthButton'
 import AuthError from './AuthError'
 import { t, Trans } from '@lingui/macro'

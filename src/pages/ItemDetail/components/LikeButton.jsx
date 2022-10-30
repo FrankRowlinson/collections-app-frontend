@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
 import { Button, CircularProgress } from '@mui/material'
 import { FaStar, FaRegStar } from 'react-icons/fa'
-import { like, dislike } from '../services/likeItem'
+import { like, dislike } from '../../../services/likeItem'
 import { useSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../context/UserContext'
+import { UserContext } from '../../../context/UserContext'
 import { useConfirm } from 'material-ui-confirm'
-import routes from '../constants/routes'
+import routes from '../../../constants/routes'
 import { t } from '@lingui/macro'
 
 const likeAction = {

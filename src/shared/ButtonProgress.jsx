@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material'
 
-function ButtonProgress({ inProgress, size }) {
+function ButtonProgress({ inProgress, size = 24 }) {
   return (
     <>
       {inProgress && (

@@ -20,10 +20,10 @@ import {
 import { MdAdd, MdCheckCircle, MdSave, MdInfoOutline } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { sendCollection } from '../../services/sendCollection'
-import MarkdownPreview from '../../components/MarkdownPreview'
+import MarkdownPreview from '../../shared/MarkdownPreview'
 import { getCollectionFormProps } from '../../services/getCollectionProps'
 import { useNavigate } from 'react-router-dom'
-import ButtonProgress from '../../components/ButtonProgress'
+import ButtonProgress from '../../shared/ButtonProgress'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { t, Trans } from '@lingui/macro'
 
@@ -312,7 +312,7 @@ function AddCollection() {
               sx={{ position: 'relative' }}
             >
               <Trans>Create new collection!</Trans>
-              <ButtonProgress size={24} inProgress={inProgress} />
+              <ButtonProgress inProgress={inProgress} />
             </Button>
           </Grid>
         </Grid>

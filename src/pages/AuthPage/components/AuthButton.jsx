@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import ButtonProgress from './ButtonProgress'
+import ButtonProgress from '../../../shared/ButtonProgress'
 
 function AuthButton({ inProgress, text }) {
   return (
@@ -11,7 +11,7 @@ function AuthButton({ inProgress, text }) {
       sx={{ position: 'relative' }}
     >
       {text}
-      <ButtonProgress size={24} inProgress={inProgress} />
+      <ButtonProgress inProgress={inProgress} />
     </Button>
   )
 }

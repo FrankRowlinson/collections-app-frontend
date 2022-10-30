@@ -1,4 +1,4 @@
-import Tag from '../../components/Tag'
+import Tag from '../../shared/Tag'
 
 const TagRenderer = (tag, size, color) => {
   return (

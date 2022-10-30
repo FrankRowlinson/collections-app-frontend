@@ -21,7 +21,7 @@ import {
   getUserProfileData,
   getUserCollections,
 } from '../../services/getUserProfileData'
-import Loader from '../Loader/Loader'
+import Loader from '../../shared/Loader'
 import routes from '../../constants/routes'
 import { Trans, t } from '@lingui/macro'
 import { useInfiniteQuery } from 'react-query'

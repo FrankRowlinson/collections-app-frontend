@@ -18,22 +18,22 @@ import {
   MdOutlineDarkMode,
 } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import { getNavItems } from '../services/navigation'
-import { UserContext } from '../context/UserContext'
-import { ColorModeContext } from '../context/ColorModeContext'
+import { getNavItems } from '../../services/navigation'
+import { UserContext } from '../../context/UserContext'
+import { ColorModeContext } from '../../context/ColorModeContext'
 import { useTheme } from '@mui/material/styles'
-import NavBarItems from '../components/NavBarItems'
-import routes from '../constants/routes'
+import NavBarItems from './NavBarItems'
+import routes from '../../constants/routes'
 import SearchDialog from './SearchDialog'
 import NavbarAvatar from './NavbarAvatar'
 import { t, Trans } from '@lingui/macro'
-import { LocaleContext } from '../context/LocaleContext'
+import { LocaleContext } from '../../context/LocaleContext'
 import {
   usePopupState,
   bindTrigger,
   bindMenu,
 } from 'material-ui-popup-state/hooks'
-import locales from '../constants/locales'
+import locales from '../../constants/locales'
 
 const drawerWidth = '300px'
 const localeMapping = {}

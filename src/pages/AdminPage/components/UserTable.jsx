@@ -8,16 +8,16 @@ import { useTheme } from '@mui/material/styles'
 import { MdDeleteForever } from 'react-icons/md'
 import { TbLock, TbLockOpen } from 'react-icons/tb'
 import { RiUserSettingsLine } from 'react-icons/ri'
-import { generateColumns, generateRows } from '../services/generateUserGrid'
+import { generateColumns, generateRows } from '../../../services/generateUserGrid'
 import { useConfirm } from 'material-ui-confirm'
-import roles from '../constants/roles'
-import { UserContext } from '../context/UserContext'
+import roles from '../../../constants/roles'
+import { UserContext } from '../../../context/UserContext'
 import {
   changeUsersRole,
   blockUsers,
   unblockUsers,
   deleteUsers,
-} from '../services/adminActions'
+} from '../../../services/adminActions'
 import { t, Trans } from '@lingui/macro'
 
 function UserTable({ users }) {
