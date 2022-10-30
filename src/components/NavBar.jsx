@@ -83,7 +83,7 @@ function NavBar(props) {
       <>
         <IconButton
           {...bindTrigger(popupState)}
-          sx={{ color: 'black', mx: 0.5, fontSize: 20 }}
+          sx={{ color: 'text.primary', mx: 0.5, fontSize: 20 }}
         >
           {localeMapping[locale]}
         </IconButton>

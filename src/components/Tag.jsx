@@ -2,7 +2,7 @@ import { Chip, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import routes from '../constants/routes'
 
-function Tag({ name, setInProgress, inCloud, color = 'default' }) {
+function Tag({ name, color = 'default' }) {
   const navigate = useNavigate()
   const handleTagSearch = async () => {
     navigate(routes.SEARCH_RESULTS, {

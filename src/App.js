@@ -30,6 +30,7 @@ import UserProfile from './pages/UserProfile/UserProfile'
 import SearchResults from './pages/SearchResults/SearchResults'
 import AdminPage from './pages/AdminPage/AdminPage'
 import { LocaleContext } from './context/LocaleContext'
+import SelectionResults from './pages/SearchResults/SelectionResults'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -159,6 +160,10 @@ function App() {
                             <Route
                               path={routes.SEARCH_RESULTS}
                               element={<SearchResults />}
+                            />
+                            <Route
+                              path={routes.SELECTION_RESULTS}
+                              element={<SelectionResults />}
                             />
                             <Route
                               path={routes.NOT_FOUND}

@@ -9,6 +9,7 @@ const routes = {
   ADD_ITEM: '/add-item',
   ITEMS: '/items',
   SEARCH_RESULTS: '/search',
+  SELECTION_RESULTS: '/select',
   ADMIN: '/admin',
   NOT_FOUND: '/not_found',
 }
