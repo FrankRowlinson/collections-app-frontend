@@ -1,15 +1,21 @@
 import axios from 'axios'
 
-export async function search(data) {
-  const response = await axios.get('search', {
-    params: data,
-  })
-  return response.data
+export function search(query) {
+  const fetchData = async ({ pageParam = 1 }) => {
+    const response = await axios.get('search', {
+      params: { search: query, page: pageParam },
+    })
+    return response.data
+  }
+  return fetchData
 }
 
-export async function searchByTag(tag) {
-  const response = await axios.get('search/bytag', {
-    params: { tag },
-  })
-  return response.data
+export function searchByTag(query) {
+  const fetchData = async ({ pageParam = 1 }) => {
+    const response = await axios.get('search/bytag', {
+      params: { tag: query, page: pageParam },
+    })
+    return response.data
+  }
+  return fetchData
 }

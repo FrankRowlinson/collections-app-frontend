@@ -1,21 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   Dialog,
   Button,
   DialogContent,
   TextField,
-  Backdrop,
-  CircularProgress,
 } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { search } from '../services/search'
 import routes from '../constants/routes'
 import { Trans } from '@lingui/macro'
 
 function SearchDialog({ open, setOpen, handleClose }) {
   const navigate = useNavigate()
-  const [inProgress, setInProgress] = useState(false)
   const { register, handleSubmit, setFocus } = useForm({
     shouldUnregister: true,
   })
@@ -25,24 +21,17 @@ function SearchDialog({ open, setOpen, handleClose }) {
   }, [setFocus, open])
 
   const onSubmit = async (data) => {
-    setInProgress(true)
-    const response = await search(data)
     navigate(routes.SEARCH_RESULTS, {
       state: {
         type: 'search',
         query: data.search,
-        items: response.items,
       },
     })
-    setInProgress(false)
     setOpen(false)
   }
 
   return (
     <Dialog maxWidth="md" fullWidth open={open} onClose={handleClose}>
-      <Backdrop sx={{ color: '#fff' }} open={inProgress}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
       {open ? (
         <DialogContent sx={{ m: 0, p: 1 }}>
           <form

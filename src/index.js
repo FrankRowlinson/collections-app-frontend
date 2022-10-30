@@ -8,15 +8,19 @@ import '@fontsource/roboto/700.css'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
+const client = new QueryClient()
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = process.env.REACT_APP_HOST
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 )

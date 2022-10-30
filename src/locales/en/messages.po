@@ -261,7 +261,7 @@ msgstr "Field Type"
 msgid "Field name"
 msgstr "Field name"
 
-#: src/pages/SearchResults/SearchResults.jsx:81
+#: src/pages/SearchResults/SearchResults.jsx:83
 msgid "Found nothing... try different query"
 msgstr "Found nothing... try different query"
 
@@ -420,7 +420,7 @@ msgstr "Role"
 msgid "Save changes"
 msgstr "Save changes"
 
-#: src/components/SearchDialog.jsx:65
+#: src/components/SearchDialog.jsx:62
 msgid "Search"
 msgstr "Search"
 
@@ -567,7 +567,7 @@ msgid "You've signed up successfully"
 msgstr "You've signed up successfully"
 
 #: src/pages/ItemDetail/ItemDetail.jsx:102
-#: src/pages/SearchResults/SearchResults.jsx:67
+#: src/pages/SearchResults/SearchResults.jsx:69
 msgid "by {0}"
 msgstr "by {0}"
 

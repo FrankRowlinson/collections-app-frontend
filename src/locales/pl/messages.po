@@ -261,7 +261,7 @@ msgstr "Typ pola"
 msgid "Field name"
 msgstr "Nazwa pola"
 
-#: src/pages/SearchResults/SearchResults.jsx:81
+#: src/pages/SearchResults/SearchResults.jsx:83
 msgid "Found nothing... try different query"
 msgstr "Nic nie znalazłem... wypróbuj inne zapytanie"
 
@@ -420,7 +420,7 @@ msgstr "Rola"
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-#: src/components/SearchDialog.jsx:65
+#: src/components/SearchDialog.jsx:62
 msgid "Search"
 msgstr "Szukaj"
 
@@ -555,7 +555,7 @@ msgid "You've signed up successfully"
 msgstr "Zarejestrowałeś się pomyślnie"
 
 #: src/pages/ItemDetail/ItemDetail.jsx:102
-#: src/pages/SearchResults/SearchResults.jsx:67
+#: src/pages/SearchResults/SearchResults.jsx:69
 msgid "by {0}"
 msgstr "przez {0}"
 
