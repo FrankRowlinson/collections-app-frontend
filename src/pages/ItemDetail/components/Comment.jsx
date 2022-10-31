@@ -9,7 +9,7 @@ function Comment({ comment }) {
         variant="body1"
         sx={{ fontWeight: 600, display: 'inline-block', mr: 1 }}
       >
-        {comment.author ? comment.author.name : t`DELETED`}
+        {comment.author ? comment.author.username : t`DELETED`}
       </Typography>
       <Typography
         variant="body2"
