@@ -286,6 +286,10 @@ msgstr "Home"
 msgid "Image of item"
 msgstr "Image of item"
 
+#: src/pages/ItemDetail/components/LikeButton.jsx:19
+msgid "Item added to your favorites"
+msgstr "Item added to your favorites"
+
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:126
 #: src/services/generateItemGrid.js:46
 msgid "Item name"
@@ -295,13 +299,17 @@ msgstr "Item name"
 msgid "Item name is required"
 msgstr "Item name is required"
 
+#: src/pages/ItemDetail/components/LikeButton.jsx:18
+msgid "Item removed from your favorites"
+msgstr "Item removed from your favorites"
+
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:86
 msgid "Item successfully created!"
 msgstr "Item successfully created!"
 
 #: src/pages/ItemDetail/components/LikeButton.jsx:52
-msgid "Item {0} your favorites"
-msgstr "Item {0} your favorites"
+#~ msgid "Item {0} your favorites"
+#~ msgstr "Item {0} your favorites"
 
 #: src/pages/ItemDetail/components/CommentForm.jsx:50
 msgid "Leave comment"
@@ -335,7 +343,7 @@ msgstr "Maximum length of name is 50"
 msgid "Maximum tag length is 15"
 msgstr "Maximum tag length is 15"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:39
+#: src/pages/ItemDetail/components/LikeButton.jsx:44
 msgid "Nah, I'll stay here"
 msgstr "Nah, I'll stay here"
 
@@ -542,7 +550,7 @@ msgstr "Valid password is required"
 msgid "Yes / No"
 msgstr "Yes / No"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:38
+#: src/pages/ItemDetail/components/LikeButton.jsx:43
 msgid "Yes, show me the way"
 msgstr "Yes, show me the way"
 
@@ -554,7 +562,7 @@ msgstr "You can use Markdown to format text inside!"
 msgid "You have to be a member to comment..."
 msgstr "You have to be a member to comment..."
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:36
+#: src/pages/ItemDetail/components/LikeButton.jsx:41
 msgid "You have to be a member to like items. Want to join now?"
 msgstr "You have to be a member to like items. Want to join now?"
 
@@ -575,7 +583,7 @@ msgid "Your search - <0>{query}</0> - did not match any items"
 msgstr "Your search - <0>{query}</0> - did not match any items"
 
 #: src/pages/ItemDetail/ItemDetail.jsx:102
-#: src/pages/SearchResults/SearchItem.jsx:36
+#: src/pages/SearchResults/SearchItem.jsx:38
 msgid "by {0}"
 msgstr "by {0}"
 
@@ -586,6 +594,10 @@ msgstr "email"
 #: src/App.js:50
 #~ msgid "en"
 #~ msgstr "en"
+
+#: src/pages/SearchResults/SearchItem.jsx:27
+msgid "https://via.placeholder.com/300?text={0}"
+msgstr "https://via.placeholder.com/300?text={0}"
 
 #: src/pages/AddCollection/AddCollection.jsx:201
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:163

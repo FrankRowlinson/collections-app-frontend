@@ -265,10 +265,6 @@ msgstr "Typ pola"
 msgid "Field name"
 msgstr "Nazwa pola"
 
-#: src/pages/SearchResults/SearchResults.jsx:83
-#~ msgid "Found nothing... try different query"
-#~ msgstr "Nic nie znalazłem... wypróbuj inne zapytanie"
-
 #: src/pages/AddCollection/AddCollection.jsx:105
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:118
 msgid "General information"
@@ -286,6 +282,10 @@ msgstr "Strona główna"
 msgid "Image of item"
 msgstr "Obraz przedmiotu"
 
+#: src/pages/ItemDetail/components/LikeButton.jsx:19
+msgid "Item added to your favorites"
+msgstr "Przedmiot dodany do ulubionych"
+
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:126
 #: src/services/generateItemGrid.js:46
 msgid "Item name"
@@ -295,13 +295,13 @@ msgstr "Nazwa przedmiotu"
 msgid "Item name is required"
 msgstr "Nazwa przedmiotu jest wymagana"
 
+#: src/pages/ItemDetail/components/LikeButton.jsx:18
+msgid "Item removed from your favorites"
+msgstr "Przedmiot usunięty z ulubionych"
+
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:86
 msgid "Item successfully created!"
 msgstr "Przedmiot został pomyślnie utworzony!"
-
-#: src/pages/ItemDetail/components/LikeButton.jsx:52
-msgid "Item {0} your favorites"
-msgstr "Przedmiot {0} ulubionych"
 
 #: src/pages/ItemDetail/components/CommentForm.jsx:50
 msgid "Leave comment"
@@ -335,7 +335,7 @@ msgstr "Maksymalna długość nazwy to 10"
 msgid "Maximum tag length is 15"
 msgstr "Maksymalna długość tagu to 15"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:39
+#: src/pages/ItemDetail/components/LikeButton.jsx:44
 msgid "Nah, I'll stay here"
 msgstr "Nie, zostanę tutaj"
 
@@ -530,7 +530,7 @@ msgstr "Wymagane jest prawidłowe hasło"
 msgid "Yes / No"
 msgstr "Tak / Nie"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:38
+#: src/pages/ItemDetail/components/LikeButton.jsx:43
 msgid "Yes, show me the way"
 msgstr "Tak, pokaż mi drogę"
 
@@ -542,7 +542,7 @@ msgstr "Możesz użyć Markdown do sformatowania tekstu w środku!"
 msgid "You have to be a member to comment..."
 msgstr "Aby komentować, musisz być członkiem..."
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:36
+#: src/pages/ItemDetail/components/LikeButton.jsx:41
 msgid "You have to be a member to like items. Want to join now?"
 msgstr "Musisz być członkiem, aby polubić przedmioty. Chcesz dołączyć teraz?"
 
@@ -563,7 +563,7 @@ msgid "Your search - <0>{query}</0> - did not match any items"
 msgstr "Twoje wyszukiwanie - <0>{query}</0> - nie pasuje do żadnego elementu"
 
 #: src/pages/ItemDetail/ItemDetail.jsx:102
-#: src/pages/SearchResults/SearchItem.jsx:36
+#: src/pages/SearchResults/SearchItem.jsx:38
 msgid "by {0}"
 msgstr "przez {0}"
 
@@ -574,6 +574,10 @@ msgstr "e-mail"
 #: src/App.js:50
 #~ msgid "en"
 #~ msgstr ""
+
+#: src/pages/SearchResults/SearchItem.jsx:27
+msgid "https://via.placeholder.com/300?text={0}"
+msgstr ""
 
 #: src/pages/AddCollection/AddCollection.jsx:201
 #: src/pages/CollectionDetail/components/AddItemForm.jsx:163

@@ -14,6 +14,11 @@ const likeAction = {
   false: dislike,
 }
 
+const snackbarResponse = {
+  disliked: t`Item removed from your favorites`,
+  liked: t`Item added to your favorites`,
+}
+
 function LikeButton({ itemId, likes, beenLiked }) {
   const navigate = useNavigate()
   const confirm = useConfirm()
@@ -48,11 +53,7 @@ function LikeButton({ itemId, likes, beenLiked }) {
     setInProgress(true)
     const response = await likeAction[!selected](itemId)
     if (response.status === 'ok') {
-      enqueueSnackbar(
-        t`Item ${
-          response.action === 'disliked' ? t`removed from ` : t`added to `
-        } your favorites`
-      )
+      enqueueSnackbar(snackbarResponse[response.action])
       setSelected(!selected)
     }
     setInProgress(false)

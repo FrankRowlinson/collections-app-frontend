@@ -1,4 +1,11 @@
-import { Grid, CardActionArea, CardMedia, Card, Typography, CardContent } from '@mui/material'
+import {
+  Grid,
+  CardActionArea,
+  CardMedia,
+  Card,
+  Typography,
+  CardContent,
+} from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../constants/routes'
 import { t } from '@lingui/macro'
@@ -6,14 +13,7 @@ import { t } from '@lingui/macro'
 function SearchItem({ item }) {
   const navigate = useNavigate()
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      sx={{ display: 'flex' }}
-    >
+    <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: 'flex' }}>
       <CardActionArea
         onClick={() => {
           navigate(`${routes.ITEMS}/byid/${item.id}`)
@@ -23,7 +23,9 @@ function SearchItem({ item }) {
           <CardMedia
             component="img"
             sx={{ height: { xs: 350, sm: 300, md: 250 } }}
-            image={item.img || 'https://via.placeholder.com/300?text=No+image'}
+            image={
+              item.img || t`https://via.placeholder.com/300?text=${t`No+image`}`
+            }
             alt=""
           />
           <CardContent>
