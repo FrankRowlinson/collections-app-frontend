@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCollection } from '../../services/fetchCollections'
 import { Container, Typography, Grid, Box, Divider, Paper } from '@mui/material'
@@ -15,38 +15,41 @@ import CollectionMenu from './components/CollectionMenu'
 import { t, Trans } from '@lingui/macro'
 import moment from 'moment'
 import { CollectionContext } from '../../context/CollectionContext'
+import { useQuery } from 'react-query'
 
 function CollectionDetail() {
   const { user } = useContext(UserContext)
   const { id } = useParams()
   const [rightToEdit, setRightToEdit] = useState(false)
-  const [collection, setCollection] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
+  const {
+    data: { collection, status },
+    isLoading,
+    refetch,
+  } = useQuery(['collectionDetail'], getCollection(id))
+
+  const defaultValues = useMemo(
+    () => ({
+      name: collection.name,
+      description: collection.description,
+    }),
+    [collection]
+  )
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getCollection(id)
-      response.error
-        ? navigate(routes.NOT_FOUND, {
-            state: { message: t`Collection not found` },
-          })
-        : setCollection(response.collection)
-    }
-    fetchData()
-  }, [id, navigate])
-
-  useEffect(() => {
-    if (collection) {
-      setIsLoading(false)
+    if (status === 'ok') {
       setRightToEdit(
         user.role === 'ADMIN' ||
           (user.role === 'USER' && user.id === collection.authorId)
       )
-    } else {
-      setIsLoading(true)
+    } else if (status === 'error') {
+      navigate(routes.NOT_FOUND, {
+        state: {
+          message: t`Collection not found`,
+        },
+      })
     }
-  }, [collection, user, navigate])
+  }, [status, collection, user, navigate])
 
   return (
     <Container maxWidth="lg">
@@ -56,8 +59,8 @@ function CollectionDetail() {
         <>
           <CollectionContext.Provider
             value={{
-              name: collection.name,
-              description: collection.description,
+              defaultValues,
+              refetch,
             }}
           >
             <Grid container spacing={2}>

@@ -1,8 +1,11 @@
 import axios from 'axios'
 
-export async function getCollection(id) {
-  const response = await axios.get(`collections/byId/${id}`)
-  return response.data
+export function getCollection(id) {
+  const fetchData = async () => {
+    const response = await axios.get(`collections/byId/${id}`)
+    return response.data
+  }
+  return fetchData
 }
 
 export async function getCollections() {

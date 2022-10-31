@@ -21,7 +21,7 @@ import ButtonProgress from '../../../shared/ButtonProgress'
 function CollectionEditForm({ collectionId, open, setEditFormOpen }) {
   const { enqueueSnackbar } = useSnackbar()
   const [inProgress, setInProgress] = useState(false)
-  const defaultValues = useContext(CollectionContext)
+  const { defaultValues, refetch } = useContext(CollectionContext)
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: defaultValues,
   })
@@ -42,6 +42,7 @@ function CollectionEditForm({ collectionId, open, setEditFormOpen }) {
         enqueueSnackbar('Collection info successfully edited', {
           variant: 'success',
         })
+        refetch()
         handleClose()
       } else {
         enqueueSnackbar(t`Error happened on server. Try again later`, {
