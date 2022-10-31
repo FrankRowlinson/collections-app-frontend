@@ -1,8 +1,11 @@
 import axios from 'axios'
 
-export async function getComments(itemId) {
-  const response = await axios.get('items/comments', { params: { itemId } })
-  return response.data
+export function getComments(itemId) {
+  const fetchData = async () => {
+    const response = await axios.get('items/comments', { params: { itemId } })
+    return response.data
+  }
+  return fetchData
 }
 
 export async function createComment(itemId, fieldData) {

@@ -8,7 +8,7 @@ import { useState } from 'react'
 import ButtonProgress from '../../../shared/ButtonProgress'
 import { Trans, t } from '@lingui/macro'
 
-function CommentForm({ update, setUpdate }) {
+function CommentForm({ refetch }) {
   const { user } = useContext(UserContext)
   const { itemId } = useContext(ItemContext)
   const { register, handleSubmit, control, resetField } = useForm()
@@ -18,7 +18,7 @@ function CommentForm({ update, setUpdate }) {
     setInProgress(true)
     createComment(itemId, data).then(() => {
       setInProgress(false)
-      setUpdate(!update)
+      refetch()
       resetField('commentField')
     })
   }
