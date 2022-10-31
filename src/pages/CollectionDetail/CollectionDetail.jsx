@@ -155,6 +155,7 @@ function CollectionDetail() {
                 <AddItemForm
                   rightToEdit={rightToEdit}
                   collectionName={data.collection.name}
+                  refetch={refetch}
                 />
               </Grid>
             </CollectionContext.Provider>

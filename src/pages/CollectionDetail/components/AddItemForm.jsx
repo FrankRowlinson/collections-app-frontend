@@ -34,7 +34,7 @@ const fieldMapping = {
   checkbox: CustomCheckbox,
 }
 
-function AddItemForm({ rightToEdit, collectionName }) {
+function AddItemForm({ rightToEdit, collectionName, refetch }) {
   const { id } = useParams()
   const [customFields, setCustomFields] = useState(null)
   const [tagOptions, setTagOptions] = useState([])
@@ -83,6 +83,7 @@ function AddItemForm({ rightToEdit, collectionName }) {
       navigate(`${routes.ITEMS}/byid/${response.itemId}`)
     }
     reset()
+    refetch()
     enqueueSnackbar(t`Item successfully created!`, { variant: 'success' })
     setInProgress(false)
   }
