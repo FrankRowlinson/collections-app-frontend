@@ -6,7 +6,7 @@ export async function getRecentItems() {
 }
 
 export async function getTags() {
-  const response = await axios.get('items/tagscloud')
+  const response = await axios.get('tags/cloud')
   return transformTagsForCloud(response.data.tags)
 }
 
