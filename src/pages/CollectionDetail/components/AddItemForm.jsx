@@ -15,8 +15,8 @@ import { useForm, useWatch } from 'react-hook-form'
 import { MdCheckCircle, MdSave } from 'react-icons/md'
 import { useNavigate, useParams } from 'react-router-dom'
 import { routes, customFieldTypes } from '../../../constants'
-import { getItemProps } from '../../../services/getItemProps'
-import { sendItem } from '../../../services/sendItem'
+import { createItem } from '../../../services/itemAPI'
+import getItemProps from '../../../services/getItemProps'
 import { ButtonProgress } from '../../../shared'
 import {
   ControlledAutocomplete,
@@ -79,7 +79,7 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
 
   const onSubmit = async (data) => {
     setInProgress(true)
-    const response = await sendItem(data, id)
+    const response = await createItem(data, id)
     if (openItemOnSubmit) {
       navigate(`${routes.ITEMS}/byid/${response.itemId}`)
     }

@@ -9,7 +9,7 @@ const customFieldTypes = {
   DATE: { label: t`Date`, type: 'date' },
 }
 
-export async function getCollectionFormProps() {
+async function getCollectionProps() {
   const response = await axios.get('collections/props')
   response.data.fieldTypes = response.data.fieldTypes.map((el) => ({
     label: customFieldTypes[el].label,
@@ -17,3 +17,5 @@ export async function getCollectionFormProps() {
   }))
   return response.data
 }
+
+export default getCollectionProps

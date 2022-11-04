@@ -27,7 +27,7 @@ import {
   SelectionResults,
   UserProfile
 } from './pages'
-import { getUser, logout } from './services/authentication'
+import { getCurrentUser, logout } from './services/userAPI'
 import { Loader, Navbar } from './shared'
 import { getDesignTokens } from './themes/getDesignTokens'
 
@@ -88,7 +88,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = await getUser()
+      const user = await getCurrentUser()
       user.hasAccess && setUser(user)
       setIsLoading(false)
     }

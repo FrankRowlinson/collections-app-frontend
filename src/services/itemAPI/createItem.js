@@ -18,7 +18,7 @@ function formatCustomFields(customFields) {
   return result
 }
 
-export async function sendItem(data, collectionId) {
+async function createItem(data, collectionId) {
   const { itemName, itemImage, tags, ...customFields } = data
   const formattedData = {
     itemName,
@@ -34,3 +34,5 @@ export async function sendItem(data, collectionId) {
   const response = await axios.post('items', formData)
   return response.data
 }
+
+export default createItem

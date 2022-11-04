@@ -1,11 +1,6 @@
 import axios from 'axios'
 
-export async function getUserProfileData(id) {
-  const response = await axios.get('/users/profile', { params: { id } })
-  return response.data
-}
-
-export function getUserCollections(id) {
+function getUserCollections(id) {
   const fetchData = async ({ pageParam = 1 }) => {
     const response = await axios.get(`/collections/userCollections/${id}`, {
       params: { page: pageParam },
@@ -15,4 +10,4 @@ export function getUserCollections(id) {
   return fetchData
 }
 
-export default getUserProfileData
+export default getUserCollections

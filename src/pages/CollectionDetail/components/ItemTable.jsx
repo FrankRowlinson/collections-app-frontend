@@ -17,8 +17,7 @@ import {
 } from '@mui/material'
 import { routes } from '../../../constants'
 import { useNavigate } from 'react-router-dom'
-import { getItemsById } from '../../../services/getItemsById'
-import { deleteItemsById } from '../../../services/deleteItemsById'
+import { getItems, deleteItems } from '../../../services/itemAPI'
 import { Trans } from '@lingui/macro'
 
 function ItemTable({ items, rightToEdit }) {
@@ -41,14 +40,14 @@ function ItemTable({ items, rightToEdit }) {
 
   const handleRowDeletion = async () => {
     const ids = selectedRows.map((el) => el.id)
-    await deleteItemsById(ids)
+    await deleteItems(ids)
     setRowData(rowData.filter((el) => !ids.includes(el.id)))
     resetSelection()
   }
 
   const handleRowShow = async () => {
     setInProgress(true)
-    const response = await getItemsById(selectedRows.map((el) => el.id))
+    const response = await getItems(selectedRows.map((el) => el.id))
     navigate(routes.SELECTION_RESULTS, {
       state: { items: response.items },
     })

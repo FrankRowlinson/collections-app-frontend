@@ -1,7 +1,10 @@
-import axios from 'axios'
+import getItemFields from './collectionAPI/getItemFields'
+import getTags from './tagAPI/getTags'
 
-export async function getItemProps(id) {
-  const fieldsResponse = await axios.get(`collections/fields/${id}`)
-  const tagsResponse = await axios.get('tags')
-  return { fields: fieldsResponse.data.fields, tags: tagsResponse.data.tags }
+async function getItemProps(id) {
+  const tagsResponse = await getTags()
+  const fieldsResponse = await getItemFields(id)
+  return { fields: fieldsResponse.fields, tags: tagsResponse.tags }
 }
+
+export default getItemProps

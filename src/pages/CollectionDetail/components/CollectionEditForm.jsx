@@ -13,7 +13,7 @@ import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { CollectionContext } from '../../../context'
 import { Trans, t } from '@lingui/macro'
-import { editCollection } from '../../../services/manageCollection'
+import { editCollection } from '../../../services/collectionAPI'
 import { useSnackbar } from 'notistack'
 import { ButtonProgress, MarkdownPreview } from '../../../shared'
 

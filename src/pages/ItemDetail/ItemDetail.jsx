@@ -12,7 +12,7 @@ import {
 import Image from 'mui-image'
 import { Details, CommentSection, LikeButton } from './components'
 import { useParams, Link } from 'react-router-dom'
-import getItem from '../../services/getItem'
+import { getItem } from '../../services/itemAPI'
 import { Loader, Tag } from '../../shared'
 import { routes } from '../../constants'
 import moment from 'moment'

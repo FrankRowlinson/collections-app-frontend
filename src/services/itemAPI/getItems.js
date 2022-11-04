@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-export async function getItemsById(ids) {
+async function getItems(ids) {
   const response = await axios.get('items', {
     params: { ids },
   })
   return response.data
 }
+
+export default getItems

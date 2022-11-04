@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import { Alert, Box, Typography } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context'
-import { getUsers } from '../../services/getUsers'
+import { getUsers } from '../../services/userAPI'
 import { Loader } from '../../shared'
 import { UserTable } from './components'
 

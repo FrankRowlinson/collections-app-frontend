@@ -20,10 +20,8 @@ import { useInfiniteQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { routes } from '../../constants'
 import { UserContext } from '../../context'
-import {
-  getUserCollections,
-  getUserProfileData,
-} from '../../services/getUserProfileData'
+import { getUserProfileData } from '../../services/userAPI'
+import { getUserCollections } from '../../services/collectionAPI'
 import { Loader } from '../../shared'
 
 function UserProfile() {

@@ -1,18 +1,8 @@
 import axios from 'axios'
 
-export async function getRecentItems() {
-  const response = await axios.get('items/recent')
-  return response.data
-}
-
-export async function getTags() {
+async function getTagsForCloud() {
   const response = await axios.get('tags/cloud')
   return transformTagsForCloud(response.data.tags)
-}
-
-export async function getBiggestCollections() {
-  const response = await axios.get('collections/biggest')
-  return response.data
 }
 
 const transformTagsForCloud = (tags) => {
@@ -24,3 +14,5 @@ const transformTagsForCloud = (tags) => {
     }
   })
 }
+
+export default getTagsForCloud

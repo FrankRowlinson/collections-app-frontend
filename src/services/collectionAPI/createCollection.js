@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function sendCollection(data) {
+async function createCollection(data) {
   const formData = new FormData()
   data['collection-image'] &&
     formData.append('img', data['collection-image'][0])
@@ -8,3 +8,5 @@ export async function sendCollection(data) {
   const res = await axios.post('collections', formData)
   return res
 }
+
+export default createCollection

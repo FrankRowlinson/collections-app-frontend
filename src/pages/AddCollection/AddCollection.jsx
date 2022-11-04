@@ -22,8 +22,7 @@ import { MdAdd, MdCheckCircle, MdInfoOutline, MdSave } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useNavigate } from 'react-router-dom'
-import { getCollectionFormProps } from '../../services/getCollectionProps'
-import { sendCollection } from '../../services/sendCollection'
+import { createCollection, getCollectionProps } from '../../services/collectionAPI'
 import { ButtonProgress, MarkdownPreview } from '../../shared'
 
 function AddCollection() {
@@ -53,7 +52,7 @@ function AddCollection() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getCollectionFormProps()
+      const response = await getCollectionProps()
       setCollectionTypes(response.collectionTypes)
       setFieldTypes(response.fieldTypes)
       setIsLoading(false)
@@ -85,7 +84,7 @@ function AddCollection() {
 
   const onSubmit = async (data) => {
     setInProgress(true)
-    const response = await sendCollection(data)
+    const response = await createCollection(data)
     navigate(`/collections/byid/${response.data.collection_id}`)
   }
 

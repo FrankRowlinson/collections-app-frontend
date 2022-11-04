@@ -24,7 +24,7 @@ function SearchItem({ item }) {
             component="img"
             sx={{ height: { xs: 350, sm: 300, md: 250 } }}
             image={
-              item.img || t`https://via.placeholder.com/300?text=${t`No+image`}`
+              item.img || `https://via.placeholder.com/300?text=${t`No+image`}`
             }
             alt=""
           />

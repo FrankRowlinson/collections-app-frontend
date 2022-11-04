@@ -7,7 +7,7 @@ import { FaRegStar, FaStar } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../constants/routes'
 import { UserContext } from '../../../context'
-import { dislike, like } from '../../../services/likeItem'
+import { dislike, like } from '../../../services/likeAPI'
 import { ButtonProgress } from '../../../shared'
 
 const likeAction = {

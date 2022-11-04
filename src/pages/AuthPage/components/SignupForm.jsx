@@ -14,7 +14,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { t, Trans } from '@lingui/macro'
 import { routes } from '../../../constants'
-import { authenticateUser } from '../../../services/authentication'
+import { authenticateUser } from '../../../services/userAPI'
 import { AuthButton, AuthError } from './'
 import FormPopover from './FormPopover'
 

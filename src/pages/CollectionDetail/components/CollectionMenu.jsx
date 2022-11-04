@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../../constants'
-import { deleteCollection } from '../../../services/manageCollection'
+import { deleteCollection } from '../../../services/collectionAPI'
 import { CollectionEditForm } from './'
 
 const CollectionMenu = ({ rightToEdit, id }) => {

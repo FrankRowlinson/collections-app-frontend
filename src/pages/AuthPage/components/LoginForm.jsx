@@ -15,7 +15,7 @@ import { Link, Navigate, useLocation } from 'react-router-dom'
 import * as yup from 'yup'
 import { routes } from '../../../constants'
 import { UserContext } from '../../../context'
-import { authenticateUser } from '../../../services/authentication'
+import { authenticateUser } from '../../../services/userAPI'
 import { AuthButton, AuthError } from './'
 
 const requiredUsernameError = t`Enter a valid username`

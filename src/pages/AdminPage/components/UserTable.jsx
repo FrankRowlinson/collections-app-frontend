@@ -17,7 +17,7 @@ import {
   changeUsersRole,
   deleteUsers,
   unblockUsers,
-} from '../../../services/adminActions'
+} from '../../../services/userAPI'
 import {
   generateColumns,
   generateRows,

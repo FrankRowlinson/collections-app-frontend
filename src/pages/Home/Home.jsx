@@ -1,31 +1,29 @@
-import { useState, useEffect } from 'react'
-import moment from 'moment'
+import { t, Trans } from '@lingui/macro'
 import {
-  Container,
-  Grid,
+  Backdrop,
+  Box,
   Card,
   CardActionArea,
-  CardMedia,
   CardContent,
-  Typography,
+  CardMedia,
   CircularProgress,
-  Box,
-  Backdrop,
+  Container,
+  Grid,
+  Typography,
 } from '@mui/material'
-import { TagCloud } from 'react-tagcloud'
+import moment from 'moment'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { TagCloud } from 'react-tagcloud'
 import { routes } from '../../constants'
-import {
-  getRecentItems,
-  getBiggestCollections,
-  getTags,
-} from '../../services/homePageServices'
+import { getBiggestCollections } from '../../services/collectionAPI'
+import { getRecentItems } from '../../services/itemAPI'
+import { getTagsForCloud } from '../../services/tagAPI'
 import {
   CollectionsSkeleton,
   RecentItemsSkeleton,
   TagRenderer,
 } from './components'
-import { Trans, t } from '@lingui/macro'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -59,7 +57,7 @@ function Home() {
   // load tags for tag cloud
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getTags()
+      const data = await getTagsForCloud()
       setTags(data.map((el) => ({ ...el, setInProgress: setInProgress })))
     }
     fetchData()
