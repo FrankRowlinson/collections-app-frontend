@@ -3,7 +3,10 @@ import { AgGridReact } from 'ag-grid-react'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
-import { generateColumns, generateRows } from '../../../services/generateItemGrid'
+import {
+  generateColumns,
+  generateRows,
+} from '../../../services/generateItemGrid'
 import { useTheme } from '@mui/material/styles'
 import {
   Box,
@@ -12,7 +15,7 @@ import {
   Backdrop,
   CircularProgress,
 } from '@mui/material'
-import routes from '../../../constants/routes'
+import { routes } from '../../../constants'
 import { useNavigate } from 'react-router-dom'
 import { getItemsById } from '../../../services/getItemsById'
 import { deleteItemsById } from '../../../services/deleteItemsById'

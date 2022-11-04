@@ -4,8 +4,8 @@ import { Typography, Grid, Container, Button } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { search, searchByTag } from '../../services/search'
 import { useInfiniteQuery } from 'react-query'
-import Loader from '../../shared/Loader'
-import SearchItem from './SearchItem'
+import { Loader } from '../../shared'
+import { SearchItem } from './components'
 
 const searchMethodMapping = {
   search: search,

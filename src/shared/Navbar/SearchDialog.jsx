@@ -1,14 +1,9 @@
+import { Trans } from '@lingui/macro'
+import { Button, Dialog, DialogContent, TextField } from '@mui/material'
 import { useEffect } from 'react'
-import {
-  Dialog,
-  Button,
-  DialogContent,
-  TextField,
-} from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import routes from '../../constants/routes'
-import { Trans } from '@lingui/macro'
+import { routes } from '../../constants'
 
 function SearchDialog({ open, setOpen, handleClose }) {
   const navigate = useNavigate()

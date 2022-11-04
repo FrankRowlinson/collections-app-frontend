@@ -1,3 +1,5 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-export const ItemContext = createContext(null)
+const ItemContext = createContext(null)
+
+export default ItemContext

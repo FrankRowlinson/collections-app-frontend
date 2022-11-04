@@ -1,0 +1,5 @@
+export { default as Comment } from './Comment'
+export { default as CommentSection } from './CommentSection'
+export { default as CommentForm } from './CommentForm'
+export { default as Details } from './Details'
+export { default as LikeButton } from './LikeButton'

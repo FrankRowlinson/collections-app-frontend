@@ -1,6 +1,6 @@
 import { Container, Grid, Typography } from '@mui/material'
 import { t } from '@lingui/macro'
-import SearchItem from './SearchItem'
+import { SearchItem } from './components'
 import { useLocation } from 'react-router-dom'
 
 function SelectionResults() {

@@ -2,7 +2,7 @@ import moment from 'moment'
 import { Chip } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { t } from '@lingui/macro'
-import routes from '../constants/routes'
+import { routes } from '../constants'
 
 const TagsRenderer = (params) => {
   return (

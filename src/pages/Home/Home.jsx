@@ -14,15 +14,17 @@ import {
 } from '@mui/material'
 import { TagCloud } from 'react-tagcloud'
 import { useNavigate } from 'react-router-dom'
-import routes from '../../constants/routes'
+import { routes } from '../../constants'
 import {
   getRecentItems,
   getBiggestCollections,
   getTags,
 } from '../../services/homePageServices'
-import TagRenderer from './TagRenderer'
-import RecentItemsSkeleton from './RecentItemsSkeleton'
-import CollectionsSkeleton from './CollectionsSkeleton'
+import {
+  CollectionsSkeleton,
+  RecentItemsSkeleton,
+  TagRenderer,
+} from './components'
 import { Trans, t } from '@lingui/macro'
 
 const cardBackground =

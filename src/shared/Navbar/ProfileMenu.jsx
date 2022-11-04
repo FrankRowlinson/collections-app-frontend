@@ -1,8 +1,8 @@
-import { ListItemButton, Box } from '@mui/material'
-import { Link } from 'react-router-dom'
-import LogoutButton from './LogoutButton'
-import routes from '../../constants/routes'
 import { Trans } from '@lingui/macro'
+import { Box, ListItemButton } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { routes } from '../../constants'
+import { LogoutButton } from './'
 
 function ProfileMenu() {
   return (

@@ -1,30 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { t, Trans } from '@lingui/macro'
 import {
-  Container,
-  Grid,
   Box,
-  Stack,
-  Paper,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActionArea,
   Button,
-  Typography,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Container,
   Divider,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
 } from '@mui/material'
-import { Image } from 'mui-image'
-import { useParams, useNavigate } from 'react-router-dom'
 import moment from 'moment'
-import { UserContext } from '../../context/UserContext'
-import {
-  getUserProfileData,
-  getUserCollections,
-} from '../../services/getUserProfileData'
-import Loader from '../../shared/Loader'
-import routes from '../../constants/routes'
-import { Trans, t } from '@lingui/macro'
+import { Image } from 'mui-image'
+import React, { useContext, useEffect, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
+import { useNavigate, useParams } from 'react-router-dom'
+import { routes } from '../../constants'
+import { UserContext } from '../../context'
+import {
+  getUserCollections,
+  getUserProfileData,
+} from '../../services/getUserProfileData'
+import { Loader } from '../../shared'
 
 function UserProfile() {
   const { userId } = useParams()

@@ -11,12 +11,11 @@ import {
 } from '@mui/material'
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import MarkdownPreview from '../../../shared/MarkdownPreview'
-import { CollectionContext } from '../../../context/CollectionContext'
+import { CollectionContext } from '../../../context'
 import { Trans, t } from '@lingui/macro'
 import { editCollection } from '../../../services/manageCollection'
 import { useSnackbar } from 'notistack'
-import ButtonProgress from '../../../shared/ButtonProgress'
+import { ButtonProgress, MarkdownPreview } from '../../../shared'
 
 function CollectionEditForm({ collectionId, open, setEditFormOpen }) {
   const { enqueueSnackbar } = useSnackbar()

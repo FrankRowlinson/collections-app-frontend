@@ -1,23 +1,22 @@
-import { useState, useContext } from 'react'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Link, Navigate, useLocation } from 'react-router-dom'
+import { t, Trans } from '@lingui/macro'
 import {
   Card,
+  CardContent,
   CardHeader,
   Snackbar,
-  TextField,
-  CardContent,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material'
-import routes from '../../../constants/routes'
+import { useContext, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link, Navigate, useLocation } from 'react-router-dom'
+import * as yup from 'yup'
+import { routes } from '../../../constants'
+import { UserContext } from '../../../context'
 import { authenticateUser } from '../../../services/authentication'
-import { UserContext } from '../../../context/UserContext'
-import AuthButton from './AuthButton'
-import AuthError from './AuthError'
-import { t, Trans } from '@lingui/macro'
+import { AuthButton, AuthError } from './'
 
 const requiredUsernameError = t`Enter a valid username`
 const requiredPasswordError = t`Valid password is required`

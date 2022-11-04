@@ -1,36 +1,35 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import moment from 'moment'
-import localization from 'moment/locale/pl'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
-import { messages as enMessages } from './locales/en/messages'
-import { messages as plMessages } from './locales/pl/messages'
-import { en, pl } from 'make-plural/plurals'
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { Box, CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { en, pl } from 'make-plural/plurals'
 import { ConfirmProvider } from 'material-ui-confirm'
+import moment from 'moment'
+import localization from 'moment/locale/pl'
 import { SnackbarProvider } from 'notistack'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import { routes } from './constants'
+import { ColorModeContext, LocaleContext, UserContext } from './context'
+import { messages as enMessages } from './locales/en/messages'
+import { messages as plMessages } from './locales/pl/messages'
+import {
+  AddCollection,
+  AdminPage,
+  AuthPage,
+  CollectionDetail,
+  Home,
+  ItemDetail,
+  NotFoundPage,
+  SearchResults,
+  SelectionResults,
+  UserProfile
+} from './pages'
 import { getUser, logout } from './services/authentication'
-import routes from './constants/routes'
-import NavBar from './shared/NavBar/NavBar'
-import Home from './pages/Home/Home'
-import AuthPage from './pages/AuthPage/AuthPage'
-import AddCollection from './pages/AddCollection/AddCollection'
-import ItemDetail from './pages/ItemDetail/ItemDetail'
-import Loader from './shared/Loader'
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
-import { ColorModeContext } from './context/ColorModeContext'
-import { UserContext } from './context/UserContext'
+import { Loader, Navbar } from './shared'
 import { getDesignTokens } from './themes/getDesignTokens'
-import CollectionDetail from './pages/CollectionDetail/CollectionDetail'
-import UserProfile from './pages/UserProfile/UserProfile'
-import SearchResults from './pages/SearchResults/SearchResults'
-import AdminPage from './pages/AdminPage/AdminPage'
-import { LocaleContext } from './context/LocaleContext'
-import SelectionResults from './pages/SearchResults/SelectionResults'
 
 function App() {
   const [user, setUser] = useState({ role: 'GUEST' })
@@ -112,7 +111,7 @@ function App() {
                       <UserContext.Provider
                         value={{ user, setUser, handleLogout }}
                       >
-                        <NavBar />
+                        <Navbar />
                         <Box
                           sx={{
                             mt: 2,

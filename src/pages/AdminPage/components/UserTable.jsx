@@ -1,24 +1,27 @@
-import { useRef, useEffect, useState, useCallback, useContext } from 'react'
-import { AgGridReact } from 'ag-grid-react'
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
+import { t, Trans } from '@lingui/macro'
 import { Box, Button, ButtonGroup, Menu, MenuItem } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { MdDeleteForever } from 'react-icons/md'
-import { TbLock, TbLockOpen } from 'react-icons/tb'
-import { RiUserSettingsLine } from 'react-icons/ri'
-import { generateColumns, generateRows } from '../../../services/generateUserGrid'
+import 'ag-grid-community/dist/styles/ag-grid.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+import { AgGridReact } from 'ag-grid-react'
 import { useConfirm } from 'material-ui-confirm'
-import roles from '../../../constants/roles'
-import { UserContext } from '../../../context/UserContext'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { MdDeleteForever } from 'react-icons/md'
+import { RiUserSettingsLine } from 'react-icons/ri'
+import { TbLock, TbLockOpen } from 'react-icons/tb'
+import { roles } from '../../../constants'
+import { UserContext } from '../../../context'
 import {
-  changeUsersRole,
   blockUsers,
-  unblockUsers,
+  changeUsersRole,
   deleteUsers,
+  unblockUsers,
 } from '../../../services/adminActions'
-import { t, Trans } from '@lingui/macro'
+import {
+  generateColumns,
+  generateRows,
+} from '../../../services/generateUserGrid'
 
 function UserTable({ users }) {
   const { handleLogout } = useContext(UserContext)

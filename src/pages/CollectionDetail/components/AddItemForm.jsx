@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { useForm, useWatch } from 'react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import {
-  Grid,
   Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Grid,
+  InputLabel,
   TextField,
   Typography,
-  InputLabel,
-  Divider,
-  Checkbox,
-  FormControlLabel,
 } from '@mui/material'
-import { MdSave, MdCheckCircle } from 'react-icons/md'
 import { useSnackbar } from 'notistack'
+import { useEffect, useState } from 'react'
+import { useForm, useWatch } from 'react-hook-form'
+import { MdCheckCircle, MdSave } from 'react-icons/md'
+import { useNavigate, useParams } from 'react-router-dom'
+import { routes, customFieldTypes } from '../../../constants'
 import { getItemProps } from '../../../services/getItemProps'
-import { customFieldTypes } from '../../../constants/customFieldTypes'
-import NumberInput from '../../../shared/ItemFormFields/NumberInput'
-import DateInput from '../../../shared/ItemFormFields/DateInput'
-import CustomCheckbox from '../../../shared/ItemFormFields/CustomCheckbox'
-import TextInput from '../../../shared/ItemFormFields/TextInput'
-import TextareaInput from '../../../shared/ItemFormFields/TextareaInput'
-import ControlledAutocomplete from '../../../shared/ItemFormFields/ControlledAutocomplete'
 import { sendItem } from '../../../services/sendItem'
-import routes from '../../../constants/routes'
-import ButtonProgress from '../../../shared/ButtonProgress'
-import { t, Trans } from '@lingui/macro'
+import { ButtonProgress } from '../../../shared'
+import {
+  ControlledAutocomplete,
+  CustomCheckbox,
+  DateInput,
+  NumberInput,
+  TextareaInput,
+  TextInput,
+} from '../../../shared/ItemFormFields'
 
 const fieldMapping = {
   number: NumberInput,

@@ -1,23 +1,21 @@
-import { useContext } from 'react'
 import {
   Box,
-  List,
-  Switch,
   Button,
+  List,
   ListItem,
-  ToggleButton,
-  ListItemText,
   ListItemButton,
+  ListItemText,
+  Switch,
+  ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material'
-import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
 import { useTheme } from '@mui/material/styles'
-import { ColorModeContext } from '../../context/ColorModeContext'
-import ProfileMenu from './ProfileMenu'
-import { LocaleContext } from '../../context/LocaleContext'
-import locales from '../../constants/locales'
+import { useContext } from 'react'
+import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
+import { NavLink } from 'react-router-dom'
+import { locales } from '../../constants'
+import { UserContext, LocaleContext, ColorModeContext } from '../../context'
+import { ProfileMenu } from './'
 
 function NavBarItems({ variant, navItems }) {
   const theme = useTheme()
@@ -110,9 +108,7 @@ function NavBarItems({ variant, navItems }) {
       <ListItem key="logout" disablePadding>
         {user.role === 'GUEST' ? '' : <ProfileMenu />}
       </ListItem>
-      <ListItem
-        sx={{ display: 'flex', justifyContent: 'center' }}
-      >
+      <ListItem sx={{ display: 'flex', justifyContent: 'center' }}>
         <LocaleSwitcher />
       </ListItem>
       <ListItem

@@ -1,44 +1,39 @@
-import { useContext, useState, useEffect } from 'react'
+import { t, Trans } from '@lingui/macro'
 import {
   AppBar,
   Box,
+  Button,
   Divider,
   Drawer,
-  Button,
   IconButton,
-  Toolbar,
-  Typography,
   Menu,
   MenuItem,
+  Toolbar,
+  Typography,
 } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import {
-  MdSegment,
-  MdSearch,
+  bindMenu,
+  bindTrigger,
+  usePopupState,
+} from 'material-ui-popup-state/hooks'
+import { useContext, useEffect, useState } from 'react'
+import {
   MdDarkMode,
   MdOutlineDarkMode,
+  MdSearch,
+  MdSegment,
 } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { routes, locales } from '../../constants'
+import { LocaleContext, ColorModeContext, UserContext } from '../../context'
 import { getNavItems } from '../../services/navigation'
-import { UserContext } from '../../context/UserContext'
-import { ColorModeContext } from '../../context/ColorModeContext'
-import { useTheme } from '@mui/material/styles'
-import NavBarItems from './NavBarItems'
-import routes from '../../constants/routes'
-import SearchDialog from './SearchDialog'
-import NavbarAvatar from './NavbarAvatar'
-import { t, Trans } from '@lingui/macro'
-import { LocaleContext } from '../../context/LocaleContext'
-import {
-  usePopupState,
-  bindTrigger,
-  bindMenu,
-} from 'material-ui-popup-state/hooks'
-import locales from '../../constants/locales'
+import { NavbarAvatar, NavbarItems, SearchDialog } from './'
 
 const drawerWidth = '300px'
 const localeMapping = {}
 
-function NavBar(props) {
+function Navbar(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = useState(false)
   const { user } = useContext(UserContext)
@@ -143,7 +138,7 @@ function NavBar(props) {
         COLLECTIONS
       </Typography>
       <Divider />
-      <NavBarItems navItems={navItems} variant="drawer" />
+      <NavbarItems navItems={navItems} variant="drawer" />
     </Box>
   )
 
@@ -181,7 +176,7 @@ function NavBar(props) {
           >
             COLLECTIONS
           </Typography>
-          <NavBarItems navItems={navItems} variant="topNavItems" />
+          <NavbarItems navItems={navItems} variant="topNavItems" />
           <Box flexGrow={1}></Box>
           <SearchButton />
           <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
@@ -215,4 +210,4 @@ function NavBar(props) {
   )
 }
 
-export default NavBar
+export default Navbar

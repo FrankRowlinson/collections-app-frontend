@@ -1,4 +1,4 @@
-import Tag from '../../shared/Tag'
+import { Tag } from '../../../shared'
 
 const TagRenderer = (tag, size, color) => {
   return (

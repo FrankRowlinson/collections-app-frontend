@@ -1,7 +1,7 @@
-import { TextField } from '@mui/material'
-import { useController } from 'react-hook-form'
-import { useState } from 'react'
 import { t } from '@lingui/macro'
+import { TextField } from '@mui/material'
+import { useState } from 'react'
+import { useController } from 'react-hook-form'
 
 function NumberInput({ name, label, control }) {
   const {

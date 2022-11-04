@@ -1,24 +1,22 @@
-import { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
   Card,
   CardContent,
   CardHeader,
+  InputAdornment,
   Stack,
   TextField,
   Typography,
-  InputAdornment,
 } from '@mui/material'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
-
-import { authenticateUser } from '../../../services/authentication'
-import routes from '../../../constants/routes'
-import AuthButton from './AuthButton'
-import AuthError from './AuthError'
-import FormPopover from './FormPopover'
+import * as yup from 'yup'
 import { t, Trans } from '@lingui/macro'
+import { routes } from '../../../constants'
+import { authenticateUser } from '../../../services/authentication'
+import { AuthButton, AuthError } from './'
+import FormPopover from './FormPopover'
 
 const schema = yup.object({
   username: yup

@@ -1,6 +1,6 @@
-import { Autocomplete, TextField, Chip } from '@mui/material'
-import { useController } from 'react-hook-form'
 import { t } from '@lingui/macro'
+import { Autocomplete, Chip, TextField } from '@mui/material'
+import { useController } from 'react-hook-form'
 
 function ControlledAutocomplete({ name, control, tagOptions }) {
   const {

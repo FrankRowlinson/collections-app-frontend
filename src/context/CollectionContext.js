@@ -1,3 +1,5 @@
 import { createContext } from 'react'
 
-export const CollectionContext = createContext(null)
+const CollectionContext = createContext(null)
+
+export default CollectionContext

@@ -7,7 +7,7 @@ import {
   CardContent,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import routes from '../../constants/routes'
+import { routes } from '../../../constants'
 import { t } from '@lingui/macro'
 
 function SearchItem({ item }) {

@@ -1,11 +1,10 @@
 import { useForm, useWatch } from 'react-hook-form'
 import { TextField, Button, Grid, Box } from '@mui/material'
 import { useContext } from 'react'
-import { ItemContext } from '../../../context/ItemContext'
-import { UserContext } from '../../../context/UserContext'
+import { ItemContext, UserContext } from '../../../context'
 import { createComment } from '../../../services/commentAPI'
 import { useState } from 'react'
-import ButtonProgress from '../../../shared/ButtonProgress'
+import { ButtonProgress } from '../../../shared'
 import { Trans, t } from '@lingui/macro'
 
 function CommentForm({ refetch }) {

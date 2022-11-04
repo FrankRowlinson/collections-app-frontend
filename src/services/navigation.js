@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import routes from '../constants/routes'
+import { routes } from '../constants'
 
 export function getNavItems(role) {
   const navItems = [

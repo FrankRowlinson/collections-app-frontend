@@ -1,6 +1,6 @@
 import { Chip, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import routes from '../constants/routes'
+import { routes } from '../constants'
 
 function Tag({ name, color = 'default' }) {
   const navigate = useNavigate()

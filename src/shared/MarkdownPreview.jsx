@@ -1,6 +1,6 @@
-import ReactMarkdown from 'react-markdown'
-import { useWatch } from 'react-hook-form'
 import { Paper } from '@mui/material'
+import { useWatch } from 'react-hook-form'
+import ReactMarkdown from 'react-markdown'
 
 function MarkdownPreview({ control }) {
   const preview = useWatch({

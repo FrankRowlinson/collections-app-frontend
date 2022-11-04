@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { IconButton, Menu, MenuItem, Box } from '@mui/material'
-import {
-  usePopupState,
-  bindTrigger,
-  bindMenu,
-} from 'material-ui-popup-state/hooks'
-import { useConfirm } from 'material-ui-confirm'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { deleteCollection } from '../../../services/manageCollection'
-import { useNavigate } from 'react-router-dom'
-import routes from '../../../constants/routes'
-import { useSnackbar } from 'notistack'
 import { t, Trans } from '@lingui/macro'
-import CollectionEditForm from './CollectionEditForm'
+import { Box, IconButton, Menu, MenuItem } from '@mui/material'
+import { useConfirm } from 'material-ui-confirm'
+import {
+  bindMenu,
+  bindTrigger,
+  usePopupState,
+} from 'material-ui-popup-state/hooks'
+import { useSnackbar } from 'notistack'
+import { useState } from 'react'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+import { routes } from '../../../constants'
+import { deleteCollection } from '../../../services/manageCollection'
+import { CollectionEditForm } from './'
 
 const CollectionMenu = ({ rightToEdit, id }) => {
   const { enqueueSnackbar } = useSnackbar()

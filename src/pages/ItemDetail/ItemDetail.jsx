@@ -10,17 +10,13 @@ import {
   CircularProgress,
 } from '@mui/material'
 import Image from 'mui-image'
-import Details from './components/Details'
-import CommentSection from './components/CommentSection'
+import { Details, CommentSection, LikeButton } from './components'
 import { useParams, Link } from 'react-router-dom'
 import getItem from '../../services/getItem'
-import Loader from '../../shared/Loader'
-import routes from '../../constants/routes'
+import { Loader, Tag } from '../../shared'
+import { routes } from '../../constants'
 import moment from 'moment'
-import LikeButton from './components/LikeButton'
-import { UserContext } from '../../context/UserContext'
-import { ItemContext } from '../../context/ItemContext'
-import Tag from '../../shared/Tag'
+import { UserContext, ItemContext } from '../../context'
 import { Trans } from '@lingui/macro'
 
 function ItemDetail() {

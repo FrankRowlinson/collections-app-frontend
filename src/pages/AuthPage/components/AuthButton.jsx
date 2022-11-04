@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import ButtonProgress from '../../../shared/ButtonProgress'
+import { ButtonProgress } from '../../../shared'
 
 function AuthButton({ inProgress, text }) {
   return (

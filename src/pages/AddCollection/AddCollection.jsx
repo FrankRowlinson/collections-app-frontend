@@ -1,31 +1,30 @@
-import { useState, useEffect } from 'react'
-import { useFieldArray, useForm, useWatch } from 'react-hook-form'
+import { t, Trans } from '@lingui/macro'
 import {
+  Button,
   Container,
-  Grid,
-  FormControl,
-  TextField,
-  InputLabel,
-  Select,
-  Typography,
   Dialog,
   DialogActions,
   DialogContent,
   Divider,
-  MenuItem,
-  Button,
-  IconButton,
+  FormControl,
+  Grid,
   Icon,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from '@mui/material'
-import { MdAdd, MdCheckCircle, MdSave, MdInfoOutline } from 'react-icons/md'
+import { useEffect, useState } from 'react'
+import { useFieldArray, useForm, useWatch } from 'react-hook-form'
+import { MdAdd, MdCheckCircle, MdInfoOutline, MdSave } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
-import { sendCollection } from '../../services/sendCollection'
-import MarkdownPreview from '../../shared/MarkdownPreview'
-import { getCollectionFormProps } from '../../services/getCollectionProps'
-import { useNavigate } from 'react-router-dom'
-import ButtonProgress from '../../shared/ButtonProgress'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
-import { t, Trans } from '@lingui/macro'
+import { useNavigate } from 'react-router-dom'
+import { getCollectionFormProps } from '../../services/getCollectionProps'
+import { sendCollection } from '../../services/sendCollection'
+import { ButtonProgress, MarkdownPreview } from '../../shared'
 
 function AddCollection() {
   const navigate = useNavigate()

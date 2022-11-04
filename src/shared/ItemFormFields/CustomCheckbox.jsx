@@ -1,4 +1,4 @@
-import { FormControlLabel, Checkbox } from '@mui/material'
+import { Checkbox, FormControlLabel } from '@mui/material'
 import { useController } from 'react-hook-form'
 
 function CustomCheckbox({ name, label, control }) {
