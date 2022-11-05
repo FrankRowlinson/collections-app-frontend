@@ -27,9 +27,9 @@ function CommentSection() {
             <Typography variant="h6">{t`${data.comments.length} comment(s)`}</Typography>
             <CommentForm refetch={refetch} />
             <Stack spacing={1.5}>
-              {data.comments.map((comment, index) => {
+              {data.comments.map((comment) => {
                 return (
-                  <Box key={`comment-${index}`}>
+                  <Box key={comment.id}>
                     <Comment comment={comment} />
                   </Box>
                 )

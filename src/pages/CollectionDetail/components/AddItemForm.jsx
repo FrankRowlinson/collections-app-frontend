@@ -170,7 +170,7 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
                 const InputElement = fieldMapping[customFieldTypes[type].type]
                 return (
                   <Grid
-                    key={`$custom.${customFieldTypes[type].type}.${id}`}
+                    key={id}
                     item
                     xs={12}
                     sm={type === 'DATE' ? 4 : type === 'NUMBER' ? 4 : 12}

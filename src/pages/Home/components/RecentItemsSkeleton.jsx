@@ -11,7 +11,7 @@ function RecentItemsSkeleton() {
             sm={4}
             md={3}
             sx={{ display: 'flex' }}
-            key={`recent-item-skeleton-${index}`}
+            key={`recent-item-skeleton-${item}`}
           >
             <Skeleton
               variant="rectangular"

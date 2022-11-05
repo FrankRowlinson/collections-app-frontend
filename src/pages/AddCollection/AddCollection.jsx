@@ -138,7 +138,7 @@ function AddCollection() {
                 {!isLoading &&
                   collectionTypes.map((el) => {
                     return (
-                      <MenuItem key={el.name} value={el.name}>
+                      <MenuItem key={el.id} value={el.name}>
                         {el.name}
                       </MenuItem>
                     )

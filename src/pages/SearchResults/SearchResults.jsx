@@ -52,8 +52,8 @@ function SearchResults() {
                     </Typography>
                   </Grid>
                 ) : (
-                  group.items.map((item, index) => (
-                    <SearchItem item={item} key={index} />
+                  group.items.map((item) => (
+                    <SearchItem item={item} key={item.id} />
                   ))
                 )}
               </React.Fragment>

@@ -134,14 +134,14 @@ function UserProfile() {
                   <>
                     {data.pages.map((group, i) => (
                       <React.Fragment key={i}>
-                        {group.collections.map((item, index) => (
+                        {group.collections.map((item) => (
                           <Grid
                             item
                             xs={12}
                             sm={6}
                             md={4}
                             lg={3}
-                            key={`collection-${index}`}
+                            key={item.id}
                             sx={{ display: 'flex' }}
                           >
                             <CardActionArea

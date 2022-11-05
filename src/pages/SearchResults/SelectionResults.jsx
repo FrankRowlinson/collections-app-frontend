@@ -15,8 +15,8 @@ function SelectionResults() {
             {t`Selected items`}
           </Typography>
         </Grid>
-        {items.map((item, index) => (
-          <SearchItem item={item} key={index} />
+        {items.map((item) => (
+          <SearchItem item={item} key={item.id} />
         ))}
       </Grid>
     </Container>

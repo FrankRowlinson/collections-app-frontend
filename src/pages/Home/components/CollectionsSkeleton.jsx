@@ -6,7 +6,7 @@ function CollectionsSkeleton() {
       {[...Array(5).keys()].map((item, index) => {
         return (
           <Grid
-            key={`biggest-collections-skeleton-${index}`}
+            key={`biggest-collections-skeleton-${item}`}
             item
             xs={12}
             sm={index ? 6 : 12}

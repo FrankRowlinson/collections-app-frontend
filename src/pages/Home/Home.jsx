@@ -86,7 +86,7 @@ function Home() {
                 biggestCollections.map((item, index) => {
                   return (
                     <Grid
-                      key={`biggest-collections-${index}`}
+                      key={item.id}
                       item
                       xs={12}
                       sm={index ? 6 : 12}
@@ -175,7 +175,7 @@ function Home() {
                 </Typography>
               </Grid>
               {recentItems ? (
-                recentItems.map((item, index) => {
+                recentItems.map((item) => {
                   return (
                     <Grid
                       item
@@ -183,7 +183,7 @@ function Home() {
                       sm={4}
                       md={3}
                       sx={{ display: 'flex' }}
-                      key={`recent-item-${index}`}
+                      key={item.id}
                     >
                       <CardActionArea
                         onClick={() => {

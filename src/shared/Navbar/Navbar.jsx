@@ -83,10 +83,10 @@ function Navbar(props) {
           {localeMapping[locale]}
         </IconButton>
         <Menu {...bindMenu(popupState)}>
-          {locales.map((item, index) => {
+          {locales.map((item) => {
             return (
               <MenuItem
-                key={`${locale.name}-top-${index}`}
+                key={`${locale.name}-top`}
                 onClick={() => {
                   localeMode.changeLocale(item.name)
                 }}

@@ -18,7 +18,7 @@ function CollectionDetail() {
   const { id } = useParams()
   const [rightToEdit, setRightToEdit] = useState(false)
   const { data, isLoading, refetch } = useQuery(
-    ['collectionDetail'],
+    [id],
     getCollection(id)
   )
 

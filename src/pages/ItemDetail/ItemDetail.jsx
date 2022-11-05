@@ -133,12 +133,12 @@ function ItemDetail() {
                   {/* tags */}
                   {item.tags?.length ? (
                     <Box sx={{ py: 2 }}>
-                      {item.tags.map((el, index) => {
+                      {item.tags.map((el) => {
                         return (
                           <Tag
                             name={el.name}
                             setInProgress={setInProgress}
-                            key={`tag-${index}`}
+                            key={el.id}
                           />
                         )
                       })}
