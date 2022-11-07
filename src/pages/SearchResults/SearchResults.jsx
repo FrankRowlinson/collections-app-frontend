@@ -17,7 +17,7 @@ function SearchResults() {
     state: { type, query },
   } = useLocation()
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery([query], searchMethodMapping[type](query), {
       getNextPageParam: (lastPage) =>
         lastPage.items.length < 5 ? undefined : lastPage.cursor,
@@ -36,7 +36,7 @@ function SearchResults() {
             {searchResultHeaders[type] + (query ? `: ${query}` : '')}
           </Typography>
         </Grid>
-        {status === 'loading' ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>
