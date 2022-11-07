@@ -1,6 +1,6 @@
 import { Tag } from '../../../shared'
 
-const TagRenderer = (tag, size, color) => {
+const TagRenderer = (tag) => {
   return (
     <Tag
       key={tag.key}

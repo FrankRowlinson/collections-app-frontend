@@ -1,12 +1,10 @@
 import { t, Trans } from '@lingui/macro'
 import {
-  Backdrop,
   Box,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
-  CircularProgress,
   Container,
   Grid,
   Typography,
@@ -34,7 +32,6 @@ function Home() {
   const [biggestCollections, setBiggestCollections] = useState(null)
   const [recentItems, setRecentItems] = useState(null)
   const [tags, setTags] = useState(null)
-  const [inProgress, setInProgress] = useState(false)
 
   // load biggest collections
   useEffect(() => {
@@ -58,16 +55,13 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getTagsForCloud()
-      setTags(data.map((el) => ({ ...el, setInProgress: setInProgress })))
+      setTags(data)
     }
     fetchData()
   }, [])
 
   return (
     <Container maxWidth="xl">
-      <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={6}>
           <Box

@@ -17,10 +17,7 @@ function CollectionDetail() {
   const { user } = useContext(UserContext)
   const { id } = useParams()
   const [rightToEdit, setRightToEdit] = useState(false)
-  const { data, isLoading, refetch } = useQuery(
-    [id],
-    getCollection(id)
-  )
+  const { data, isLoading, refetch } = useQuery([id], getCollection(id))
 
   useEffect(() => {
     if (data) {
