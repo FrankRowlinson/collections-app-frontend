@@ -21,7 +21,7 @@ function BiggestCollections() {
         <CollectionsSkeleton />
       ) : (
         data.collections.map((item, index) => {
-          return <CollectionCard item={item} index={index} />
+          return <CollectionCard item={item} index={index} key={item.id} />
         })
       )}
     </>

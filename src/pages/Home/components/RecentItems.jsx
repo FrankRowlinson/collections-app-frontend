@@ -18,7 +18,7 @@ function RecentItems() {
         <RecentItemsSkeleton />
       ) : (
         data.items.map((item) => {
-          return <ItemCard item={item} />
+          return <ItemCard item={item} key={item.id} />
         })
       )}
     </>

@@ -20,7 +20,7 @@ function UserCollections({ authorId }) {
           {data.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group.collections.map((item) => (
-                <CollectionCard item={item} />
+                <CollectionCard item={item} key={item.id} />
               ))}
             </React.Fragment>
           ))}

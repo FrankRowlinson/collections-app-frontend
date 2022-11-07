@@ -18,7 +18,7 @@ const cardBackground =
 function ItemCard({ item }) {
   const navigate = useNavigate()
   return (
-    <Grid item xs={6} sm={4} md={3} sx={{ display: 'flex' }} key={item.id}>
+    <Grid item xs={6} sm={4} md={3} sx={{ display: 'flex' }}>
       <CardActionArea
         onClick={() => {
           navigate(`${routes.ITEMS}/byid/${item.id}`)

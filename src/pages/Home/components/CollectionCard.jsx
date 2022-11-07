@@ -18,7 +18,6 @@ function CollectionCard({ item, index }) {
   const navigate = useNavigate()
   return (
     <Grid
-      key={item.id}
       item
       xs={12}
       sm={index ? 6 : 12}

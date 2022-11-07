@@ -14,15 +14,7 @@ import { t } from '@lingui/macro'
 function CollectionCard({ item }) {
   const navigate = useNavigate()
   return (
-    <Grid
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      key={item.id}
-      sx={{ display: 'flex' }}
-    >
+    <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: 'flex' }}>
       <CardActionArea
         onClick={() => {
           navigate(`${routes.COLLECTIONS}/byid/${item.id}`)
