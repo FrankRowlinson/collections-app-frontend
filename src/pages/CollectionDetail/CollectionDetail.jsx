@@ -47,7 +47,7 @@ function CollectionDetail() {
               }}
             >
               <Grid container spacing={2}>
-                {data.collection.img ? (
+                {data.collection.img && (
                   <>
                     <Grid item xs={12} sm={6} md={4}>
                       <Box sx={{ position: 'sticky', top: 20 }}>
@@ -55,8 +55,6 @@ function CollectionDetail() {
                       </Box>
                     </Grid>
                   </>
-                ) : (
-                  ''
                 )}
                 <Grid
                   item
@@ -132,7 +130,7 @@ function CollectionDetail() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  {data.collection.items && data.collection.items.length ? (
+                  {data.collection.items.length ? (
                     <ItemTable
                       items={data.collection.items}
                       rightToEdit={rightToEdit}
