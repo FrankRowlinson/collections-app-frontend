@@ -6,13 +6,15 @@ async function getTagsForCloud() {
 }
 
 const transformTagsForCloud = (tags) => {
-  return tags.map((el) => {
-    return {
-      value: el.name,
-      count: el._count.items,
-      key: el.id,
-    }
-  })
+  return {
+    tags: tags.map((el) => {
+      return {
+        value: el.name,
+        count: el._count.items,
+        key: el.id,
+      }
+    }),
+  }
 }
 
 export default getTagsForCloud
