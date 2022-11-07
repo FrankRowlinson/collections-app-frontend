@@ -1,8 +1,11 @@
 import axios from 'axios'
 
-async function getUserProfileData(id) {
-  const response = await axios.get('/users/profile', { params: { id } })
-  return response.data
+function getUserProfileData(id) {
+  const fetchData = async () => {
+    const response = await axios.get('/users/profile', { params: { id } })
+    return response.data
+  }
+  return fetchData
 }
 
 export default getUserProfileData
