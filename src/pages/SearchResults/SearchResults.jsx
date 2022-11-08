@@ -1,10 +1,10 @@
 import React from 'react'
 import { t, Trans } from '@lingui/macro'
-import { Typography, Grid, Container, Button } from '@mui/material'
+import { Typography, Grid, Container } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { search, searchByTag } from '../../services/searchAPI'
 import { useInfiniteQuery } from 'react-query'
-import { Loader } from '../../shared'
+import { Loader, LoadMoreButton } from '../../shared'
 import { SearchItem } from './components'
 
 const searchMethodMapping = {
@@ -63,20 +63,11 @@ function SearchResults() {
               xs={12}
               sx={{ display: 'flex', justifyContent: 'center' }}
             >
-              <Button
-                size="large"
-                variant="outlined"
-                color="inherit"
-                onClick={() => fetchNextPage()}
-                disabled={isFetchingNextPage}
-                sx={{ display: !hasNextPage ? 'none' : 'block' }}
-              >
-                {isFetchingNextPage
-                  ? 'Loading more...'
-                  : hasNextPage
-                  ? 'Load More'
-                  : 'Nothing more to load'}
-              </Button>
+              <LoadMoreButton
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={fetchNextPage}
+              />
             </Grid>
           </>
         )}

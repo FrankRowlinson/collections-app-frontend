@@ -1,9 +1,9 @@
 import React from 'react'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useInfiniteQuery } from 'react-query'
 import { getUserCollections } from '../../../services/collectionAPI'
-import { Loader } from '../../../shared'
-import CollectionCard from './CollectionCard'
+import { Loader, LoadMoreButton } from '../../../shared'
+import { CollectionCard } from './'
 
 function UserCollections({ authorId }) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -25,20 +25,11 @@ function UserCollections({ authorId }) {
             </React.Fragment>
           ))}
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Button
-              size="large"
-              variant="outlined"
-              color="inherit"
-              onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage}
-              sx={{ display: !hasNextPage ? 'none' : 'block' }}
-            >
-              {isFetchingNextPage
-                ? 'Loading more...'
-                : hasNextPage
-                ? 'Load More'
-                : 'Nothing more to load'}
-            </Button>
+            <LoadMoreButton
+              hasNextPage={hasNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              fetchNextPage={fetchNextPage}
+            />
           </Grid>
         </>
       )}

@@ -17,19 +17,19 @@ msgstr ""
 msgid "404 NOT FOUND"
 msgstr "404 NIE ZNALEZIONO"
 
-#: src/pages/UserProfile/UserProfile.jsx:95
+#: src/pages/UserProfile/components/UserInfo.jsx:36
 msgid "<0>Collections added:</0> {0}"
 msgstr "<0>Dodane kolekcje:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:107
+#: src/pages/UserProfile/components/UserInfo.jsx:47
 msgid "<0>Comments left:</0> {0}"
 msgstr "<0>Pozostawione komentarze:</0> {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:101
+#: src/pages/UserProfile/components/UserInfo.jsx:41
 msgid "<0>Total items in all collections:</0> {0}"
 msgstr "<0>Wszystkie przedmioty we wszystkich kolekcjach:</0> {0}"
 
-#: src/pages/AdminPage/AdminPage.jsx:34
+#: src/pages/AdminPage/components/Warning.jsx:8
 msgid "Access denied"
 msgstr "Dostęp ograniczony"
 
@@ -37,36 +37,36 @@ msgstr "Dostęp ograniczony"
 msgid "Access restricted"
 msgstr "Konto jest zablokowane"
 
-#: src/pages/UserProfile/UserProfile.jsx:92
+#: src/pages/UserProfile/components/UserInfo.jsx:33
 msgid "Accomplishments"
 msgstr "Osiągnięcia"
 
-#: src/pages/AdminPage/components/UserTable.jsx:83
+#: src/pages/AdminPage/components/UserTable.jsx:86
 #: src/services/generateUserGrid.js:47
 msgid "Active"
 msgstr "Aktywny"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:101
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:103
 msgid "Add item"
 msgstr "Dodaj Przedmiot"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:112
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:114
 msgid "Add item into \"{collectionName}\""
 msgstr "Dodaj przedmiot do \"{collectionName}\""
 
-#: src/pages/AuthPage/components/SignupForm.jsx:77
+#: src/pages/AuthPage/components/SignupForm.jsx:75
 msgid "Already have an account?"
 msgstr "Posiadasz już konto?"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:103
+#: src/pages/CollectionDetail/CollectionDetail.jsx:87
 msgid "Author: {0}"
 msgstr "Autor: {0}"
 
-#: src/pages/UserProfile/UserProfile.jsx:86
+#: src/pages/UserProfile/components/UserInfo.jsx:8
 msgid "Avatar"
 msgstr "Awatara"
 
-#: src/pages/AddCollection/AddCollection.jsx:336
+#: src/pages/AddCollection/AddCollection.jsx:334
 msgid ""
 "Better explained with example.  \n"
 "Let's say you want to add **\"Description\"** for every item in this collection, like the one\n"
@@ -92,51 +92,51 @@ msgstr ""
 "**\"Linia\"**. To jest zwykły ciąg tekstu, ale trochę\n"
 "krótsze niż właściwe pole **\"Tekst\"**."
 
-#: src/pages/Home/Home.jsx:82
+#: src/pages/Home/components/BiggestCollections.jsx:17
 msgid "Biggest collections"
 msgstr "Największe kolekcje"
 
-#: src/pages/AdminPage/components/UserTable.jsx:131
-#: src/pages/AdminPage/components/UserTable.jsx:204
+#: src/pages/AdminPage/components/UserTable.jsx:134
+#: src/pages/AdminPage/components/UserTable.jsx:207
 msgid "Block"
 msgstr "Blok"
 
-#: src/pages/AdminPage/components/UserTable.jsx:73
+#: src/pages/AdminPage/components/UserTable.jsx:76
 #: src/services/generateUserGrid.js:47
 msgid "Blocked"
 msgstr "Zablokowany"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:101
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:103
 #: src/pages/CollectionDetail/components/CollectionEditForm.jsx:87
 msgid "Cancel"
 msgstr "Anulować"
 
-#: src/pages/AdminPage/components/UserTable.jsx:114
+#: src/pages/AdminPage/components/UserTable.jsx:117
 msgid "Change"
 msgstr "Zmiana"
 
-#: src/pages/AdminPage/components/UserTable.jsx:194
+#: src/pages/AdminPage/components/UserTable.jsx:197
 msgid "Change role"
 msgstr "Zmień rolę"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:36
+#: src/pages/AuthPage/components/SignupForm.jsx:34
 msgid "Choose secure password"
 msgstr "Wybierz bezpieczne hasło"
 
-#: src/pages/AddCollection/AddCollection.jsx:328
+#: src/pages/AddCollection/AddCollection.jsx:326
 msgid "Close preview"
 msgstr "Zamknij podgląd"
 
-#: src/pages/AddCollection/AddCollection.jsx:133
+#: src/pages/AddCollection/AddCollection.jsx:131
 msgid "Collection Type"
 msgstr "Typ kolekcji"
 
-#: src/pages/AddCollection/AddCollection.jsx:116
+#: src/pages/AddCollection/AddCollection.jsx:114
 #: src/pages/CollectionDetail/components/CollectionEditForm.jsx:63
 msgid "Collection name"
 msgstr "Nazwa kolekcji"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:32
+#: src/pages/CollectionDetail/CollectionDetail.jsx:157
 msgid "Collection not found"
 msgstr "Nie znaleziono kolekcji"
 
@@ -144,11 +144,11 @@ msgstr "Nie znaleziono kolekcji"
 msgid "Collection successfully deleted"
 msgstr "Kolekcja pomyślnie usunięta"
 
-#: src/pages/AddCollection/AddCollection.jsx:128
+#: src/pages/AddCollection/AddCollection.jsx:126
 msgid "Collection type"
 msgstr "Typ kolekcji"
 
-#: src/pages/AddCollection/AddCollection.jsx:194
+#: src/pages/AddCollection/AddCollection.jsx:192
 msgid "Cover Image"
 msgstr "Okładka"
 
@@ -156,15 +156,15 @@ msgstr "Okładka"
 msgid "Create Collection"
 msgstr "Utwórz kolekcję"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:192
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:194
 msgid "Create item!"
 msgstr "Utwórz przedmiot!"
 
-#: src/pages/AddCollection/AddCollection.jsx:96
+#: src/pages/AddCollection/AddCollection.jsx:94
 msgid "Create new collection"
 msgstr "Utwórz nową kolekcję"
 
-#: src/pages/AddCollection/AddCollection.jsx:314
+#: src/pages/AddCollection/AddCollection.jsx:312
 msgid "Create new collection!"
 msgstr "Stwórz nową kolekcję!"
 
@@ -172,7 +172,7 @@ msgstr "Stwórz nową kolekcję!"
 msgid "Created At"
 msgstr "Utworzono w"
 
-#: src/pages/AddCollection/AddCollection.jsx:221
+#: src/pages/AddCollection/AddCollection.jsx:219
 msgid "Custom fields for your collection"
 msgstr "Pola niestandardowe dla Twojej kolekcji"
 
@@ -181,12 +181,12 @@ msgid "DELETED"
 msgstr "USUNIĘTY UŻYTKOWNIK"
 
 #: src/constants/customFieldTypes.js:8
-#: src/services/getCollectionProps.js:9
+#: src/services/collectionAPI/getCollectionProps.js:9
 msgid "Date"
 msgstr "Data"
 
-#: src/pages/AdminPage/components/UserTable.jsx:165
-#: src/pages/AdminPage/components/UserTable.jsx:224
+#: src/pages/AdminPage/components/UserTable.jsx:168
+#: src/pages/AdminPage/components/UserTable.jsx:227
 msgid "Delete"
 msgstr "Usuwać"
 
@@ -194,19 +194,19 @@ msgstr "Usuwać"
 msgid "Delete collection"
 msgstr "Usuń kolekcję"
 
-#: src/pages/AddCollection/AddCollection.jsx:301
+#: src/pages/AddCollection/AddCollection.jsx:299
 msgid "Delete field"
 msgstr "Usuń pole"
 
-#: src/pages/CollectionDetail/components/ItemTable.jsx:102
+#: src/pages/CollectionDetail/components/ItemTable.jsx:104
 msgid "Delete items"
 msgstr "Usuń elementy"
 
-#: src/pages/AddCollection/AddCollection.jsx:227
+#: src/pages/AddCollection/AddCollection.jsx:225
 msgid "Describe items in your collection with as much additional info as you need with flexible options"
 msgstr "Opisz przedmioty w swojej kolekcji, podając tyle dodatkowych informacji, ile potrzebujesz, dzięki elastycznym opcjom"
 
-#: src/pages/AddCollection/AddCollection.jsx:159
+#: src/pages/AddCollection/AddCollection.jsx:157
 #: src/pages/CollectionDetail/components/CollectionEditForm.jsx:72
 msgid "Description"
 msgstr "Opis"
@@ -215,19 +215,19 @@ msgstr "Opis"
 msgid "Description preview with markdown"
 msgstr "Podgląd opisu z markdown"
 
-#: src/pages/AdminPage/components/UserTable.jsx:130
+#: src/pages/AdminPage/components/UserTable.jsx:133
 msgid "Do you want to block {0} selected user(s)?"
 msgstr "Czy chcesz zablokować {0} wybranych użytkowników?"
 
-#: src/pages/AdminPage/components/UserTable.jsx:164
+#: src/pages/AdminPage/components/UserTable.jsx:167
 msgid "Do you want to delete {0} selected user(s)? This action is irreversible!"
 msgstr "Czy chcesz usunąć {0} wybranych użytkowników? Ta akcja jest nieodwracalna!"
 
-#: src/pages/AdminPage/components/UserTable.jsx:147
+#: src/pages/AdminPage/components/UserTable.jsx:150
 msgid "Do you want to unblock {0} selected user(s)?"
 msgstr "Czy chcesz odblokować {0} wybranych użytkowników?"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:75
+#: src/pages/AuthPage/components/LoginForm.jsx:74
 msgid "Don't have an account?"
 msgstr "Nie masz konta?"
 
@@ -239,16 +239,16 @@ msgstr "Edytować"
 msgid "Edit collection info"
 msgstr "Edytuj informacje o kolekcji"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:135
+#: src/pages/AuthPage/components/SignupForm.jsx:133
 msgid "Email"
 msgstr "E-mail"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:33
+#: src/pages/AuthPage/components/SignupForm.jsx:31
 msgid "Enter a valid email address"
 msgstr "Wpisz poprawny adres e-mail"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:22
-#: src/pages/AuthPage/components/SignupForm.jsx:26
+#: src/pages/AuthPage/components/LoginForm.jsx:21
+#: src/pages/AuthPage/components/SignupForm.jsx:24
 msgid "Enter a valid username"
 msgstr "Wpisz poprawną nazwę użytkownika"
 
@@ -256,21 +256,21 @@ msgstr "Wpisz poprawną nazwę użytkownika"
 msgid "Error happened on server. Try again later"
 msgstr "Na serwerze wystąpił błąd. Spróbuj ponownie później"
 
-#: src/pages/AddCollection/AddCollection.jsx:253
-#: src/pages/AddCollection/AddCollection.jsx:257
+#: src/pages/AddCollection/AddCollection.jsx:251
+#: src/pages/AddCollection/AddCollection.jsx:255
 msgid "Field Type"
 msgstr "Typ pola"
 
-#: src/pages/AddCollection/AddCollection.jsx:279
+#: src/pages/AddCollection/AddCollection.jsx:277
 msgid "Field name"
 msgstr "Nazwa pola"
 
-#: src/pages/AddCollection/AddCollection.jsx:105
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:118
+#: src/pages/AddCollection/AddCollection.jsx:103
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:120
 msgid "General information"
 msgstr "Informacje ogólne"
 
-#: src/pages/AddCollection/AddCollection.jsx:350
+#: src/pages/AddCollection/AddCollection.jsx:348
 msgid "Got it!"
 msgstr "Rozumiem!"
 
@@ -278,34 +278,42 @@ msgstr "Rozumiem!"
 msgid "Home"
 msgstr "Strona główna"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:152
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:154
 msgid "Image of item"
 msgstr "Obraz przedmiotu"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:19
+#: src/pages/ItemDetail/components/LikeButton.jsx:20
 msgid "Item added to your favorites"
 msgstr "Przedmiot dodany do ulubionych"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:126
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:128
 #: src/services/generateItemGrid.js:46
 msgid "Item name"
 msgstr "Nazwa przedmiotu"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:128
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:130
 msgid "Item name is required"
 msgstr "Nazwa przedmiotu jest wymagana"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:18
+#: src/pages/ItemDetail/components/LikeButton.jsx:19
 msgid "Item removed from your favorites"
 msgstr "Przedmiot usunięty z ulubionych"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:86
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:88
 msgid "Item successfully created!"
 msgstr "Przedmiot został pomyślnie utworzony!"
 
-#: src/pages/ItemDetail/components/CommentForm.jsx:50
+#: src/pages/ItemDetail/components/CommentForm.jsx:49
 msgid "Leave comment"
 msgstr "Zostaw komentarz"
+
+#: src/shared/LoadMoreButton.jsx:17
+msgid "Load More"
+msgstr "Załaduj więcej"
+
+#: src/shared/LoadMoreButton.jsx:15
+msgid "Loading more..."
+msgstr "Ładowanie więcej..."
 
 #: src/shared/ItemFormFields/ControlledAutocomplete.jsx:29
 msgid "Loading..."
@@ -315,11 +323,11 @@ msgstr "Ładowanie..."
 msgid "Login"
 msgstr "Zaloguj sie"
 
-#: src/shared/NavBar/LogoutButton.jsx:8
+#: src/shared/Navbar/LogoutButton.jsx:10
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: src/pages/AddCollection/AddCollection.jsx:177
+#: src/pages/AddCollection/AddCollection.jsx:175
 msgid "Markdown preview"
 msgstr "Podgląd \"Markdown\""
 
@@ -327,7 +335,7 @@ msgstr "Podgląd \"Markdown\""
 msgid "Maximum amount of tags is 10"
 msgstr "Maksymalna ilość tagów to 10"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:131
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:133
 msgid "Maximum length of name is 50"
 msgstr "Maksymalna długość nazwy to 10"
 
@@ -335,26 +343,31 @@ msgstr "Maksymalna długość nazwy to 10"
 msgid "Maximum tag length is 15"
 msgstr "Maksymalna długość tagu to 15"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:44
+#: src/pages/ItemDetail/components/LikeButton.jsx:45
 msgid "Nah, I'll stay here"
 msgstr "Nie, zostanę tutaj"
 
-#: src/pages/AddCollection/AddCollection.jsx:244
+#: src/pages/AddCollection/AddCollection.jsx:242
 msgid "New field"
 msgstr "Nowe pole"
 
-#: src/pages/CollectionDetail/CollectionDetail.jsx:153
+#: src/pages/CollectionDetail/CollectionDetail.jsx:141
 msgid "No items in collection"
 msgstr "Brak przedmiotów w kolekcji"
 
-#: src/pages/Home/Home.jsx:121
-#: src/pages/Home/Home.jsx:212
-#: src/pages/UserProfile/UserProfile.jsx:168
+#: src/pages/Home/components/CollectionCard.jsx:20
+#: src/pages/Home/components/ItemCard.jsx:21
+#: src/pages/SearchResults/components/SearchItem.jsx:16
+#: src/pages/UserProfile/components/CollectionCard.jsx:17
 msgid "No+image"
 msgstr "Brak+obrazka"
 
+#: src/shared/LoadMoreButton.jsx:18
+msgid "Nothing more to load"
+msgstr "Nic więcej do załadowania"
+
 #: src/constants/customFieldTypes.js:5
-#: src/services/getCollectionProps.js:6
+#: src/services/collectionAPI/getCollectionProps.js:6
 msgid "Number"
 msgstr "Numer"
 
@@ -362,16 +375,16 @@ msgstr "Numer"
 msgid "Number must be of a reasonable size"
 msgstr "Numer musi mieć rozsądny rozmiar"
 
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:204
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:206
 msgid "Open item page as soon as it is created"
 msgstr "Otwórz stronę przedmiotu zaraz po utworzeniu"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:98
-#: src/pages/AuthPage/components/SignupForm.jsx:108
+#: src/pages/AuthPage/components/LoginForm.jsx:97
+#: src/pages/AuthPage/components/SignupForm.jsx:106
 msgid "Password"
 msgstr "Hasło"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:124
+#: src/pages/AuthPage/components/SignupForm.jsx:122
 msgid "Password again"
 msgstr "Powtórz hasło"
 
@@ -379,15 +392,15 @@ msgstr "Powtórz hasło"
 msgid "Password must be at least 8 characters"
 msgstr "Hasło musi zawierać co najmniej 8 znaków"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:40
+#: src/pages/AuthPage/components/SignupForm.jsx:38
 msgid "Passwords must match"
 msgstr "Hasło musi pasować"
 
-#: src/pages/UserProfile/UserProfile.jsx:121
+#: src/pages/UserProfile/components/UserInfo.jsx:59
 msgid "Personal collections"
 msgstr "Dodane kolekcje"
 
-#: src/pages/Home/Home.jsx:251
+#: src/pages/Home/components/PopularTags.jsx:15
 msgid "Popular tags"
 msgstr "Popularne tagi"
 
@@ -395,15 +408,15 @@ msgstr "Popularne tagi"
 msgid "Press 'Enter' to add new tag if it's not present in dropdown"
 msgstr "Naciśnij 'Enter', aby dodać nowy tag, jeśli nie ma go na liście rozwijanej"
 
-#: src/shared/NavBar/ProfileMenu.jsx:15
+#: src/shared/Navbar/ProfileMenu.jsx:18
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/Home/Home.jsx:174
+#: src/pages/Home/components/RecentItems.jsx:14
 msgid "Recent items"
 msgstr "Ostatnie przedmioty"
 
-#: src/pages/UserProfile/UserProfile.jsx:113
+#: src/pages/UserProfile/components/UserInfo.jsx:53
 msgid "Registered for {0}"
 msgstr "Zarejestrowany na {0}"
 
@@ -411,8 +424,8 @@ msgstr "Zarejestrowany na {0}"
 msgid "Registration date"
 msgstr "Data rejestracji"
 
-#: src/pages/AddCollection/AddCollection.jsx:211
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:160
+#: src/pages/AddCollection/AddCollection.jsx:209
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:162
 msgid "Reset image"
 msgstr "Zresetuj obraz"
 
@@ -424,7 +437,7 @@ msgstr "Rola"
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-#: src/shared/NavBar/SearchDialog.jsx:54
+#: src/shared/Navbar/SearchDialog.jsx:49
 msgid "Search"
 msgstr "Szukaj"
 
@@ -436,11 +449,11 @@ msgstr "Wyniki wyszukiwania według tagu"
 msgid "Search results for"
 msgstr "Wyniki wyszukiwania dla"
 
-#: src/shared/NavBar/NavBar.jsx:126
+#: src/shared/Navbar/Navbar.jsx:121
 msgid "Search..."
 msgstr "Szukaj..."
 
-#: src/pages/AdminPage/AdminPage.jsx:37
+#: src/pages/AdminPage/components/Warning.jsx:11
 msgid "Seems like you've logged in as user with no admin rights or visiting as guest."
 msgstr "Wygląda na to, że zalogowałeś się jako użytkownik bez uprawnień administratora lub odwiedzający jako gość."
 
@@ -449,26 +462,26 @@ msgid "Selected items"
 msgstr "Wybrane przedmioty"
 
 #: src/constants/customFieldTypes.js:4
-#: src/services/getCollectionProps.js:5
+#: src/services/collectionAPI/getCollectionProps.js:5
 msgid "Short text"
 msgstr "Krótki tekst"
 
-#: src/pages/CollectionDetail/components/ItemTable.jsx:93
+#: src/pages/CollectionDetail/components/ItemTable.jsx:95
 msgid "Show in new tab"
 msgstr "Pokaż w nowej karcie"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:68
-#: src/pages/AuthPage/components/LoginForm.jsx:104
+#: src/pages/AuthPage/components/LoginForm.jsx:67
+#: src/pages/AuthPage/components/LoginForm.jsx:103
 msgid "Sign In"
 msgstr "Zaloguj się"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:70
-#: src/pages/AuthPage/components/SignupForm.jsx:142
+#: src/pages/AuthPage/components/SignupForm.jsx:68
+#: src/pages/AuthPage/components/SignupForm.jsx:140
 #: src/services/navigation.js:17
 msgid "Sign Up"
 msgstr "Zapisać się"
 
-#: src/pages/ItemDetail/components/CommentForm.jsx:35
+#: src/pages/ItemDetail/components/CommentForm.jsx:34
 msgid "Start typing your comment..."
 msgstr "Zacznij pisać swój komentarz..."
 
@@ -482,7 +495,7 @@ msgid "Tags"
 msgstr "Tagi"
 
 #: src/constants/customFieldTypes.js:6
-#: src/services/getCollectionProps.js:7
+#: src/services/collectionAPI/getCollectionProps.js:7
 msgid "Text"
 msgstr "Tekst"
 
@@ -490,12 +503,12 @@ msgstr "Tekst"
 msgid "This action is irreversible! Are you sure you want to delete this collection?"
 msgstr "Ta akcja jest nieodwracalna! Czy na pewno chcesz usunąć tę kolekcję?"
 
-#: src/pages/AdminPage/components/UserTable.jsx:247
+#: src/pages/AdminPage/components/UserTable.jsx:250
 msgid "To: {el}"
 msgstr "Na: {el}"
 
-#: src/pages/AdminPage/components/UserTable.jsx:148
-#: src/pages/AdminPage/components/UserTable.jsx:214
+#: src/pages/AdminPage/components/UserTable.jsx:151
+#: src/pages/AdminPage/components/UserTable.jsx:217
 msgid "Unblock"
 msgstr "Odblokować"
 
@@ -503,8 +516,8 @@ msgstr "Odblokować"
 msgid "User with this username or email already exists"
 msgstr "Użytkownik o tej nazwie użytkownika lub adresie e-mail już istnieje"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:88
-#: src/pages/AuthPage/components/SignupForm.jsx:91
+#: src/pages/AuthPage/components/LoginForm.jsx:87
+#: src/pages/AuthPage/components/SignupForm.jsx:89
 #: src/services/generateUserGrid.js:16
 msgid "Username"
 msgstr "Nazwa użytkownika"
@@ -513,7 +526,7 @@ msgstr "Nazwa użytkownika"
 msgid "Username must be at least 4 characters long and must not start with digit"
 msgstr "Nazwa użytkownika musi mieć co najmniej 4 znaki i nie może zaczynać się od cyfry"
 
-#: src/pages/AuthPage/components/SignupForm.jsx:29
+#: src/pages/AuthPage/components/SignupForm.jsx:27
 msgid "Username must not start with digit"
 msgstr "Nazwa użytkownika nie może zaczynać się od cyfry"
 
@@ -521,40 +534,40 @@ msgstr "Nazwa użytkownika nie może zaczynać się od cyfry"
 msgid "Username or password are incorrect"
 msgstr "Nazwa użytkownika lub hasło są nieprawidłowe"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:23
+#: src/pages/AuthPage/components/LoginForm.jsx:22
 msgid "Valid password is required"
 msgstr "Wymagane jest prawidłowe hasło"
 
 #: src/constants/customFieldTypes.js:7
-#: src/services/getCollectionProps.js:8
+#: src/services/collectionAPI/getCollectionProps.js:8
 msgid "Yes / No"
 msgstr "Tak / Nie"
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:43
+#: src/pages/ItemDetail/components/LikeButton.jsx:44
 msgid "Yes, show me the way"
 msgstr "Tak, pokaż mi drogę"
 
-#: src/pages/AddCollection/AddCollection.jsx:164
+#: src/pages/AddCollection/AddCollection.jsx:162
 msgid "You can use Markdown to format text inside!"
 msgstr "Możesz użyć Markdown do sformatowania tekstu w środku!"
 
-#: src/pages/ItemDetail/components/CommentForm.jsx:34
+#: src/pages/ItemDetail/components/CommentForm.jsx:33
 msgid "You have to be a member to comment..."
 msgstr "Aby komentować, musisz być członkiem..."
 
-#: src/pages/ItemDetail/components/LikeButton.jsx:41
+#: src/pages/ItemDetail/components/LikeButton.jsx:42
 msgid "You have to be a member to like items. Want to join now?"
 msgstr "Musisz być członkiem, aby polubić przedmioty. Chcesz dołączyć teraz?"
 
-#: src/pages/CollectionDetail/components/CollectionEditForm.jsx:38
+#: src/pages/CollectionDetail/components/CollectionEditForm.jsx:37
 msgid "You haven't made any changes"
 msgstr "Nie wprowadziłeś żadnych zmian"
 
-#: src/pages/AdminPage/components/UserTable.jsx:113
+#: src/pages/AdminPage/components/UserTable.jsx:116
 msgid "You want to change role of {0} selected user(s) to {role}. Proceed?"
 msgstr "Chcesz zmienić rolę {0} wybranych użytkowników na {role}. Przystępować?"
 
-#: src/pages/AuthPage/components/LoginForm.jsx:114
+#: src/pages/AuthPage/components/LoginForm.jsx:113
 msgid "You've signed up successfully"
 msgstr "Zarejestrowałeś się pomyślnie"
 
@@ -562,8 +575,8 @@ msgstr "Zarejestrowałeś się pomyślnie"
 msgid "Your search - <0>{query}</0> - did not match any items"
 msgstr "Twoje wyszukiwanie - <0>{query}</0> - nie pasuje do żadnego elementu"
 
-#: src/pages/ItemDetail/ItemDetail.jsx:102
-#: src/pages/SearchResults/SearchItem.jsx:38
+#: src/pages/ItemDetail/ItemDetail.jsx:98
+#: src/pages/SearchResults/components/SearchItem.jsx:40
 msgid "by {0}"
 msgstr "przez {0}"
 
@@ -575,27 +588,23 @@ msgstr "e-mail"
 #~ msgid "en"
 #~ msgstr ""
 
-#: src/pages/SearchResults/SearchItem.jsx:27
-msgid "https://via.placeholder.com/300?text={0}"
-msgstr ""
-
-#: src/pages/AddCollection/AddCollection.jsx:201
-#: src/pages/CollectionDetail/components/AddItemForm.jsx:163
+#: src/pages/AddCollection/AddCollection.jsx:199
+#: src/pages/CollectionDetail/components/AddItemForm.jsx:165
 msgid "no file selected"
 msgstr "nie wybrano pliku"
 
-#: src/shared/NavBar/NavBar.jsx:164
+#: src/shared/Navbar/Navbar.jsx:159
 msgid "open drawer"
 msgstr "otwórz menu"
 
-#: src/pages/ItemDetail/components/CommentSection.jsx:35
+#: src/pages/ItemDetail/components/CommentSection.jsx:27
 msgid "{0} comment(s)"
 msgstr "{0} komentarzy"
 
-#: src/pages/Home/Home.jsx:150
+#: src/pages/Home/components/CollectionCard.jsx:80
 msgid "{0} item(s)"
 msgstr "{0} przedmiot(y)"
 
-#: src/pages/UserProfile/UserProfile.jsx:70
+#: src/pages/UserProfile/components/UserInfo.jsx:13
 msgid "{0}'s profile"
 msgstr "profil użytkownika {0}"
