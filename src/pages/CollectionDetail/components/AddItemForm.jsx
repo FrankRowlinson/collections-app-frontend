@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useSnackbar } from 'notistack'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { MdCheckCircle, MdSave } from 'react-icons/md'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -26,6 +26,7 @@ import {
   TextareaInput,
   TextInput,
 } from '../../../shared/ItemFormFields'
+import { useQuery } from 'react-query'
 
 const fieldMapping = {
   number: NumberInput,
@@ -37,9 +38,7 @@ const fieldMapping = {
 
 function AddItemForm({ rightToEdit, collectionName, refetch }) {
   const { id } = useParams()
-  const [customFields, setCustomFields] = useState(null)
-  const [tagOptions, setTagOptions] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { data, isLoading } = useQuery(['addItemForm'], getItemProps(id))
   const [inProgress, setInProgress] = useState(false)
   const [formOpen, setFormOpen] = useState(false)
   const [openItemOnSubmit, setOpenItemOnSubmit] = useState(true)
@@ -61,21 +60,6 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
     control,
     name: 'itemImage',
   })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getItemProps(id)
-      setTagOptions(data.tags)
-      setCustomFields(data.fields)
-    }
-    fetchData()
-  }, [id])
-
-  useEffect(() => {
-    if (customFields) {
-      setIsLoading(false)
-    }
-  }, [customFields])
 
   const onSubmit = async (data) => {
     setInProgress(true)
@@ -139,7 +123,7 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
                 <ControlledAutocomplete
                   name="tags"
                   control={control}
-                  tagOptions={tagOptions}
+                  tagOptions={data.tags}
                 />
               </Grid>
               <Grid item xs={12} sx={{ dislpay: 'flex', alignItems: 'center' }}>
@@ -165,7 +149,7 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
                   t`no file selected`
                 )}
               </Grid>
-              {customFields.map((field, index) => {
+              {data.fields.map((field, index) => {
                 const { id, name: label, type } = field
                 const InputElement = fieldMapping[customFieldTypes[type].type]
                 return (

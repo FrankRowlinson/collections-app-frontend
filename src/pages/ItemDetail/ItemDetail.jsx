@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import {
   Container,
   Grid,
@@ -18,39 +18,30 @@ import { routes } from '../../constants'
 import moment from 'moment'
 import { UserContext, ItemContext } from '../../context'
 import { Trans } from '@lingui/macro'
+import { useQuery } from 'react-query'
 
 function ItemDetail() {
-  const { user } = useContext(UserContext)
-  const [item, setItem] = useState()
-  const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
+  const { user } = useContext(UserContext)
+  const { data, isLoading } = useQuery([id], getItem(id))
   const [inProgress, setInProgress] = useState(false)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getItem(id)
-      setItem(data.item)
-      setIsLoading(false)
-    }
-    fetchData()
-  }, [id])
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <ItemContext.Provider value={{ itemId: item.id }}>
+        <ItemContext.Provider value={{ itemId: data.item.id }}>
           <Backdrop sx={{ color: '#fff', zIndex: 2 }} open={inProgress}>
             <CircularProgress color="inherit" />
           </Backdrop>
           <Container sx={{ mt: '20px' }}>
             <Grid container spacing={2}>
-              {item.img && (
+              {data.item.img && (
                 <Grid item xs={12} md={4}>
                   <Box sx={{ position: 'sticky', top: 20 }}>
                     <Image
-                      src={item.img}
+                      src={data.item.img}
                       duration={1000}
                       easing="cubic-bezier(0.7, 0, 0.6, 1)"
                       showLoading={false}
@@ -61,19 +52,19 @@ function ItemDetail() {
                       sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}
                     >
                       <LikeButton
-                        likes={item.likes}
+                        likes={data.item.likes}
                         beenLiked={
-                          item.likes.filter((e) => e.userId === user.id)
+                          data.item.likes.filter((e) => e.userId === user.id)
                             .length > 0
                         }
-                        itemId={item.id}
+                        itemId={data.item.id}
                       />
                     </Box>
                     <Divider sx={{ mt: 1 }} />
                   </Box>
                 </Grid>
               )}
-              <Grid item xs={12} md={item.img ? 8 : 12}>
+              <Grid item xs={12} md={data.item.img ? 8 : 12}>
                 <Paper sx={{ p: 2, position: 'sticky', top: 20 }}>
                   <Box
                     sx={{
@@ -86,7 +77,7 @@ function ItemDetail() {
                       <Typography
                         variant="subtitle1"
                         component={Link}
-                        to={`${routes.USER_PROFILE}/${item.authorId}`}
+                        to={`${routes.USER_PROFILE}/${data.item.authorId}`}
                         sx={{
                           textDecoration: 'none',
                           color: 'text.primary',
@@ -95,7 +86,7 @@ function ItemDetail() {
                           },
                         }}
                       >
-                        <Trans>by {item.author.username}</Trans>
+                        <Trans>by {data.item.author.username}</Trans>
                       </Typography>
                     </Box>
                     <Box>
@@ -103,7 +94,7 @@ function ItemDetail() {
                         variant="caption"
                         sx={{ color: 'text.secondary' }}
                       >
-                        {moment(item.createdAt).format('LL')}
+                        {moment(data.item.createdAt).format('LL')}
                       </Typography>
                     </Box>
                   </Box>
@@ -112,7 +103,7 @@ function ItemDetail() {
                     variant="h5"
                     textAlign="center"
                   >
-                    {item.name}
+                    {data.item.name}
                   </Typography>
                   <Typography
                     variant="overline"
@@ -124,16 +115,16 @@ function ItemDetail() {
                       '&:hover': { textDecoration: 'underline' },
                     }}
                     component={Link}
-                    to={`${routes.COLLECTIONS}/byid/${item.collectionId}`}
+                    to={`${routes.COLLECTIONS}/byid/${data.item.collectionId}`}
                   >
-                    {item.partOf.type.name} | {item.partOf.name}
+                    {data.item.partOf.type.name} | {data.item.partOf.name}
                   </Typography>
                   <Divider sx={{ my: 1 }} />
-                  <Details fields={item.fields} />
+                  <Details fields={data.item.fields} />
                   {/* tags */}
-                  {item.tags?.length ? (
+                  {data.item.tags?.length ? (
                     <Box sx={{ py: 2 }}>
-                      {item.tags.map((el) => {
+                      {data.item.tags.map((el) => {
                         return (
                           <Tag
                             name={el.name}
@@ -146,15 +137,15 @@ function ItemDetail() {
                   ) : (
                     ''
                   )}
-                  {!item.img && (
+                  {!data.item.img && (
                     <>
                       <LikeButton
-                        likes={item.likes}
+                        likes={data.item.likes}
                         beenLiked={
-                          item.likes.filter((e) => e.userId === user.id)
+                          data.item.likes.filter((e) => e.userId === user.id)
                             .length > 0
                         }
-                        itemId={item.id}
+                        itemId={data.item.id}
                       />
                     </>
                   )}
@@ -163,7 +154,7 @@ function ItemDetail() {
               <Grid container item xs={12}></Grid>
             </Grid>
 
-            <CommentSection comments={item.comments} />
+            <CommentSection comments={data.item.comments} />
             {/* Comment Section */}
           </Container>
         </ItemContext.Provider>

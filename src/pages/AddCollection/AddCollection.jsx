@@ -16,21 +16,27 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import { MdAdd, MdCheckCircle, MdInfoOutline, MdSave } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useNavigate } from 'react-router-dom'
-import { createCollection, getCollectionProps } from '../../services/collectionAPI'
+import {
+  createCollection,
+  getCollectionProps,
+} from '../../services/collectionAPI'
 import { ButtonProgress, MarkdownPreview } from '../../shared'
+import { useQuery } from 'react-query'
+import { routes } from '../../constants'
 
 function AddCollection() {
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(true)
+  const { data, isLoading } = useQuery(
+    ['createCollectionForm'],
+    getCollectionProps
+  )
   const [inProgress, setInProgress] = useState(false)
-  const [collectionTypes, setCollectionTypes] = useState([])
-  const [fieldTypes, setFieldTypes] = useState({})
   const [previewOpen, setPreviewOpen] = useState(false)
   const [infoOpen, setInfoOpen] = useState(false)
   const {
@@ -49,16 +55,6 @@ function AddCollection() {
     name: 'customField',
     shouldUnregister: true,
   })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getCollectionProps()
-      setCollectionTypes(response.collectionTypes)
-      setFieldTypes(response.fieldTypes)
-      setIsLoading(false)
-    }
-    fetchData()
-  }, [])
 
   const coverImage = useWatch({
     control,
@@ -85,7 +81,7 @@ function AddCollection() {
   const onSubmit = async (data) => {
     setInProgress(true)
     const response = await createCollection(data)
-    navigate(`/collections/byid/${response.data.collection_id}`)
+    navigate(`${routes.COLLECTIONS}/byid/${response.data.collection_id}`)
   }
 
   return (
@@ -136,7 +132,7 @@ function AddCollection() {
                 disabled={isLoading}
               >
                 {!isLoading &&
-                  collectionTypes.map((el) => {
+                  data.collectionTypes.map((el) => {
                     return (
                       <MenuItem key={el.id} value={el.name}>
                         {el.name}
@@ -260,7 +256,7 @@ function AddCollection() {
                     >
                       {isLoading
                         ? ''
-                        : fieldTypes.map((el, key) => {
+                        : data.fieldTypes.map((el, key) => {
                             return (
                               <MenuItem value={el.value} key={`${el}-${key}`}>
                                 {el.label}
