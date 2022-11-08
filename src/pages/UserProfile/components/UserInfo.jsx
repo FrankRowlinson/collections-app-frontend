@@ -2,8 +2,10 @@ import { Grid, Typography, Stack, Box, Divider } from '@mui/material'
 import { Trans, t } from '@lingui/macro'
 import { Image } from 'mui-image'
 import moment from 'moment'
+import { usePlaceholder } from '../../../hooks'
 
 function UserInfo({ data }) {
+  const placeholder = usePlaceholder(t`Avatar`)
   return (
     <>
       <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'between' }}>
@@ -23,7 +25,7 @@ function UserInfo({ data }) {
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Image src={`https://via.placeholder.com/300?text=${t`Avatar`}`} />
+        <Image src={placeholder} />
       </Grid>
       <Grid item xs={12} sm={6} md={8} lg={9}>
         <Stack spacing={2}>

@@ -9,9 +9,11 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../../constants'
 import { t } from '@lingui/macro'
+import { usePlaceholder } from '../../../hooks'
 
 function SearchItem({ item }) {
   const navigate = useNavigate()
+  const placeholder = usePlaceholder(t`No+image`)
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: 'flex' }}>
       <CardActionArea
@@ -24,7 +26,7 @@ function SearchItem({ item }) {
             component="img"
             sx={{ height: { xs: 350, sm: 300, md: 250 } }}
             image={
-              item.img || `https://via.placeholder.com/300?text=${t`No+image`}`
+              item.img || placeholder
             }
             alt=""
           />

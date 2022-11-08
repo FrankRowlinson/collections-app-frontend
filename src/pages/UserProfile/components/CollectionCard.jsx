@@ -10,9 +10,11 @@ import {
 import { routes } from '../../../constants'
 import moment from 'moment'
 import { t } from '@lingui/macro'
+import { usePlaceholder } from '../../../hooks'
 
 function CollectionCard({ item }) {
   const navigate = useNavigate()
+  const placeholder = usePlaceholder(t`No+image`)
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} sx={{ display: 'flex' }}>
       <CardActionArea
@@ -31,7 +33,7 @@ function CollectionCard({ item }) {
             component="img"
             sx={{ height: { xs: 300, sm: 250, md: 200 } }}
             image={
-              item.img || `https://via.placeholder.com/300?text=${t`No+image`}`
+              item.img || placeholder
             }
             alt=""
           />

@@ -9,6 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../../constants'
 import { t, Trans } from '@lingui/macro'
+import { usePlaceholder } from '../../../hooks'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +
@@ -16,6 +17,7 @@ const cardBackground =
 
 function CollectionCard({ item, index }) {
   const navigate = useNavigate()
+  const placeholder = usePlaceholder(t`No+image`)
   return (
     <Grid
       item
@@ -47,9 +49,7 @@ function CollectionCard({ item, index }) {
                 lg: index ? 200 : 400,
               },
             }}
-            image={
-              item.img || `https://via.placeholder.com/300?text=${t`No+image`}`
-            }
+            image={item.img || placeholder}
             component="img"
           />
           <CardContent
