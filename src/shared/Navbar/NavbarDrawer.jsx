@@ -7,16 +7,6 @@ function NavbarDrawer({ handleDrawerToggle, window, mobileOpen, navItems }) {
   const container =
     window !== undefined ? () => window().document.body : undefined
 
-  const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: 'center', height: '100%' }}
-    >
-      <NavbarLogo variant="drawer" />
-      <Divider />
-      <NavbarItems navItems={navItems} variant="drawer" />
-    </Box>
-  )
   return (
     <Drawer
       container={container}
@@ -34,7 +24,14 @@ function NavbarDrawer({ handleDrawerToggle, window, mobileOpen, navItems }) {
         },
       }}
     >
-      {drawer}
+      <Box
+        onClick={handleDrawerToggle}
+        sx={{ textAlign: 'center', height: '100%' }}
+      >
+        <NavbarLogo variant="drawer" />
+        <Divider />
+        <NavbarItems navItems={navItems} variant="drawer" />
+      </Box>
     </Drawer>
   )
 }

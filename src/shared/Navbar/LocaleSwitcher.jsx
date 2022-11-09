@@ -9,6 +9,7 @@ import {
   MenuItem,
   ToggleButtonGroup,
   ToggleButton,
+  ListItem,
 } from '@mui/material'
 import { useContext, useEffect } from 'react'
 import { LocaleContext } from '../../context'
@@ -56,22 +57,24 @@ function LocaleSwitcher({ variant }) {
 
   const DrawerVariant = () => {
     return (
-      <ToggleButtonGroup>
-        {locales.map((item, index) => (
-          <ToggleButton
-            size="small"
-            value={item.name}
-            selected={item.name === locale}
-            key={`${item.name}-drawer`}
-            sx={{ fontSize: 20, py: 0, px: 2 }}
-            onClick={() => {
-              localeMode.changeLocale(item.name)
-            }}
-          >
-            {item.flag}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+      <ListItem sx={{ display: 'flex', justifyContent: 'center' }}>
+        <ToggleButtonGroup>
+          {locales.map((item, index) => (
+            <ToggleButton
+              size="small"
+              value={item.name}
+              selected={item.name === locale}
+              key={`${item.name}-drawer`}
+              sx={{ fontSize: 20, py: 0, px: 2 }}
+              onClick={() => {
+                localeMode.changeLocale(item.name)
+              }}
+            >
+              {item.flag}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      </ListItem>
     )
   }
 

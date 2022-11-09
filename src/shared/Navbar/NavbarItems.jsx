@@ -80,9 +80,7 @@ function NavBarItems({ variant, navItems }) {
       <ListItem key="logout" disablePadding>
         {user.role === 'GUEST' ? '' : <ProfileMenu />}
       </ListItem>
-      <ListItem sx={{ display: 'flex', justifyContent: 'center' }}>
-        <LocaleSwitcher variant="drawer" />
-      </ListItem>
+      <LocaleSwitcher variant="drawer" />
       <ThemeSwitcher variant="drawer" />
     </List>
   )

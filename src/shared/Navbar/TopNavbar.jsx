@@ -31,7 +31,7 @@ function TopNavbar({ navItems, handleDrawerToggle }) {
       <SearchButton />
       <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
         <ThemeSwitcher variant="top" />
-        <LocaleSwitcher />
+        <LocaleSwitcher variant="top" />
         {user.role === 'GUEST' ? '' : <NavbarAvatar />}
       </Box>
     </Toolbar>
