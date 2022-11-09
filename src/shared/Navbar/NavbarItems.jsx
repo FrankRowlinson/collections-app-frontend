@@ -5,44 +5,16 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Switch,
-  ToggleButton,
-  ToggleButtonGroup,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { useContext } from 'react'
-import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
 import { NavLink } from 'react-router-dom'
-import { locales } from '../../constants'
-import { UserContext, LocaleContext, ColorModeContext } from '../../context'
-import { ProfileMenu } from './'
+import { UserContext } from '../../context'
+import { ThemeSwitcher, LocaleSwitcher, ProfileMenu } from './'
 
 function NavBarItems({ variant, navItems }) {
   const theme = useTheme()
-  const colorMode = useContext(ColorModeContext)
   const { user } = useContext(UserContext)
-  const { localeMode, locale } = useContext(LocaleContext)
-
-  const LocaleSwitcher = () => {
-    return (
-      <ToggleButtonGroup>
-        {locales.map((item, index) => (
-          <ToggleButton
-            size="small"
-            value={item.name}
-            selected={item.name === locale}
-            key={`${item.name}-drawer`}
-            sx={{ fontSize: 20, py: 0, px: 2 }}
-            onClick={() => {
-              localeMode.changeLocale(item.name)
-            }}
-          >
-            {item.flag}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
-    )
-  }
 
   const topNavItems = (
     <Box
@@ -109,20 +81,9 @@ function NavBarItems({ variant, navItems }) {
         {user.role === 'GUEST' ? '' : <ProfileMenu />}
       </ListItem>
       <ListItem sx={{ display: 'flex', justifyContent: 'center' }}>
-        <LocaleSwitcher />
+        <LocaleSwitcher variant="drawer" />
       </ListItem>
-      <ListItem
-        disablePadding
-        sx={{ display: 'flex', justifyContent: 'center' }}
-      >
-        <MdOutlineDarkMode />
-        <Switch
-          color="default"
-          onChange={colorMode.toggleColorMode}
-          checked={theme.palette.mode === 'dark'}
-        />
-        <MdDarkMode />
-      </ListItem>
+      <ThemeSwitcher variant="drawer" />
     </List>
   )
 
