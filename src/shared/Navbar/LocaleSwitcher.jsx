@@ -41,7 +41,7 @@ function LocaleSwitcher({ variant }) {
           {locales.map((item) => {
             return (
               <MenuItem
-                key={`${locale.name}-top`}
+                key={`${item.name}-top`}
                 onClick={() => {
                   localeMode.changeLocale(item.name)
                 }}
