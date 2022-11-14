@@ -16,11 +16,13 @@ import { createItem } from '../../../../services/itemAPI'
 import getItemProps from '../../../../services/getItemProps'
 import { ButtonProgress } from '../../../../shared'
 import { useQuery } from 'react-query'
-import { FormContext } from '../../../../context'
+import { CollectionContext, FormContext } from '../../../../context'
 import { ItemImage, ItemName, ItemTags } from './Fields'
 import { CustomItemFields } from './'
+import { useContext } from 'react'
 
-function AddItemForm({ rightToEdit, collectionName, refetch }) {
+function AddItemForm() {
+  const { rightToEdit, collection, refetch } = useContext(CollectionContext)
   const { id } = useParams()
   const { data, isLoading } = useQuery(['addItemForm'], getItemProps(id))
   const [inProgress, setInProgress] = useState(false)
@@ -74,7 +76,7 @@ function AddItemForm({ rightToEdit, collectionName, refetch }) {
             id="add-item"
             sx={{ pt: 1, mt: -1, fontWeight: 500 }}
             variant="h6"
-          >{t`Add item into "${collectionName}"`}</Typography>
+          >{t`Add item into "${collection.name}"`}</Typography>
           <Divider sx={{ mb: 2 }} />
           <FormContext.Provider
             value={{ register, errors, control, resetField, data }}

@@ -7,14 +7,17 @@ import {
   usePopupState,
 } from 'material-ui-popup-state/hooks'
 import { useSnackbar } from 'notistack'
+import { useContext } from 'react'
 import { useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../../constants'
+import { CollectionContext } from '../../../context'
 import { deleteCollection } from '../../../services/collectionAPI'
 import { CollectionEditForm } from './'
 
-const CollectionMenu = ({ rightToEdit, id }) => {
+const CollectionMenu = () => {
+  const { collection, rightToEdit } = useContext(CollectionContext)
   const { enqueueSnackbar } = useSnackbar()
   const navigate = useNavigate()
   const confirm = useConfirm()
@@ -29,7 +32,7 @@ const CollectionMenu = ({ rightToEdit, id }) => {
       description: t`This action is irreversible! Are you sure you want to delete this collection?`,
     })
       .then(async () => {
-        const response = await deleteCollection(id)
+        const response = await deleteCollection(collection.id)
         if (response.status === 'ok') {
           enqueueSnackbar(t`Collection successfully deleted`, {
             variant: 'success',
@@ -50,7 +53,7 @@ const CollectionMenu = ({ rightToEdit, id }) => {
       <CollectionEditForm
         open={editFormOpen}
         setEditFormOpen={setEditFormOpen}
-        collectionId={id}
+        collectionId={collection.id}
       />
       <IconButton {...bindTrigger(popupState)} size="small">
         <BsThreeDotsVertical />

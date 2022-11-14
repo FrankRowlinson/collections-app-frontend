@@ -9,8 +9,7 @@ import {
   Backdrop,
   CircularProgress,
 } from '@mui/material'
-import Image from 'mui-image'
-import { Details, CommentSection, LikeButton } from './components'
+import { Details, CommentSection, LikeButton, ItemImage } from './components'
 import { useParams, Link } from 'react-router-dom'
 import { getItem } from '../../services/itemAPI'
 import { Loader, Tag } from '../../shared'
@@ -40,16 +39,9 @@ function ItemDetail() {
               {data.item.img && (
                 <Grid item xs={12} md={4}>
                   <Box sx={{ position: 'sticky', top: 20 }}>
-                    <Image
-                      src={data.item.img}
-                      duration={1000}
-                      easing="cubic-bezier(0.7, 0, 0.6, 1)"
-                      showLoading={false}
-                      errorIcon={true}
-                      bgColor="inherit"
-                    />
+                    <ItemImage img={data.item.img} />
                     <Box
-                      sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}
+                      sx={{ display: 'flex', justifyContent: 'center', my: 1 }}
                     >
                       <LikeButton
                         likes={data.item.likes}
@@ -60,7 +52,6 @@ function ItemDetail() {
                         itemId={data.item.id}
                       />
                     </Box>
-                    <Divider sx={{ mt: 1 }} />
                   </Box>
                 </Grid>
               )}
@@ -151,11 +142,8 @@ function ItemDetail() {
                   )}
                 </Paper>
               </Grid>
-              <Grid container item xs={12}></Grid>
             </Grid>
-
             <CommentSection comments={data.item.comments} />
-            {/* Comment Section */}
           </Container>
         </ItemContext.Provider>
       )}
