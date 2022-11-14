@@ -1,8 +1,11 @@
 import { t } from '@lingui/macro'
 import { Autocomplete, Chip, TextField } from '@mui/material'
+import { useContext } from 'react'
 import { useController } from 'react-hook-form'
+import { FormContext } from '../../../../../../context'
 
-function ControlledAutocomplete({ name, control, tagOptions }) {
+function ControlledAutocomplete({ name, tagOptions }) {
+  const { control } = useContext(FormContext)
   const {
     field: { ref, onChange, ...field },
     fieldState: { error },

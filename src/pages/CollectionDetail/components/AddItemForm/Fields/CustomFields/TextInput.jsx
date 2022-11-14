@@ -1,7 +1,10 @@
 import { TextField } from '@mui/material'
+import { useContext } from 'react'
 import { useController } from 'react-hook-form'
+import { FormContext } from '../../../../../../context'
 
-function TextInput({ name, label, control }) {
+function TextInput({ name, label }) {
+  const { control } = useContext(FormContext)
   const {
     field: { onChange, value, ...field },
   } = useController({

@@ -1,9 +1,11 @@
 import { t } from '@lingui/macro'
 import { TextField } from '@mui/material'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useController } from 'react-hook-form'
+import { FormContext } from '../../../../../../context'
 
-function NumberInput({ name, label, control }) {
+function NumberInput({ name, label }) {
+  const { control } = useContext(FormContext)
   const {
     field,
     fieldState: { error },

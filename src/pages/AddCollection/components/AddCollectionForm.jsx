@@ -17,7 +17,7 @@ import {
   CollectionName,
   CollectionType,
 } from './Fields'
-import { AddCollectionFormContext } from '../../../context'
+import { FormContext } from '../../../context'
 import { CustomFieldsSection } from './'
 
 function AddCollectionForm() {
@@ -44,7 +44,7 @@ function AddCollectionForm() {
     navigate(`${routes.COLLECTIONS}/byid/${response.data.collection_id}`)
   }
   return (
-    <AddCollectionFormContext.Provider
+    <FormContext.Provider
       value={{ register, control, errors, isLoading, data, resetField }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +75,7 @@ function AddCollectionForm() {
           </Grid>
         </Grid>
       </form>
-    </AddCollectionFormContext.Provider>
+    </FormContext.Provider>
   )
 }
 

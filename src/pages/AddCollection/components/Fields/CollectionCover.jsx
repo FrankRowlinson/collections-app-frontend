@@ -2,11 +2,11 @@ import { Grid, Button, Icon, InputLabel } from '@mui/material'
 import { Trans, t } from '@lingui/macro'
 import { MdCheckCircle, MdSave } from 'react-icons/md'
 import { useContext } from 'react'
-import { AddCollectionFormContext } from '../../../../context'
+import { FormContext } from '../../../../context'
 import { useWatch } from 'react-hook-form'
 
 function CollectionCover() {
-  const { register, control, resetField } = useContext(AddCollectionFormContext)
+  const { register, control, resetField } = useContext(FormContext)
   const coverImage = useWatch({
     control,
     name: 'collection-image',

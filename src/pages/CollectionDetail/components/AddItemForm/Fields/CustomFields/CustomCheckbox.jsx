@@ -1,7 +1,10 @@
 import { Checkbox, FormControlLabel } from '@mui/material'
+import { useContext } from 'react'
 import { useController } from 'react-hook-form'
+import { FormContext } from '../../../../../../context'
 
-function CustomCheckbox({ name, label, control }) {
+function CustomCheckbox({ name, label }) {
+  const { control } = useContext(FormContext)
   const {
     field: { value, onChange, ...field },
   } = useController({

@@ -1,9 +1,12 @@
 import { TextField } from '@mui/material'
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import moment from 'moment'
+import { useContext } from 'react'
 import { useController } from 'react-hook-form'
+import { FormContext } from '../../../../../../context'
 
-function DateInput({ name, label, control }) {
+function DateInput({ name, label }) {
+  const { control } = useContext(FormContext)
   const {
     field: { value, onChange, ...field },
   } = useController({

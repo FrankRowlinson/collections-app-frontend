@@ -8,10 +8,10 @@ import {
 } from '@mui/material'
 import { t } from '@lingui/macro'
 import { useContext } from 'react'
-import { AddCollectionFormContext } from '../../../../context'
+import { FormContext } from '../../../../context'
 
 function CustomField({ index, fieldTypes }) {
-  const { register } = useContext(AddCollectionFormContext)
+  const { register } = useContext(FormContext)
   return (
     <>
       <Grid item xs={12} md={4}>

@@ -5,12 +5,12 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import { Trans } from '@lingui/macro'
 import { CustomField } from './Fields'
 import { useContext } from 'react'
-import { AddCollectionFormContext } from '../../../context'
+import { FormContext } from '../../../context'
 import { ButtonProgress } from '../../../shared'
 import { useFieldArray } from 'react-hook-form'
 
 function CustomFieldsSection() {
-  const { control, isLoading, data } = useContext(AddCollectionFormContext)
+  const { control, isLoading, data } = useContext(FormContext)
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'customField',

@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { Grid, TextField } from '@mui/material'
-import { AddCollectionFormContext } from '../../../../context'
+import { FormContext } from '../../../../context'
 import { t } from '@lingui/macro'
 
 function CollectionName() {
-  const { register, errors } = useContext(AddCollectionFormContext)
+  const { register, errors } = useContext(FormContext)
   return (
     <Grid item xs={12}>
       <TextField

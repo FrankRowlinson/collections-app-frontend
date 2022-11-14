@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { AddCollectionFormContext } from '../../../../context'
+import { FormContext } from '../../../../context'
 import { Grid, TextField } from '@mui/material'
 import { t } from '@lingui/macro'
 import { MarkdownPreviewButton } from '../'
 
 function CollectionDescription() {
-  const { register } = useContext(AddCollectionFormContext)
+  const { register } = useContext(FormContext)
   return (
     <Grid
       item

@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { AddCollectionFormContext } from '../../../../context'
+import { FormContext } from '../../../../context'
 import { Grid, FormControl, Select, MenuItem, InputLabel } from '@mui/material'
 import { Trans, t } from '@lingui/macro'
 
 function CollectionType() {
   const { register, errors, isLoading, data } = useContext(
-    AddCollectionFormContext
+    FormContext
   )
   return (
     <Grid item xs={12}>
