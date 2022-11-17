@@ -13,6 +13,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.2.3",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "ag-grid-community": "^28.2.0",
     "ag-grid-react": "^28.2.0",
     "axios": "^0.27.2",
@@ -31,6 +35,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-tagcloud": "^2.3.1",
+    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
@@ -61,6 +66,10 @@
   },
   "devDependencies": {
     "@lingui/cli": "^3.14.0",
-    "@lingui/macro": "^3.14.0"
+    "@lingui/macro": "^3.14.0",
+    "@types/moment": "^2.13.0",
+    "@types/mui-image": "^1.0.1",
+    "@types/react-tagcloud": "^1.1.7",
+    "create-ts-index": "^1.14.0"
   }
 }

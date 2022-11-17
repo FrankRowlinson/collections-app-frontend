@@ -1,5 +1,0 @@
-export { default as CustomField } from './CustomField'
-export { default as CollectionName } from './CollectionName'
-export { default as CollectionType } from './CollectionType'
-export { default as CollectionDescription } from './CollectionDescription'
-export { default as CollectionCover } from './CollectionCover'
