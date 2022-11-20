@@ -12,9 +12,9 @@ import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
 import * as yup from 'yup'
-import { routes } from '../../../constants'
-import { UserContext } from '../../../context'
-import { authenticateUser } from '../../../services/userAPI'
+import { routes } from '../../../common/constants'
+import { UserContext } from '../../../common/context'
+import { authenticateUser } from '../../../common/services'
 import { AuthButton, AuthError } from '.'
 
 const requiredUsernameError = t`Enter a valid username`

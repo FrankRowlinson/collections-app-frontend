@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { getTagsForCloud } from '../../../services/tagAPI'
+import { getTagsForCloud } from '../../../common/services'
 import { Grid, Typography } from '@mui/material'
 import { Trans } from '@lingui/macro'
 import { TagCloud } from 'react-tagcloud'

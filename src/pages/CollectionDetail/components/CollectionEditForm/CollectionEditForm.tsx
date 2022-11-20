@@ -8,13 +8,12 @@ import {
 } from '@mui/material'
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { CollectionContext, FormContext } from '../../../../context'
+import { CollectionContext, FormContext } from '../../../../common/context'
 import { Trans, t } from '@lingui/macro'
-import { editCollection } from '../../../../services/collectionAPI'
+import { editCollection } from '../../../../common/services'
 import { useSnackbar } from 'notistack'
-import { ButtonProgress } from '../../../../shared'
-import { CollectionDescription, CollectionName } from './Fields'
-import { DescriptionPreview } from './'
+import { ButtonProgress } from '../../../../common/components'
+import { CollectionDescription, CollectionName, DescriptionPreview } from '.'
 
 interface Props {
   collectionId: string

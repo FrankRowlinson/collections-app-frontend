@@ -1,5 +1,5 @@
 import { Alert, Typography } from '@mui/material'
-import { Trans } from '@lingui/macro';
+import { Trans } from '@lingui/macro'
 
 export function Warning() {
   return (

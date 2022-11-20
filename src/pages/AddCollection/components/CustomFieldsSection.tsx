@@ -5,8 +5,8 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import { Trans } from '@lingui/macro'
 import { CustomField } from './Fields'
 import { useContext } from 'react'
-import { FormContext } from '../../../context'
-import { ButtonProgress } from '../../../shared'
+import { FormContext } from '../../../common/context'
+import { ButtonProgress } from '../../../common/components'
 import { useFieldArray } from 'react-hook-form'
 
 export function CustomFieldsSection() {

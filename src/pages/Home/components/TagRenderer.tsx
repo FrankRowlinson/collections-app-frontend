@@ -1,4 +1,4 @@
-import { Tag } from '../../../shared'
+import { Tag } from '../../../common/components'
 
 interface CloudTag {
   value: string

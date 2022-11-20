@@ -7,17 +7,17 @@ import { useNavigate } from 'react-router-dom'
 import {
   createCollection,
   getCollectionProps,
-} from '../../../services/collectionAPI'
-import { ButtonProgress } from '../../../shared'
+} from '../../../common/services'
+import { ButtonProgress } from '../../../common/components'
 import { useQuery } from 'react-query'
-import { routes } from '../../../constants'
+import { routes } from '../../../common/constants'
 import {
   CollectionCover,
   CollectionDescription,
   CollectionName,
   CollectionType,
 } from './Fields'
-import { FormContext } from '../../../context'
+import { FormContext } from '../../../common/context'
 import { CustomFieldsSection } from '.'
 
 export function AddCollectionForm() {

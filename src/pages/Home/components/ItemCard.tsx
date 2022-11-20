@@ -7,10 +7,10 @@ import {
   Typography,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { routes } from '../../../constants'
+import { routes } from '../../../common/constants'
 import { t } from '@lingui/macro'
 import moment from 'moment'
-import { usePlaceholder } from '../../../hooks'
+import { usePlaceholder } from '../../../common/hooks'
 
 const cardBackground =
   'linear-gradient(to top, rgba(0,0,0,1) 0%, ' +

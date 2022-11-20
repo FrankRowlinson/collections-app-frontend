@@ -2,7 +2,7 @@ import { Grid, Button, Icon, InputLabel } from '@mui/material'
 import { Trans, t } from '@lingui/macro'
 import { MdCheckCircle, MdSave } from 'react-icons/md'
 import { useContext } from 'react'
-import { FormContext } from '../../../../context'
+import { FormContext } from '../../../../common/context'
 import { useWatch } from 'react-hook-form'
 
 export function CollectionCover() {

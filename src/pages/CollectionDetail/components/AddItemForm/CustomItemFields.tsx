@@ -6,9 +6,9 @@ import {
   NumberInput,
   TextareaInput,
   TextInput,
-} from './Fields/CustomFields'
-import { FormContext } from '../../../../context'
-import { customFieldTypes } from '../../../../constants'
+} from '.'
+import { FormContext } from '../../../../common/context'
+import { customFieldTypes } from '../../../../common/constants'
 
 const fieldMapping: Mapping = {
   number: NumberInput,

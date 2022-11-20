@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material'
 import { Trans } from '@lingui/macro'
 import { useQuery } from 'react-query'
-import { getBiggestCollections } from '../../../services/collectionAPI'
+import { getBiggestCollections } from '../../../common/services'
 import { CollectionsSkeleton, CollectionCard } from '.'
 
 export function BiggestCollections() {

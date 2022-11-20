@@ -12,9 +12,9 @@ import {
   Backdrop,
   CircularProgress,
 } from '@mui/material'
-import { routes } from '../../../constants'
+import { routes } from '../../../common/constants'
 import { useNavigate } from 'react-router-dom'
-import { getItems, deleteItems } from '../../../services/itemAPI'
+import { getItems, deleteItems } from '../../../common/services'
 import { Trans } from '@lingui/macro'
 
 interface Props {

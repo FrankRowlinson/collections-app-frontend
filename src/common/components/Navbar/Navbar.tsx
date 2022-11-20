@@ -1,7 +1,7 @@
 import { AppBar, Box } from '@mui/material'
 import { useContext, useEffect, useState, useCallback } from 'react'
 import { UserContext } from '../../context'
-import { getNavItems } from '../../services/navigation'
+import { getNavItems } from '../../services'
 import { TopNavbar, NavbarDrawer } from '.'
 
 export function Navbar() {

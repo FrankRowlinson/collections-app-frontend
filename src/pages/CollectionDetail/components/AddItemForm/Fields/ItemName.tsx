@@ -1,7 +1,7 @@
 import { Grid, TextField } from '@mui/material'
 import { t } from '@lingui/macro'
 import { useContext } from 'react'
-import { FormContext } from '../../../../../context'
+import { FormContext } from '../../../../../common/context'
 
 export function ItemName() {
   const { register, errors } = useContext(FormContext)

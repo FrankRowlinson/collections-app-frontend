@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { t } from '@lingui/macro'
 import { useContext } from 'react'
-import { FormContext } from '../../../../context'
+import { FormContext } from '../../../../common/context'
 
 interface FieldType {
   value: string

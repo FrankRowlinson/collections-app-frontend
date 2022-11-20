@@ -1,7 +1,7 @@
 import { Container, Grid, Paper } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { getUserProfileData } from '../../services/userAPI'
-import { Loader } from '../../shared'
+import { getUserProfileData } from '../../common/services'
+import { Loader } from '../../common/components'
 import { UserInfo, UserCollections } from './components'
 import { useQuery } from 'react-query'
 

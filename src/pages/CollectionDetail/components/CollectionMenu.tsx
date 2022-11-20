@@ -11,9 +11,9 @@ import { useContext } from 'react'
 import { useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
-import { routes } from '../../../constants'
-import { CollectionContext } from '../../../context'
-import { deleteCollection } from '../../../services/collectionAPI'
+import { routes } from '../../../common/constants'
+import { CollectionContext } from '../../../common/context'
+import { deleteCollection } from '../../../common/services'
 import { CollectionEditForm } from '.'
 
 export const CollectionMenu = () => {

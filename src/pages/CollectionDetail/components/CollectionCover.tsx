@@ -1,7 +1,7 @@
 import { Grid, Box } from '@mui/material'
 import Image from 'mui-image'
 import { useContext } from 'react'
-import { CollectionContext } from '../../../context'
+import { CollectionContext } from '../../../common/context'
 
 export function CollectionCover() {
   const { collection } = useContext(CollectionContext)

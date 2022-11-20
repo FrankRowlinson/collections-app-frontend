@@ -7,10 +7,10 @@ import {
   CardActionArea,
   CardContent,
 } from '@mui/material'
-import { routes } from '../../../constants'
+import { routes } from '../../../common/constants'
 import moment from 'moment'
 import { t } from '@lingui/macro'
-import { usePlaceholder } from '../../../hooks'
+import { usePlaceholder } from '../../../common/hooks'
 
 interface Props {
   item: CollectionInfo

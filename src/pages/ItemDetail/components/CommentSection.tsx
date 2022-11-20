@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { Stack, Paper, Typography, Grid, Box } from '@mui/material'
 import { Comment, CommentForm } from '.'
-import { getComments } from '../../../services/commentAPI'
-import { ItemContext } from '../../../context'
-import { Loader } from '../../../shared'
+import { getComments } from '../../../common/services'
+import { ItemContext } from '../../../common/context'
+import { Loader } from '../../../common/components'
 import { t } from '@lingui/macro'
 import { useQuery } from 'react-query'
 

@@ -10,14 +10,14 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { RiUserSettingsLine } from 'react-icons/ri'
 import { TbLock, TbLockOpen } from 'react-icons/tb'
-import { roles } from '../../../constants'
-import { UserContext } from '../../../context'
+import { roles } from '../../../common/constants'
+import { UserContext } from '../../../common/context'
 import {
   blockUsers,
   changeUsersRole,
   deleteUsers,
   unblockUsers,
-} from '../../../services/userAPI'
+} from '../../../common/services/userAPI'
 import { getColumns, getRows } from '../functions'
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { useContext } from 'react'
 import { useController } from 'react-hook-form'
-import { FormContext } from '../../../../../../context'
+import { FormContext } from '../../../../../../common/context'
 
 export function CustomCheckbox({ name, label }: FieldProps) {
   const { control } = useContext(FormContext)

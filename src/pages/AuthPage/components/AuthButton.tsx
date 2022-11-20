@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { ButtonProgress } from '../../../shared'
+import { ButtonProgress } from '../../../common/components'
 
 interface Props {
   inProgress: boolean

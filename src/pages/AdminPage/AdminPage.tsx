@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../context'
-import { getUsers } from '../../services/userAPI'
-import { Loader } from '../../shared'
+import { UserContext } from '../../common/context'
+import { getUsers } from '../../common/services'
+import { Loader } from '../../common/components'
 import { UserTable, Warning } from './components'
 import { useQuery } from 'react-query'
 

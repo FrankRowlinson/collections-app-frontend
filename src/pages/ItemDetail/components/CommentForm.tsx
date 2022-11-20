@@ -1,10 +1,10 @@
 import { useForm, useWatch } from 'react-hook-form'
 import { TextField, Button, Grid, Box } from '@mui/material'
 import { useContext } from 'react'
-import { ItemContext, UserContext } from '../../../context'
-import { createComment } from '../../../services/commentAPI'
+import { ItemContext, UserContext } from '../../../common/context'
+import { createComment } from '../../../common/services'
 import { useState } from 'react'
-import { ButtonProgress } from '../../../shared'
+import { ButtonProgress } from '../../../common/components'
 import { Trans, t } from '@lingui/macro'
 
 interface Props {

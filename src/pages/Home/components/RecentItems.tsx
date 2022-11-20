@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material'
 import { useQuery } from 'react-query'
-import { getRecentItems } from '../../../services/itemAPI'
+import { getRecentItems } from '../../../common/services'
 import { Trans } from '@lingui/macro'
 import { RecentItemsSkeleton, ItemCard } from '.'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import { useInfiniteQuery } from 'react-query'
-import { getUserCollections } from '../../../services/collectionAPI'
-import { Loader, LoadMoreButton } from '../../../shared'
+import { getUserCollections } from '../../../common/services'
+import { Loader, LoadMoreButton } from '../../../common/components'
 import { CollectionCard } from './'
 
 interface Props {

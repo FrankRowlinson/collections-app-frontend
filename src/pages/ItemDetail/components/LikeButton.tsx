@@ -5,10 +5,10 @@ import { useSnackbar } from 'notistack'
 import { useContext, useState } from 'react'
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { routes } from '../../../constants'
-import { UserContext } from '../../../context'
-import { dislike, like } from '../../../services/likeAPI'
-import { ButtonProgress } from '../../../shared'
+import { routes } from '../../../common/constants'
+import { UserContext } from '../../../common/context'
+import { dislike, like } from '../../../common/services'
+import { ButtonProgress } from '../../../common/components'
 
 const likeAction: Mapping = {
   true: like,

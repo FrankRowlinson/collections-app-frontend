@@ -2,7 +2,7 @@ import { Grid, Typography, Stack, Box, Divider } from '@mui/material'
 import { Trans, t } from '@lingui/macro'
 import { Image } from 'mui-image'
 import moment from 'moment'
-import { usePlaceholder } from '../../../hooks'
+import { usePlaceholder } from '../../../common/hooks'
 
 interface Props {
   data: User

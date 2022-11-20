@@ -2,9 +2,9 @@ import React from 'react'
 import { t, Trans } from '@lingui/macro'
 import { Typography, Grid, Container } from '@mui/material'
 import { useLocation } from 'react-router-dom'
-import { search, searchByTag } from '../../services/searchAPI'
+import { search, searchByTag } from '../../common/services'
 import { useInfiniteQuery } from 'react-query'
-import { Loader, LoadMoreButton } from '../../shared'
+import { Loader, LoadMoreButton } from '../../common/components'
 import { SearchItem } from './components'
 
 interface Page {

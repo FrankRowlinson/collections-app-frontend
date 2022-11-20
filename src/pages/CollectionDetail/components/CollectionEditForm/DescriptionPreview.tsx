@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material'
-import { MarkdownPreview } from '../../../../shared'
+import { MarkdownPreview } from '../../../../common/components'
 import { Trans } from '@lingui/macro'
 import { useContext } from 'react'
-import { FormContext } from '../../../../context'
+import { FormContext } from '../../../../common/context'
 
 export function DescriptionPreview() {
   const { control } = useContext(FormContext)

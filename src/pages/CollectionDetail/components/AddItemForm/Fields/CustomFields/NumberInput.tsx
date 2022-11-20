@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { useContext, useState } from 'react'
 import { useController } from 'react-hook-form'
-import { FormContext } from '../../../../../../context'
+import { FormContext } from '../../../../../../common/context'
 
 export function NumberInput({ name, label }: FieldProps) {
   const { control } = useContext(FormContext)

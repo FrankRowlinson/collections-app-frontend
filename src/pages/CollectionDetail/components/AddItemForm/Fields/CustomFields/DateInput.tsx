@@ -3,7 +3,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import moment from 'moment'
 import { useContext } from 'react'
 import { useController } from 'react-hook-form'
-import { FormContext } from '../../../../../../context'
+import { FormContext } from '../../../../../../common/context'
 
 export function DateInput({ name, label }: FieldProps) {
   const { control } = useContext(FormContext)

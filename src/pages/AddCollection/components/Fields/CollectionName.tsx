@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Grid, TextField } from '@mui/material'
-import { FormContext } from '../../../../context'
+import { FormContext } from '../../../../common/context'
 import { t } from '@lingui/macro'
 
 export function CollectionName() {

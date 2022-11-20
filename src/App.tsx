@@ -12,10 +12,9 @@ import localization from 'moment/locale/pl'
 import { SnackbarProvider } from 'notistack'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import { routes } from './constants'
-import { ColorModeContext, LocaleContext, UserContext } from './context'
-import { messages as enMessages } from './locales/en/messages'
-import { messages as plMessages } from './locales/pl/messages'
+import { routes } from './common/constants'
+import { ColorModeContext, LocaleContext, UserContext } from './common/context'
+import { plMessages, enMessages } from './locales'
 import {
   AddCollection,
   AdminPage,
@@ -28,8 +27,8 @@ import {
   SelectionResults,
   UserProfile,
 } from './pages'
-import { getCurrentUser, logout } from './services/userAPI'
-import { Loader, Navbar } from './shared'
+import { getCurrentUser, logout } from './common/services'
+import { Loader, Navbar } from './common/components'
 import { getDesignTokens } from './themes'
 
 function App() {
