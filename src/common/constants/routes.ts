@@ -11,5 +11,6 @@ export const routes = {
   SEARCH_RESULTS: '/search',
   SELECTION_RESULTS: '/select',
   ADMIN: '/admin',
+  FAVOURITES: '/favourites',
   NOT_FOUND: '/not_found',
 }

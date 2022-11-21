@@ -18,6 +18,7 @@ import { plMessages, enMessages } from './locales'
 import {
   AddCollection,
   AdminPage,
+  Favourites,
   AuthPage,
   CollectionDetail,
   Home,
@@ -129,7 +130,7 @@ function App() {
                               element={<UserProfile />}
                             />
                             <Route
-                              path={`${routes.USER_PROFILE}/:userId`}
+                              path={`${routes.USER_PROFILE}/:id`}
                               element={<UserProfile />}
                             />
                             <Route
@@ -167,6 +168,10 @@ function App() {
                             <Route
                               path={routes.SELECTION_RESULTS}
                               element={<SelectionResults />}
+                            />
+                            <Route
+                              path={routes.FAVOURITES}
+                              element={<Favourites />}
                             />
                             <Route
                               path={routes.NOT_FOUND}

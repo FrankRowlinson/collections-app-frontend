@@ -4,8 +4,7 @@ import { Typography, Grid, Container } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { search, searchByTag } from '../../common/services'
 import { useInfiniteQuery } from 'react-query'
-import { Loader, LoadMoreButton } from '../../common/components'
-import { SearchItem } from './components'
+import { ItemList, Loader, LoadMoreButton } from '../../common/components'
 
 interface Page {
   cursor: number
@@ -35,7 +34,7 @@ export function SearchResults() {
 
   return (
     <Container maxWidth="xl">
-      <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
+      <Grid container spacing={1} sx={{ alignItems: 'stretch' }}>
         <Grid item xs={12}>
           <Typography variant="h5" sx={{ fontWeight: 500 }}>
             {searchResultHeaders[type] + (query ? `: ${query}` : '')}
@@ -57,9 +56,7 @@ export function SearchResults() {
                     </Typography>
                   </Grid>
                 ) : (
-                  group.items.map((item) => (
-                    <SearchItem item={item} key={item.id} />
-                  ))
+                  <ItemList items={group.items} />
                 )}
               </React.Fragment>
             ))}

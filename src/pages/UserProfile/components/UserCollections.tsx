@@ -11,10 +11,14 @@ interface Props {
 
 export function UserCollections({ authorId }: Props) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery([`${authorId}collections`], getUserCollections(authorId), {
-      getNextPageParam: (lastPage) =>
-        lastPage.collections.length < 8 ? undefined : lastPage.cursor,
-    })
+    useInfiniteQuery(
+      [`${authorId}-collections`],
+      getUserCollections(authorId),
+      {
+        getNextPageParam: (lastPage) =>
+          lastPage.collections.length < 8 ? undefined : lastPage.cursor,
+      }
+    )
   return (
     <>
       {isLoading ? (
