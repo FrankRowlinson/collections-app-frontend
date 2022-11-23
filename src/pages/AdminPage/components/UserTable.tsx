@@ -18,7 +18,7 @@ import {
   deleteUsers,
   unblockUsers,
 } from '../../../common/services/userAPI'
-import { getColumns, getRows } from '../functions'
+import { getColumns, getRows } from '../utils'
 
 interface Props {
   users: UserInfo[]

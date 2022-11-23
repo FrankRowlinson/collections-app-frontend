@@ -23,6 +23,8 @@
     "make-plural": "^7.1.0",
     "material-ui-confirm": "^3.0.6",
     "material-ui-popup-state": "^4.1.0",
+    "mobx": "^6.7.0",
+    "mobx-react": "^7.6.0",
     "moment": "^2.29.4",
     "mui-image": "^1.0.7",
     "notistack": "^2.0.8",
