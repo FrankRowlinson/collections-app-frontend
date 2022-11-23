@@ -11,9 +11,10 @@ import {
   ToggleButton,
   ListItem,
 } from '@mui/material'
-import { useContext, useEffect } from 'react'
-import { LocaleContext } from '../../context'
+import { useEffect } from 'react'
 import { locales } from '../../constants'
+import { localeStore } from '../../../stores/localeStore'
+import { observer } from 'mobx-react-lite'
 
 interface Props {
   variant: 'drawer' | 'top'
@@ -25,9 +26,7 @@ interface Locale {
 
 const localeMapping: Locale = {}
 
-export function LocaleSwitcher({ variant }: Props) {
-  const { localeMode, locale } = useContext(LocaleContext)
-
+export const LocaleSwitcher = observer(function ({ variant }: Props) {
   useEffect(() => {
     locales.forEach((el) => (localeMapping[el.name] = el.flag))
   }, [])
@@ -43,7 +42,7 @@ export function LocaleSwitcher({ variant }: Props) {
           {...bindTrigger(popupState)}
           sx={{ color: 'text.primary', mx: 0.5, fontSize: 20 }}
         >
-          {localeMapping[locale]}
+          {localeMapping[localeStore.locale]}
         </IconButton>
         <Menu {...bindMenu(popupState)}>
           {locales.map((item) => {
@@ -51,7 +50,7 @@ export function LocaleSwitcher({ variant }: Props) {
               <MenuItem
                 key={`${item.name}-top`}
                 onClick={() => {
-                  localeMode?.changeLocale(item.name)
+                  localeStore.changeLocale(item.name)
                 }}
               >
                 {item.flag}
@@ -67,15 +66,15 @@ export function LocaleSwitcher({ variant }: Props) {
     return (
       <ListItem sx={{ display: 'flex', justifyContent: 'center' }}>
         <ToggleButtonGroup>
-          {locales.map((item, index) => (
+          {locales.map((item) => (
             <ToggleButton
               size="small"
               value={item.name}
-              selected={item.name === locale}
+              selected={item.name === localeStore.locale}
               key={`${item.name}-drawer`}
               sx={{ fontSize: 20, py: 0, px: 2 }}
               onClick={() => {
-                localeMode?.changeLocale(item.name)
+                localeStore.changeLocale(item.name)
               }}
             >
               {item.flag}
@@ -87,4 +86,4 @@ export function LocaleSwitcher({ variant }: Props) {
   }
 
   return <>{variant === 'drawer' ? <DrawerVariant /> : <TopVariant />}</>
-}
+})

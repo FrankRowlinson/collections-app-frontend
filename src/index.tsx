@@ -14,9 +14,7 @@ const client = new QueryClient()
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = process.env.REACT_APP_HOST
 
-const rootElement = document.getElementById('root')
-if (!rootElement) throw new Error('Failed to find the root element')
-const root = createRoot(rootElement)
+const root = createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={client}>

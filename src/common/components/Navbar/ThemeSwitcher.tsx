@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material/styles'
-import { useContext } from 'react'
-import { ColorModeContext } from '../../context'
+import { observer } from 'mobx-react-lite'
+import { themeStore } from '../../../stores'
 import { IconButton, Switch, ListItem } from '@mui/material'
 import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
 
@@ -8,12 +8,11 @@ interface Props {
   variant: 'top' | 'drawer'
 }
 
-export function ThemeSwitcher({ variant }: Props) {
-  const colorMode = useContext(ColorModeContext)
+export const ThemeSwitcher = observer(function ({ variant }: Props) {
   const theme = useTheme()
 
   const TopVariant = () => (
-    <IconButton sx={{ ml: 2 }} onClick={colorMode.toggleColorMode}>
+    <IconButton sx={{ ml: 2 }} onClick={themeStore.toggleColorMode}>
       {theme.palette.mode === 'dark' ? <MdDarkMode /> : <MdOutlineDarkMode />}
     </IconButton>
   )
@@ -23,7 +22,7 @@ export function ThemeSwitcher({ variant }: Props) {
       <MdOutlineDarkMode />
       <Switch
         color="default"
-        onChange={colorMode.toggleColorMode}
+        onChange={themeStore.toggleColorMode}
         checked={theme.palette.mode === 'dark'}
       />
       <MdDarkMode />
@@ -31,4 +30,4 @@ export function ThemeSwitcher({ variant }: Props) {
   )
 
   return <>{variant === 'drawer' ? <DrawerVariant /> : <TopVariant />}</>
-}
+})
