@@ -28,7 +28,7 @@ const schema = yup.object({
 export function LoginForm() {
   const [inProgress, setInProgess] = useState(false)
   const [status, setStatus] = useState(null)
-  const { user } = useContext(UserContext)
+  const { user, refetch } = useContext(UserContext)
 
   const {
     register,
@@ -41,7 +41,7 @@ export function LoginForm() {
     setInProgess(true)
     const response = await authenticateUser(data, 'login')
     if (response.status === 'ok') {
-      window.location.reload()
+      refetch?.()
     } else {
       setStatus(response.error)
       resetField('password')

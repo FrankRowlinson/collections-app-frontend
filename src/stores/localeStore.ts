@@ -16,7 +16,7 @@ class LocaleState {
     moment.updateLocale(locale, localization)
   }
 
-  initializeLocale(): void {
+  initializeLocalization(): void {
     i18n.loadLocaleData({
       en: { plurals: en },
       pl: { plurals: pl },

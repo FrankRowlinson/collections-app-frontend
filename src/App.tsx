@@ -6,7 +6,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { ConfirmProvider } from 'material-ui-confirm'
 import { SnackbarProvider } from 'notistack'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { routes } from './common/constants'
 import { UserContext } from './common/context'
@@ -27,31 +27,20 @@ import { getCurrentUser, logout } from './common/services'
 import { Loader, Navbar } from './common/components'
 import { localeStore, themeStore } from './stores'
 import { observer } from 'mobx-react-lite'
+import { useQuery } from 'react-query'
 
 function App() {
-  const [user, setUser] = useState<User>({ role: 'GUEST' })
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const { data, isLoading, refetch } = useQuery(['currentUser'], getCurrentUser)
   const navigate = useNavigate()
-  localeStore.initializeLocale()
+  localeStore.initializeLocalization()
 
   const handleLogout = useCallback(async () => {
-    setIsLoading(true)
     const response = await logout()
     if (response.status === 'ok') {
-      setUser({ role: 'GUEST' })
-      setIsLoading(false)
+      refetch()
       navigate(routes.HOME)
     }
-  }, [navigate])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const user = await getCurrentUser()
-      user.hasAccess && setUser(user)
-      setIsLoading(false)
-    }
-    fetchData()
-  }, [])
+  }, [navigate, refetch])
 
   return (
     <I18nProvider i18n={i18n}>
@@ -64,7 +53,13 @@ function App() {
                 <Loader />
               ) : (
                 <>
-                  <UserContext.Provider value={{ user, setUser, handleLogout }}>
+                  <UserContext.Provider
+                    value={{
+                      user: data || { role: 'GUEST' },
+                      refetch,
+                      handleLogout
+                    }}
+                  >
                     <Navbar />
                     <Box
                       sx={{
@@ -93,7 +88,7 @@ function App() {
                         <Route
                           path={`${routes.AUTH}/*`}
                           element={
-                            user.role === 'GUEST' ? (
+                            data.role === 'GUEST' ? (
                               <AuthPage />
                             ) : (
                               <Navigate to={routes.HOME} />
@@ -103,7 +98,7 @@ function App() {
                         <Route
                           path={routes.CREATE_COLLECTION}
                           element={
-                            user.role !== 'GUEST' ? (
+                            data.role !== 'GUEST' ? (
                               <AddCollection />
                             ) : (
                               <Navigate to={routes.SIGNUP} />

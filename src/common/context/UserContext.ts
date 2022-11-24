@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 interface UserContextInterface {
   user?: User
-  setUser?: (user: User) => void
+  refetch?: () => void
   handleLogout?: () => void
 }
 
